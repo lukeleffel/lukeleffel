@@ -20,7 +20,7 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--white);font-family:"DM Sans",sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
 /* ══ NAV ══ */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1.8rem 3rem;transition:background .4s}
+nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;justify-content:space-between;align-items:center;padding:1.8rem 3rem;transition:background .4s}
 nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 .nav-logo{font-family:"Bebas Neue",sans-serif;font-size:1.05rem;letter-spacing:.2em;color:var(--white);text-decoration:none}
 .nav-links{display:flex;gap:2.5rem;align-items:center}
@@ -81,7 +81,7 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 .hero-scroll-txt{font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
 
 /* ══ MOBILE MENU ══ */
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;z-index:300}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;z-index:300;position:relative}
 .hamburger span{display:block;width:22px;height:1.5px;background:var(--white);transition:transform .3s ease,opacity .3s ease}
 .hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
 .hamburger.open span:nth-child(2){opacity:0}
