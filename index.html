@@ -8,7 +8,7 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0a0908;
+  --bg:#05060b;
   --white:#f2ede6;
   --dim:rgba(242,237,230,.42);
   --muted:rgba(242,237,230,.22);
@@ -130,7 +130,7 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 .bio-right{position:relative;overflow:hidden}
 .bio-photo{
   position:absolute;inset:0;
-  background-position:20% 8%;
+  background-position:60% 8%;
   background-size:cover;
   background-repeat:no-repeat;
   filter:grayscale(1) brightness(1.15) contrast(1.05);
@@ -237,8 +237,8 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   .hamburger{display:flex}
   .mobile-drawer{display:flex}
 
-  /* Hero — shorter, fills to bottom edge naturally */
-  .s-hero{height:70vh;min-height:420px}
+  /* Hero — true full screen on mobile */
+  .s-hero{height:100dvh;min-height:500px}
   .hw-make,.hw-space{font-size:clamp(4rem,20vw,6.5rem)}
 
   /* Bio — text on top, photo below filling width */
@@ -257,7 +257,7 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   .bio-photo{
     position:absolute;
     inset:0;
-    background-position:75% 15%;
+    background-position:60% 8%;
     background-size:cover;
     background-repeat:no-repeat;
   }
