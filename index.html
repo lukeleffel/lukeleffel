@@ -32,37 +32,23 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 /* \u9552  HERO \u9552 \u9552  */
 .s-hero{position:relative;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--bg)}
 
-/* Photos sit behind text, fade in/out slowly */
-.h-slide{
-  position:absolute;inset:0;
-  background:center/cover no-repeat;
-  filter:grayscale(1) brightness(.45) contrast(1.1);
-  opacity:0;
-  transition:opacity 3s ease;
-  z-index:0;
-}
-.h-slide.active{opacity:1}
-
-/* Vignette over photos */
-.hero-vig{
-  position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:radial-gradient(ellipse at center,transparent 20%,rgba(10,9,8,.7) 100%);
-}
-
-/* MAKE SPACE \'97 always visible, on top */
+/* MAKE SPACE — phase 1 */
 .hero-words{
-  position:relative;z-index:2;
+  position:absolute;inset:0;z-index:2;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;pointer-events:none;
+  transition:opacity 7s ease, transform 7s ease;
 }
+.hero-words.exit{opacity:0;transform:scale(1.04)}
 .hw-make{
   display:block;font-family:"Bebas Neue",sans-serif;
-  font-size:clamp(6rem,16vw,20rem);line-height:.85;letter-spacing:.04em;
+  font-size:clamp(5rem,30vw,99vw);line-height:.85;letter-spacing:.04em;
   background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
   opacity:0;animation:fadeUp 1s ease .3s forwards;
 }
 .hw-space{
   display:block;font-family:"Bebas Neue",sans-serif;
-  font-size:clamp(6rem,16vw,20rem);line-height:.85;letter-spacing:.04em;
+  font-size:clamp(5rem,30vw,99vw);line-height:.85;letter-spacing:.04em;
   color:var(--white);
   opacity:0;animation:fadeUp 1s ease .6s forwards;
 }
@@ -70,14 +56,64 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 @keyframes goLeft{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @keyframes goRight{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 
+/* BIO PANEL — phase 2, lives inside hero */
+.hero-bio{
+  position:absolute;inset:0;z-index:2;
+  display:grid;grid-template-columns:55% 45%;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity 1.4s ease, visibility 0s linear 1.4s;
+}
+.hero-bio.visible{
+  opacity:1;visibility:visible;pointer-events:auto;
+  transition:opacity 1.4s ease, visibility 0s linear 0s;
+}
+.hero-bio-left{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:8rem 3.5rem 6rem;
+}
+.hero-bio-type{
+  font-family:"Bebas Neue",sans-serif;
+  font-size:clamp(2.8rem,5vw,6.2rem);
+  line-height:.94;letter-spacing:.01em;color:var(--white);
+}
+.hero-bio-type .hl{color:var(--accent)}
+.hero-bio-type .hl2{
+  background:var(--grad);-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-bio-cta{
+  margin-top:2.8rem;display:inline-flex;align-items:center;gap:.75rem;
+  font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent);text-decoration:none;
+  border-bottom:1px solid var(--accent);padding-bottom:2px;width:fit-content;
+  transition:color .2s,border-color .2s;
+}
+.hero-bio-cta:hover{color:var(--white);border-color:var(--white)}
+.hero-bio-right{position:relative;overflow:hidden}
+.hero-bio-photo{
+  position:absolute;inset:0;
+  background-position:center 12%;
+  background-size:cover;
+  background-repeat:no-repeat;
+  filter:grayscale(1) brightness(1.15) contrast(1.05);
+}
+.hero-bio-photo::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to right,var(--bg) 0%,transparent 25%),
+             linear-gradient(to top,var(--bg) 0%,transparent 30%);
+}
+@keyframes goLeft{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes goRight{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+
 /* Scroll cue */
 .hero-scroll{
   position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
   z-index:3;display:flex;flex-direction:column;align-items:center;gap:.6rem;
-  opacity:0;animation:fadeUp .8s ease 2s forwards;
+  opacity:0;animation:fadeUp .8s ease var(--scroll-delay, 6s) forwards;
 }
-.hero-scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,rgba(212,104,138,.7),transparent);animation:sp 2s ease infinite}
-@keyframes sp{0%,100%{opacity:.3}50%{opacity:1}}
+.hero-scroll-arrow{display:flex;flex-direction:column;align-items:center;gap:0;animation:sp 2s ease infinite}
+.hero-scroll-arrow svg{width:18px;height:18px;stroke:rgba(212,104,138,.7);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+@keyframes sp{0%,100%{opacity:.3;transform:translateY(-3px)}50%{opacity:1;transform:translateY(3px)}}
 .hero-scroll-txt{font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
 
 /* \u9552  MOBILE MENU \u9552 \u9552  */
@@ -241,20 +277,20 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   .s-hero{height:100dvh;min-height:500px}
   .hw-make,.hw-space{font-size:clamp(4rem,20vw,6.5rem)}
 
-  /* Bio \'97 full bleed photo, text overlaid */
-  .s-bio{
+  /* Bio — full bleed photo, text overlaid at bottom */
+  .hero-bio{
     grid-template-columns:1fr;
     grid-template-rows:1fr;
-    min-height:100dvh;
-    position:relative;
+    position:absolute;
+    inset:0;
   }
-  .bio-right{
+  .hero-bio-right{
     position:absolute;
     inset:0;
     z-index:0;
     overflow:hidden;
   }
-  .bio-photo{
+  .hero-bio-photo{
     position:absolute;
     inset:0;
     background-position:68% 12%;
@@ -262,12 +298,12 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
     background-repeat:no-repeat;
     filter:grayscale(1) brightness(1.15) contrast(1.05);
   }
-  .bio-photo::after{
+  .hero-bio-photo::after{
     background:
       linear-gradient(to bottom, rgba(5,6,11,.4) 0%, transparent 30%),
-      linear-gradient(to top, rgba(5,6,11,.6) 0%, transparent 40%);
+      linear-gradient(to top, rgba(5,6,11,.75) 0%, transparent 50%);
   }
-  .bio-left{
+  .hero-bio-left{
     position:relative;
     z-index:2;
     padding:5rem 1.4rem 3rem;
@@ -275,17 +311,10 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
     display:flex;
     flex-direction:column;
     justify-content:flex-end;
+    align-self:end;
   }
-  .bio-type{font-size:clamp(2.1rem,7.7vw,3.1rem)}
-  .bio-type-wrap{
-    display:inline-block;
-    background:rgba(5,6,11,.55);
-    padding:.7rem 1rem 1.2rem;
-    border-radius:4px;
-    backdrop-filter:blur(6px);
-    -webkit-backdrop-filter:blur(6px);
-  }
-  .bio-cta{margin-top:1.6rem}
+  .hero-bio-type{font-size:clamp(2.1rem,7.7vw,3.1rem)}
+  .hero-bio-cta{margin-top:1.6rem}
 
   /* Projects \'97 single column */
   .s-projects{padding:0 1.4rem 10vw}
@@ -339,38 +368,41 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
 
 <!-- \u9552  HERO \u9552 \u9552  -->
 <section class="s-hero" id="hero">
-  <div class="h-slide" id="hs0" style="background-image:url('https://images.pixieset.com/170698901/4507c754a14bba4fda2f971ea85ffef7-xxlarge.jpg?w=1600&h=900&fit=crop&q=85')"></div>
-  <div class="h-slide" id="hs1" style="background-image:url('https://images.pixieset.com/170698901/e4d92212650e7ba3934103e1c2ae7b5e-xxlarge.jpg?w=1600&h=900&fit=crop&q=85')"></div>
-  <div class="h-slide" id="hs2" style="background-image:url('https://images.pixieset.com/276962901/18209d6e5037dc288ad4f1b01bf77b32-xxlarge.jpg?w=1600&h=900&fit=crop&q=85')"></div>
-  <div class="hero-vig"></div>
+
+
+  <!-- Phase 1: MAKE SPACE -->
   <div class="hero-words" id="heroWords">
     <span class="hw-make">MAKE</span>
     <span class="hw-space">SPACE</span>
   </div>
+
+  <!-- Phase 2: Bio fades in over hero -->
+  <div class="hero-bio" id="heroBio">
+    <div class="hero-bio-left">
+      <div class="hero-bio-type">
+        I'M <span class="hl">LUKE LEFFEL,</span><br>
+        PHOTOGRAPHER,<br>
+        <span class="hl">CAFE STRATEGIST</span><br>
+        AND <span class="hl">CONNECTOR</span><br>
+        WORKING AT THE<br>
+        INTERSECTION OF<br>
+        <span class="hl2">HOSPITALITY,</span><br>
+        <span class="hl2">DESIGN</span> AND<br>
+        <span class="hl2">COMMUNITY</span>
+      </div>
+      <a href="#projects" class="hero-bio-cta">See the work &nbsp;</a>
+    </div>
+    <div class="hero-bio-right">
+      <div class="hero-bio-photo" id="bioPhoto"></div>
+    </div>
+  </div>
+
   <div class="hero-scroll" id="hScroll">
     <span class="hero-scroll-txt">Scroll</span>
-    <div class="hero-scroll-line"></div>
-  </div>
-</section>
-
-<!-- \u9552  BIO \u9552 \u9552  -->
-<section class="s-bio">
-  <div class="bio-left reveal">
-    <div class="bio-type">
-      I'M <span class="hl">LUKE LEFFEL,</span><br>
-      PHOTOGRAPHER,<br>
-      <span class="hl">CAFE STRATEGIST</span><br>
-      AND <span class="hl">CONNECTOR</span><br>
-      WORKING AT THE<br>
-      INTERSECTION OF<br>
-      <span class="hl2">HOSPITALITY,</span><br>
-      <span class="hl2">DESIGN</span> AND<br>
-      <span class="hl2">COMMUNITY</span>
+    <div class="hero-scroll-arrow">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="margin-top:-6px;opacity:.45"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
-    <a href="#projects" class="bio-cta">See the work &nbsp;</a>
-  </div>
-  <div class="bio-right">
-    <div class="bio-photo" id="bioPhoto"></div>
   </div>
 </section>
 
@@ -615,32 +647,27 @@ document.getElementById('bioPhoto').style.backgroundImage = "url('data:image/jpe
 })();
 
 // \u9552  HERO SEQUENCE \u9552 \u9552 
-// MAKE SPACE always visible. Photos slowly fade in behind it, hold, fade out.
-// Each photo: 3s fade in, 4s hold, 3s fade out = 10s total, then next.
+// Phase 1: MAKE SPACE fades in (~1s). Holds until 2s, then exits over 7s.
+// Phase 2: Bio fades in at 3s, overlapping the MAKE SPACE fade-out.
 (function() {
-  const slides = [
-    document.getElementById('hs0'),
-    document.getElementById('hs1'),
-    document.getElementById('hs2')
-  ];
-  let current = 0;
+  const words = document.getElementById('heroWords');
+  const bio   = document.getElementById('heroBio');
 
-  function showSlide(idx) {
-    // Fade in
-    slides[idx].classList.add('active');
-    // After 7s (3s fade-in + 4s hold), fade out
-    setTimeout(() => {
-      slides[idx].classList.remove('active');
-      // After 3s fade-out, show next
-      setTimeout(() => {
-        current = (current + 1) % slides.length;
-        showSlide(current);
-      }, 3000);
-    }, 7000);
-  }
+  // Start fade-out of MAKE SPACE at 2s (7s transition)
+  setTimeout(() => {
+    words.classList.add('exit');
+  }, 2000);
 
-  // Start first photo after a 1s pause (so black + words show first)
-  setTimeout(() => showSlide(0), 1000);
+  // Bio begins fading in at 3s
+  setTimeout(() => {
+    bio.classList.add('visible');
+  }, 3000);
+
+  // Clean up words element after it's fully gone (2s + 7s = 9s)
+  setTimeout(() => {
+    words.style.display = 'none';
+  }, 9000);
+
 })();
 
 // \u9552  SCROLL PARALLAX on hero \u9552 \u9552 
