@@ -208,16 +208,81 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
              linear-gradient(to top,var(--bg) 0%,transparent 30%);
 }
 
-/* \u9552  PROJECT LIST \u9552 \u9552  */
-.s-projects{padding:0 3.5rem 8vw;position:relative;z-index:10;background:var(--bg)}
-.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;border:1px solid rgba(242,237,230,.07)}
-.proj-item{padding:2rem 1.8rem;border-right:1px solid rgba(242,237,230,.07);text-decoration:none;color:inherit;display:block;transition:background .3s}
-.proj-item:hover{background:rgba(212,104,138,.04)}
-.proj-item:nth-child(3n){border-right:none}
-.proj-num{font-family:"Bebas Neue",sans-serif;font-size:.75rem;letter-spacing:.2em;color:var(--muted);margin-bottom:.6rem}
-.proj-name{font-family:"Bebas Neue",sans-serif;font-size:1.4rem;letter-spacing:.04em;line-height:1;margin-bottom:.7rem;transition:color .2s}
-.proj-item:hover .proj-name{color:var(--accent)}
-.proj-desc{font-size:.78rem;font-weight:300;color:var(--dim);line-height:1.65}
+/* ══  PILLARS NARRATIVE  ══ */
+.s-pillars{
+  position:relative;z-index:10;background:var(--bg);
+  padding:0 0 4vw;
+}
+.pillar-beat{
+  position:relative;
+  min-height:25vh;
+  display:flex;align-items:center;
+  overflow:hidden;
+  border-top:1px solid rgba(242,237,230,.05);
+  padding:6vh 0;
+}
+.pillar-beat[data-align="left"]  .pb-inner{ margin-left:8vw; }
+.pillar-beat[data-align="right"] .pb-inner{ margin-left:auto; margin-right:8vw; }
+.pillar-beat[data-align="center"] .pb-inner{ margin:0; text-align:left; }
+.pillar-beat[data-align="center"] { justify-content: flex-start; padding-left: 8vw; }
+
+.pb-inner{
+  position:relative;z-index:2;
+  max-width:70vw;
+  opacity:0;
+  transform:translateY(48px);
+  transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);
+}
+.pb-inner.on{
+  opacity:1;transform:none;
+}
+.pb-num{
+  display:block;
+  font-family:"Bebas Neue",sans-serif;
+  font-size:.75rem;letter-spacing:.3em;
+  color:var(--accent);
+  margin-bottom:1rem;
+}
+.pb-word{
+  font-family:"Bebas Neue",sans-serif;
+  font-size:clamp(5rem,14vw,16rem);
+  line-height:.88;letter-spacing:.02em;
+  color:var(--white);
+  margin:0;
+}
+/* Gradient accent: first pillar plain white, second gradient, third accent */
+#pb-photography .pb-word{ color:var(--white); }
+#pb-strategy .pb-word{
+  background:var(--grad);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+#pb-connection .pb-word{ color:var(--accent); }
+
+.pb-sub{
+  margin-top:1.4rem;
+  font-size:clamp(.8rem,1.1vw,.95rem);
+  font-weight:300;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--dim);
+}
+
+/* Thin rule that draws in from the left as beat enters */
+.pillar-beat::before{
+  content:"";
+  position:absolute;left:0;top:50%;
+  width:0;height:1px;
+  background:linear-gradient(to right,var(--accent),transparent);
+  transition:width 1s cubic-bezier(.16,1,.3,1) .15s;
+  opacity:.35;
+}
+.pillar-beat.on::before{ width:100%; }
+
+@media(max-width:768px){
+  .pillar-beat{ min-height:auto; padding:4rem 1.4rem; }
+  .pillar-beat[data-align="left"]  .pb-inner{ margin-left:0; }
+  .pillar-beat[data-align="right"] .pb-inner{ margin-left:auto;margin-right:0; text-align:right; }
+  .pillar-beat[data-align="center"] .pb-inner{ margin:0; text-align:left; }
+  .pb-word{ font-size:clamp(4rem,18vw,8rem); }
+}
 
 
 /* \u9552  RIVER \u9552 \u9552  */
@@ -270,11 +335,114 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 .fp-cta{display:inline-flex;align-items:center;gap:.6rem;font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--white);text-decoration:none;background:linear-gradient(135deg,rgba(123,143,232,.25),rgba(224,95,160,.25));border:1px solid rgba(212,104,138,.4);padding:.55rem 1.2rem;border-radius:20px;transition:background .25s,border-color .25s;width:fit-content}
 .fp-cta:hover{background:linear-gradient(135deg,rgba(123,143,232,.45),rgba(224,95,160,.45));border-color:rgba(212,104,138,.8)}
 .wm-tag.active{background:linear-gradient(135deg,rgba(123,143,232,.45),rgba(224,95,160,.45));border-color:rgba(212,104,138,.8)}
-/* \u9552  CTA \u9552 \u9552  */
+.pb-tags{
+  display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem;
+  pointer-events:auto;
+}
 
-/* \u9552  CTA \u9552 \u9552  */
+/* ══  IN-PILLAR FEATURE PANEL  ══ */
+.pb-panel{
+  position:absolute;inset:0;
+  opacity:0;pointer-events:none;
+  transition:opacity .45s ease;
+  z-index:1;
+}
+.pillar-beat.panel-open .pb-panel{
+  opacity:1;pointer-events:auto;
+}
+.pb-panel-img{
+  position:absolute;inset:0;
+  background:center/cover no-repeat;
+  opacity:0;transition:opacity .4s ease;
+}
+.pb-panel-img.active{ opacity:1; }
+.pb-panel-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to right, rgba(5,6,11,.75) 0%, rgba(5,6,11,.4) 50%, transparent 100%);
+  z-index:2;
+  pointer-events:none;
+}
+.pb-panel-overlay .fp-eyebrow,
+.pb-panel-overlay .fp-title,
+.pb-panel-overlay .fp-body,
+.pb-panel-overlay .fp-cta{ display:none; }
+/* pb-detail: copy + CTA shown on pill hover, lives inside pb-inner */
+.pb-detail{
+  max-width:38ch;
+  margin-top:1.2rem;
+  opacity:0;transform:translateY(8px);
+  transition:opacity .35s ease, transform .35s ease;
+  pointer-events:none;
+}
+.pillar-beat.panel-open .pb-detail{
+  opacity:1;transform:none;pointer-events:auto;
+}
+.pb-detail-body{
+  font-size:clamp(.8rem,1vw,.9rem);font-weight:300;
+  color:var(--dim);line-height:1.7;margin-bottom:1rem;
+}
+.pb-detail-cta{ margin-top:.2rem; }
 
-/* \u9552  CTA \u9552 \u9552  */
+/* ══  LIGHTBOX  ══ */
+.lightbox{
+  position:fixed;inset:0;z-index:1000;
+  background:rgba(5,6,11,.96);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity .35s ease;
+}
+.lightbox.open{opacity:1;pointer-events:auto}
+.lb-img-wrap{
+  max-width:90vw;max-height:88vh;
+  display:flex;align-items:center;justify-content:center;
+}
+.lb-img{
+  max-width:90vw;max-height:85vh;
+  object-fit:contain;
+  border-radius:2px;
+  transition:opacity .25s ease;
+}
+.lb-close,.lb-prev,.lb-next{
+  position:absolute;background:none;border:none;
+  color:var(--white);cursor:pointer;
+  font-size:1.6rem;line-height:1;
+  transition:color .2s,transform .2s;
+  padding:.5rem;
+}
+.lb-close{ top:1.5rem;right:2rem;font-size:1.2rem;letter-spacing:.1em; }
+.lb-close:hover{ color:var(--accent); }
+.lb-prev{ left:2rem;top:50%;transform:translateY(-50%);font-size:3rem; }
+.lb-next{ right:2rem;top:50%;transform:translateY(-50%);font-size:3rem; }
+.lb-prev:hover,.lb-next:hover{ color:var(--accent);transform:translateY(-50%) scale(1.1); }
+.lb-counter{
+  position:absolute;bottom:1.8rem;left:50%;transform:translateX(-50%);
+  font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+}
+.rc.lightbox-trigger{ cursor:zoom-in; }
+
+/* ══  FLOATING PILL OVERLAY  ══ */
+#pill-overlay{
+  position:fixed;
+  left:0;width:100%;
+  height:420px;
+  z-index:50;
+  opacity:0;pointer-events:none;
+  transition:opacity .4s ease;
+  overflow:hidden;
+}
+#pill-overlay.open{ opacity:1;pointer-events:auto; }
+.pill-ov-img{
+  position:absolute;inset:0;
+  background:center/cover no-repeat;
+  filter:brightness(.55);
+  transition:background-image .3s ease;
+}
+#pill-overlay .fp-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(5,6,11,.88) 0%,rgba(5,6,11,.5) 55%,transparent 100%);
+}
+
+/* ══  CTA  ══ */
 .s-cta{padding:10vw 3.5rem 12vw;position:relative;overflow:hidden;z-index:10;background:var(--bg)}
 .cta-glow{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(212,104,138,.08) 0%,transparent 70%);bottom:-200px;right:-100px;pointer-events:none}
 .cta-label{font-size:.63rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent2);margin-bottom:2.5rem;display:flex;align-items:center;gap:1rem}
@@ -346,13 +514,6 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   }
   .hero-bio-type{font-size:clamp(2.1rem,7.7vw,3.1rem)}
   .hero-bio-cta{margin-top:1.6rem}
-
-  /* Projects \'97 single column */
-  .s-projects{padding:0 1.4rem 10vw}
-  .proj-grid{grid-template-columns:1fr}
-  .proj-item{border-right:none;border-bottom:1px solid rgba(242,237,230,.07)}
-  .proj-item:nth-child(3n){border-right:none}
-  .proj-item:last-child{border-bottom:none}
 
   /* River world moments */
   .world-moment{padding:10vw 1.4rem 4vw}
@@ -446,195 +607,126 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   </div>
 </section>
 
-<!-- \u9552  PROJECT LIST \u9552 \u9552  -->
-<section class="s-projects" id="projects">
-  <div class="proj-grid reveal">
-    <a href="#photography" class="proj-item">
-      <div class="proj-num">01</div>
-      <div class="proj-name">Photography</div>
-      <p class="proj-desc">Brand, lifestyle, events, and product \'97 hospitality through a lens.</p>
-    </a>
-    <a href="#cafe-strategy" class="proj-item">
-      <div class="proj-num">02</div>
-      <div class="proj-name">SPILL Coffee Magazine</div>
-      <p class="proj-desc">A media brand documenting independent caf\'e9 culture.</p>
-    </a>
-    <a href="#cafe-strategy" class="proj-item">
-      <div class="proj-num">03</div>
-      <div class="proj-name">Consulting</div>
-      <p class="proj-desc">Opening caf\'e9s, building teams, designing the culture behind the counter.</p>
-    </a>
-    <a href="#cafe-strategy" class="proj-item">
-      <div class="proj-num">04</div>
-      <div class="proj-name">Speaking</div>
-      <p class="proj-desc">Keynotes and workshops on hospitality, community, and the Culture of Care.</p>
-    </a>
-    <a href="#connection" class="proj-item">
-      <div class="proj-num">05</div>
-      <div class="proj-name">Make Space</div>
-      <p class="proj-desc">A philosophy and practice for designing spaces that hold people.</p>
-    </a>
-    <a href="#connection" class="proj-item">
-      <div class="proj-num">06</div>
-      <div class="proj-name">Slow Caf\'e9</div>
-      <p class="proj-desc">A podcast on third-place philosophy and the art of slowing down.</p>
-    </a>
+<!-- ══  PILLARS NARRATIVE  ══ -->
+<section class="s-pillars" id="work">
+
+  <!-- PHOTOGRAPHY -->
+  <div class="pillar-beat" id="pb-photography" data-align="left">
+    <div class="pb-inner">
+      <span class="pb-num">01</span>
+      <h2 class="pb-word">PHOTOGRAPHY</h2>
+      <p class="pb-sub">Hospitality through a lens.</p>
+      <div class="pb-tags">
+        <a href="#" class="wm-tag" data-pillar="pb-photography" data-key="brand">Brand</a>
+        <a href="#" class="wm-tag" data-pillar="pb-photography" data-key="lifestyle">Lifestyle</a>
+      </div>
+      <div class="pb-detail">
+        <p class="pb-detail-body"></p>
+        <a href="#" class="pb-detail-cta fp-cta"></a>
+      </div>
+    </div>
+    <div class="pb-panel" id="pbp-photography">
+      <div class="pb-panel-img" data-key="brand" style="background-image:url('https://images.pixieset.com/170698901/53de54d0191cd1e5e2d9abd6b0cd50ef-xxlarge.jpg')"></div>
+      <div class="pb-panel-img" data-key="lifestyle" style="background-image:url('https://images.pixieset.com/170698901/31d81c8641ea98f237722f9cdf67cd59-xxlarge.jpg')"></div>
+      <div class="pb-panel-overlay"></div>
+    </div>
   </div>
+
+  <!-- CAFÉ STRATEGY -->
+  <div class="pillar-beat" id="pb-strategy" data-align="right">
+    <div class="pb-inner">
+      <span class="pb-num">02</span>
+      <h2 class="pb-word">CAFÉ<br>STRATEGY</h2>
+      <p class="pb-sub">Fifteen years opening doors.</p>
+      <div class="pb-tags">
+        <a href="#" class="wm-tag" data-pillar="pb-strategy" data-key="consulting">Consulting</a>
+        <a href="#" class="wm-tag" data-pillar="pb-strategy" data-key="soloonwhite">Solo on White</a>
+      </div>
+      <div class="pb-detail">
+        <p class="pb-detail-body"></p>
+        <a href="#" class="pb-detail-cta fp-cta"></a>
+      </div>
+    </div>
+    <div class="pb-panel" id="pbp-strategy">
+      <div class="pb-panel-img" data-key="consulting" style="background-image:url('https://images.pixieset.com/170698901/d0e03ea7c215ad772d501d2b550f3d63-xxlarge.jpg')"></div>
+      <div class="pb-panel-img" data-key="soloonwhite" style="background-image:url('https://images.pixieset.com/170698901/b8be42261fb500c1fd5529228e4db0e9-xxlarge.jpg')"></div>
+      <div class="pb-panel-overlay"></div>
+    </div>
+  </div>
+
+  <!-- CONNECTION -->
+  <div class="pillar-beat" id="pb-connection" data-align="center">
+    <div class="pb-inner">
+      <span class="pb-num">03</span>
+      <h2 class="pb-word">CONNECTION</h2>
+      <p class="pb-sub">The whole reason for any of it.</p>
+      <div class="pb-tags">
+        <a href="#" class="wm-tag" data-pillar="pb-connection" data-key="spill">SPILL</a>
+        <a href="#" class="wm-tag" data-pillar="pb-connection" data-key="coaching">Coaching</a>
+        <a href="#" class="wm-tag" data-pillar="pb-connection" data-key="speaking">Speaking</a>
+      </div>
+      <div class="pb-detail">
+        <p class="pb-detail-body"></p>
+        <a href="#" class="pb-detail-cta fp-cta"></a>
+      </div>
+    </div>
+    <div class="pb-panel" id="pbp-connection">
+      <div class="pb-panel-img" data-key="spill" style="background-image:url('https://images.pixieset.com/170698901/7fc8c6ced58904dc2918078beaa0d5c1-xxlarge.jpg')"></div>
+      <div class="pb-panel-img" data-key="coaching" style="background-image:url('https://images.pixieset.com/170698901/cd823821bd6923745401b8724098fd6f-xxlarge.jpg')"></div>
+      <div class="pb-panel-img" data-key="speaking" style="background-image:url('https://images.pixieset.com/170698901/dc1fa6dc2b9187cf1c7cd87c67d2be66-xxlarge.jpg')"></div>
+      <div class="pb-panel-overlay"></div>
+    </div>
+  </div>
+
 </section>
 
 <!-- \u9552  THE RIVER \u9552 \u9552  -->
 
-<!-- \u9472 \u9472  WORLD 1: PHOTOGRAPHER \u9472 \u9472 \u9472  -->
+<!-- ══  PHOTOGRAPHY MARQUEE  ══ -->
 <div class="world-block" id="wb-photography">
-<section id="photography">
-  <div class="world-moment reveal">
-    <h2 class="wm-title">PHOTOGRAPHY</h2>
-    <div class="wm-tags">
-      <a href="#" class="wm-tag" data-panel="wb-photography" data-key="brand">Brand</a>
-      <a href="#" class="wm-tag" data-panel="wb-photography" data-key="lifestyle">Lifestyle</a>
-      <a href="#" class="wm-tag" data-panel="wb-photography" data-key="menu">Menu</a>
-    </div>
-  </div>
-
-  <!-- Row 1: portrait/lifestyle, fast left -->
   <div class="strips-wrap">
-  <div class="river-strip">
-    <div class="river-track rl" style="--spd:60s">
-      <div class="rc" style="width:340px;height:300px"><img src="https://images.pixieset.com/170698901/53de54d0191cd1e5e2d9abd6b0cd50ef-xxlarge.jpg" alt="caf\'e9" loading="lazy"></div>
-      <div class="rc" style="width:420px;height:300px"><img src="https://images.pixieset.com/170698901/31d81c8641ea98f237722f9cdf67cd59-xxlarge.jpg" alt="caf\'e9" loading="lazy"></div>
-      <div class="rc" style="width:280px;height:300px"><img src="https://images.pixieset.com/170698901/ea446f631ef14996ba2866c6e4f44ce9-xxlarge.jpg" alt="caf\'e9" loading="lazy"></div>
-      <div class="rc" style="width:360px;height:300px"><img src="https://images.pixieset.com/170698901/d0e03ea7c215ad772d501d2b550f3d63-xxlarge.jpg" alt="caf\'e9" loading="lazy"></div>
-      <div class="rc" style="width:300px;height:300px"><img src="https://images.pixieset.com/170698901/b8be42261fb500c1fd5529228e4db0e9-xxlarge.jpg" alt="caf\'e9" loading="lazy"></div>
-      <div class="rc" style="width:300px;height:300px"><img src="https://images.pixieset.com/170698901/7fc8c6ced58904dc2918078beaa0d5c1-xxlarge.jpg" alt="caf\'e9" loading="lazy"></div>
-      <!-- dupe for seamless loop -->
-      <div class="rc" style="width:240px;height:300px"><img src="https://images.pixieset.com/170698901/e5cab2b3ebc09aea0cb50f2bc84a03d1-xxlarge.jpg" alt="caf\'e9" loading="lazy"></div>
-      <div class="rc" style="width:420px;height:300px"><img src="https://images.pixieset.com/170698901/cd823821bd6923745401b8724098fd6f-xxlarge.jpg" alt="caf\'e9" loading="lazy"></div>
-      <div class="rc" style="width:300px;height:300px"><img src="https://images.pixieset.com/170698901/dc1fa6dc2b9187cf1c7cd87c67d2be66-xxlarge.jpg" alt="caf\'e9" loading="lazy"></div>
+    <!-- Row 1 -->
+    <div class="river-strip">
+      <div class="river-track rl" style="--spd:60s">
+        <div class="rc lightbox-trigger" style="width:340px;height:300px" data-index="0"><img src="https://images.pixieset.com/170698901/53de54d0191cd1e5e2d9abd6b0cd50ef-xxlarge.jpg" alt="café" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:420px;height:300px" data-index="1"><img src="https://images.pixieset.com/170698901/31d81c8641ea98f237722f9cdf67cd59-xxlarge.jpg" alt="café" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:280px;height:300px" data-index="2"><img src="https://images.pixieset.com/170698901/ea446f631ef14996ba2866c6e4f44ce9-xxlarge.jpg" alt="café" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:360px;height:300px" data-index="3"><img src="https://images.pixieset.com/170698901/d0e03ea7c215ad772d501d2b550f3d63-xxlarge.jpg" alt="café" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:300px;height:300px" data-index="4"><img src="https://images.pixieset.com/170698901/b8be42261fb500c1fd5529228e4db0e9-xxlarge.jpg" alt="café" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:300px;height:300px" data-index="5"><img src="https://images.pixieset.com/170698901/7fc8c6ced58904dc2918078beaa0d5c1-xxlarge.jpg" alt="café" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:240px;height:300px" data-index="6"><img src="https://images.pixieset.com/170698901/e5cab2b3ebc09aea0cb50f2bc84a03d1-xxlarge.jpg" alt="café" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:420px;height:300px" data-index="7"><img src="https://images.pixieset.com/170698901/cd823821bd6923745401b8724098fd6f-xxlarge.jpg" alt="café" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:300px;height:300px" data-index="8"><img src="https://images.pixieset.com/170698901/dc1fa6dc2b9187cf1c7cd87c67d2be66-xxlarge.jpg" alt="café" loading="lazy"></div>
+      </div>
     </div>
-  </div>
+    <!-- Row 2 -->
+    <div class="river-strip" style="margin-top:10px">
+      <div class="river-track rr" style="--spd:70s">
+        <div class="rc lightbox-trigger" style="width:460px;height:220px" data-index="9"><img src="https://images.pixieset.com/170698901/3b0d998ff86e929361253ce3eec8e3d3-xxlarge.jpg" alt="café" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:380px;height:220px" data-index="10"><img src="https://images.pixieset.com/170698901/fe6bf431e47e9320177875936c6cb664-xxlarge.jpg" alt="café" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:280px;height:220px" data-index="11"><img src="https://images.pixieset.com/170698901/2b73f28216dca1729a4431622cf5f806-xxlarge.jpg" alt="café" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:320px;height:220px" data-index="12"><img src="https://images.pixieset.com/170698901/052ff034a20d76e65a95a76f657a29ac-xxlarge.jpg" alt="café" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:460px;height:220px" data-index="13"><img src="https://images.pixieset.com/170698901/1d89b45e469418c1dd328c3e8f0c9ab2-xxlarge.jpg" alt="café" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:340px;height:220px" data-index="14"><img src="https://images.pixieset.com/170698901/2fb909b28e64b618f748aa7b070e7891-xxlarge.jpg" alt="café" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:380px;height:220px" data-index="15"><img src="https://images.pixieset.com/170698901/53de54d0191cd1e5e2d9abd6b0cd50ef-xxlarge.jpg" alt="café" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:280px;height:220px" data-index="16"><img src="https://images.pixieset.com/170698901/31d81c8641ea98f237722f9cdf67cd59-xxlarge.jpg" alt="café" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:460px;height:220px" data-index="17"><img src="https://images.pixieset.com/170698901/ea446f631ef14996ba2866c6e4f44ce9-xxlarge.jpg" alt="café" loading="lazy"></div>
+      </div>
+    </div>
 
-  <!-- Row 2: caf\'e9 interiors, medium right -->
-  <div class="river-strip" style="margin-top:10px">
-    <div class="river-track rr" style="--spd:70s">
-      <div class="rc" style="width:460px;height:220px"><img src="https://images.pixieset.com/170698901/3b0d998ff86e929361253ce3eec8e3d3-xxlarge.jpg" alt="caf\'e9" loading="lazy"></div>
-      <div class="rc" style="width:380px;height:220px"><img src="https://images.pixieset.com/170698901/fe6bf431e47e9320177875936c6cb664-xxlarge.jpg" alt="caf\'e9" loading="lazy"></div>
-      <div class="rc" style="width:280px;height:220px"><img src="https://images.pixieset.com/170698901/2b73f28216dca1729a4431622cf5f806-xxlarge.jpg" alt="caf\'e9" loading="lazy"></div>
-      <div class="rc" style="width:320px;height:220px"><img src="https://images.pixieset.com/170698901/052ff034a20d76e65a95a76f657a29ac-xxlarge.jpg" alt="caf\'e9" loading="lazy"></div>
-      <div class="rc" style="width:460px;height:220px"><img src="https://images.pixieset.com/170698901/1d89b45e469418c1dd328c3e8f0c9ab2-xxlarge.jpg" alt="caf\'e9" loading="lazy"></div>
-      <div class="rc" style="width:340px;height:220px"><img src="https://images.pixieset.com/170698901/2fb909b28e64b618f748aa7b070e7891-xxlarge.jpg" alt="caf\'e9" loading="lazy"></div>
-      <!-- dupe -->
-      <div class="rc" style="width:380px;height:220px"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=380&h=220&q=80&fit=crop" alt="caf\'e9" loading="lazy"></div>
-      <div class="rc" style="width:280px;height:220px"><img src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?w=280&h=220&q=80&fit=crop" alt="caf\'e9" loading="lazy"></div>
-      <div class="rc" style="width:460px;height:220px"><img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=460&h=220&q=80&fit=crop" alt="caf\'e9" loading="lazy"></div>
-      <div class="rc" style="width:320px;height:220px"><img src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=320&h=220&q=80&fit=crop" alt="caf\'e9" loading="lazy"></div>
-      <div class="rc" style="width:260px;height:220px"><img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=260&h=220&q=80&fit=crop" alt="caf\'e9" loading="lazy"></div>
-      <div class="rc" style="width:340px;height:220px"><img src="https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=340&h=220&q=80&fit=crop" alt="caf\'e9" loading="lazy"></div>
-    </div>
-  </div>
-
-  <!-- Feature panel: overlays strips on pill hover -->
-  <div class="feature-panel" id="fp-photography">
-    <div class="fp-img" data-key="brand" style="background-image:url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1400&h=500&q=85&fit=crop')"></div>
-    <div class="fp-img" data-key="lifestyle" style="background-image:url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1400&h=500&q=85&fit=crop')"></div>
-    <div class="fp-img" data-key="menu" style="background-image:url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1400&h=500&q=85&fit=crop')"></div>
-    <div class="fp-overlay">
-      <p class="fp-eyebrow">Photography</p>
-      <h3 class="fp-title" id="fp-photography-title">Brand</h3>
-      <p class="fp-body" id="fp-photography-body">Visual identity work for caf\'e9s and hospitality brands \'97 from launch campaigns to ongoing content partnerships.</p>
-      <a href="#" class="fp-cta" id="fp-photography-cta">See brand work </a>
-    </div>
-  </div>
   </div><!-- /strips-wrap -->
-</section>
-</div><!-- /world-block -->
+</div><!-- /wb-photography -->
 
-<!-- \u9472 \u9472  WORLD 2: CAF\'c9 STRATEGY \u9472 \u9472 \u9472  -->
-<div class="world-block" id="wb-cafe-strategy">
-<section id="cafe-strategy">
-  <div class="world-moment reveal">
-    <h2 class="wm-title">CAF\'c9 <span class="g">STRATEGY</span></h2>
-    <div class="wm-tags">
-      <a href="#" class="wm-tag" data-panel="wb-cafe-strategy" data-key="spill">SPILL Coffee Magazine</a>
-      <a href="#" class="wm-tag" data-panel="wb-cafe-strategy" data-key="consulting">Consulting</a>
-      <a href="#" class="wm-tag" data-panel="wb-cafe-strategy" data-key="speaking">Speaking</a>
-    </div>
+<!-- ══  LIGHTBOX  ══ -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+  <button class="lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+  <button class="lb-next" id="lbNext" aria-label="Next">›</button>
+  <div class="lb-img-wrap">
+    <img class="lb-img" id="lbImg" src="" alt="">
   </div>
-
-  <!-- Row: strategist/SPILL imagery, slower -->
-  <div class="strips-wrap">
-  <div class="river-strip">
-    <div class="river-track rl" style="--spd:70s">
-      <div class="rc" style="width:500px;height:240px"><img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=500&h=240&q=80&fit=crop" alt="spill" loading="lazy"></div>
-      <div class="rc" style="width:300px;height:240px"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=300&h=240&q=80&fit=crop" alt="spill" loading="lazy"></div>
-      <div class="rc" style="width:400px;height:240px"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400&h=240&q=80&fit=crop" alt="spill" loading="lazy"></div>
-      <div class="rc" style="width:260px;height:240px"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=260&h=240&q=80&fit=crop" alt="spill" loading="lazy"></div>
-      <div class="rc" style="width:440px;height:240px"><img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=440&h=240&q=80&fit=crop" alt="spill" loading="lazy"></div>
-      <!-- dupe -->
-      <div class="rc" style="width:500px;height:240px"><img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=500&h=240&q=80&fit=crop" alt="spill" loading="lazy"></div>
-      <div class="rc" style="width:300px;height:240px"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=300&h=240&q=80&fit=crop" alt="spill" loading="lazy"></div>
-      <div class="rc" style="width:400px;height:240px"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400&h=240&q=80&fit=crop" alt="spill" loading="lazy"></div>
-      <div class="rc" style="width:260px;height:240px"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=260&h=240&q=80&fit=crop" alt="spill" loading="lazy"></div>
-      <div class="rc" style="width:440px;height:240px"><img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=440&h=240&q=80&fit=crop" alt="spill" loading="lazy"></div>
-    </div>
-  </div>
-
-  <!-- Feature panel -->
-  <div class="feature-panel" id="fp-cafe-strategy">
-    <div class="fp-img" data-key="spill" style="background-image:url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1400&h=500&q=85&fit=crop')"></div>
-    <div class="fp-img" data-key="consulting" style="background-image:url('https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=1400&h=500&q=85&fit=crop')"></div>
-    <div class="fp-img" data-key="speaking" style="background-image:url('https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=1400&h=500&q=85&fit=crop')"></div>
-    <div class="fp-overlay">
-      <p class="fp-eyebrow">Caf\'e9 Strategy</p>
-      <h3 class="fp-title" id="fp-cafe-strategy-title">SPILL Coffee Magazine</h3>
-      <p class="fp-body" id="fp-cafe-strategy-body">A media brand documenting the people, places, and ideas behind independent caf\'e9 culture.</p>
-      <a href="#" class="fp-cta" id="fp-cafe-strategy-cta">Explore SPILL </a>
-    </div>
-  </div>
-  </div><!-- /strips-wrap -->
-</section>
-</div><!-- /world-block -->
-
-<!-- \u9472 \u9472  WORLD 3: CONNECTION \u9472 \u9472 \u9472  -->
-<div class="world-block" id="wb-connection">
-<section id="connection">
-  <div class="world-moment reveal">
-    <h2 class="wm-title">CONNECTION</h2>
-    <div class="wm-tags">
-      <a href="#" class="wm-tag" data-panel="wb-connection" data-key="makespace">Make Space</a>
-      <a href="#" class="wm-tag" data-panel="wb-connection" data-key="slowcafe">Slow Caf\'e9</a>
-    </div>
-  </div>
-
-  <!-- Row: slow, mostly text-heavy imagery, near still -->
-  <div class="strips-wrap">
-  <div class="river-strip">
-    <div class="river-track rs" style="--spd:90s">
-      <div class="rc" style="width:560px;height:200px"><img src="https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=560&h=200&q=80&fit=crop" alt="writing" loading="lazy"></div>
-      <div class="rc" style="width:320px;height:200px"><img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=320&h=200&q=80&fit=crop" alt="writing" loading="lazy"></div>
-      <div class="rc" style="width:480px;height:200px"><img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=480&h=200&q=80&fit=crop" alt="writing" loading="lazy"></div>
-      <div class="rc" style="width:280px;height:200px"><img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=280&h=200&q=80&fit=crop" alt="writing" loading="lazy"></div>
-      <!-- dupe -->
-      <div class="rc" style="width:560px;height:200px"><img src="https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=560&h=200&q=80&fit=crop" alt="writing" loading="lazy"></div>
-      <div class="rc" style="width:320px;height:200px"><img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=320&h=200&q=80&fit=crop" alt="writing" loading="lazy"></div>
-      <div class="rc" style="width:480px;height:200px"><img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=480&h=200&q=80&fit=crop" alt="writing" loading="lazy"></div>
-      <div class="rc" style="width:280px;height:200px"><img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=280&h=200&q=80&fit=crop" alt="writing" loading="lazy"></div>
-    </div>
-  </div>
-
-  <!-- Feature panel -->
-  <div class="feature-panel" id="fp-connection">
-    <div class="fp-img" data-key="makespace" style="background-image:url('https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=1400&h=500&q=85&fit=crop')"></div>
-    <div class="fp-img" data-key="slowcafe" style="background-image:url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1400&h=500&q=85&fit=crop')"></div>
-    <div class="fp-overlay">
-      <p class="fp-eyebrow" id="fp-connection-eye">Connection</p>
-      <h3 class="fp-title" id="fp-connection-title">Make Space</h3>
-      <p class="fp-body" id="fp-connection-body">A philosophy and practice for building rooms \'97 physical and relational \'97 where people can actually show up.</p>
-      <a href="#" class="fp-cta" id="fp-connection-cta">Explore Make Space </a>
-    </div>
-  </div>
-  </div><!-- /strips-wrap -->
-</section>
-</div><!-- /world-block -->
+  <div class="lb-counter" id="lbCounter"></div>
+</div>
 <section class="s-cta" id="contact">
   <div class="cta-glow"></div>
   <p class="cta-label reveal">Let's build something</p>
@@ -750,35 +842,33 @@ window.addEventListener('scroll', () => {
   });
 })();
 
-// \u9552  PILL HOVER \u8594  FEATURE PANEL \u9552 \u9552 
+// ══  PILL HOVER → PILLAR BEAT PANEL  ══
 (function(){
   const data = {
-    'wb-photography': {
-      brand:     { title:'Brand',     body:'Visual identity work for caf\'e9s and hospitality brands \'97 from launch campaigns to ongoing content partnerships.',         cta:'See brand work ',     href:'#' },
-      lifestyle: { title:'Lifestyle', body:'Documentary and editorial photography capturing the warmth, ritual, and culture of everyday caf\'e9 life.',                 cta:'See lifestyle work ', href:'#' },
-      menu:      { title:'Menu',      body:'Revenue-driving food and beverage photography on white \'97 clean, purposeful images that sell.',                           cta:'Visit Solo on White ', href:'https://soloonwhite.com' }
+    'pb-photography': {
+      brand:     { title:'Brand',        body:'Visual identity work for cafés and hospitality brands — from launch campaigns to ongoing content partnerships.', cta:'See brand work →',      href:'#' },
+      lifestyle: { title:'Lifestyle',    body:'Documentary and editorial photography capturing the warmth, ritual, and culture of everyday café life.',         cta:'See lifestyle work →',  href:'#' }
     },
-    'wb-cafe-strategy': {
-      spill:      { title:'SPILL Coffee Magazine', body:'A media brand documenting the people, places, and ideas behind independent caf\'e9 culture.',                      cta:'Explore SPILL ',      href:'#' },
-      consulting: { title:'Consulting',            body:'Fifteen years opening caf\'e9s \'97 strategy, ops, team culture, and the systems that make hospitality feel human.', cta:'Work together ',      href:'#contact' },
-      speaking:   { title:'Speaking',              body:'Keynotes and workshops on the Culture of Care, third-place philosophy, and designing for connection.',          cta:'Book a talk ',        href:'#contact' }
+    'pb-strategy': {
+      consulting:  { title:'Consulting',    body:'Fifteen years opening cafés — strategy, ops, team culture, and the systems that make hospitality feel human.', cta:'Work together →',       href:'#contact' },
+      soloonwhite: { title:'Solo on White', body:'Revenue-driving food and beverage photography on white — clean, purposeful images that sell.',                cta:'Visit Solo on White →', href:'https://soloonwhite.com' }
     },
-    'wb-connection': {
-      makespace: { title:'Make Space', body:'A philosophy and practice for building rooms \'97 physical and relational \'97 where people can actually show up.',    cta:'Explore Make Space ', href:'#' },
-      slowcafe:  { title:'Slow Caf\'e9',  body:'A podcast on third-place philosophy, the art of slowing down, and the spaces that hold communities together.', cta:'Listen ',             href:'#' }
+    'pb-connection': {
+      spill:    { title:'SPILL',    body:'A media brand documenting the people, places, and ideas behind independent café culture.',             cta:'Explore SPILL →', href:'#' },
+      coaching: { title:'Coaching', body:'One-on-one work for café owners and hospitality founders building something that actually lasts.',      cta:'Work with me →',  href:'#contact' },
+      speaking: { title:'Speaking', body:'Keynotes and workshops on the Culture of Care, third-place philosophy, and designing for connection.', cta:'Book a talk →',   href:'#contact' }
     }
   };
 
   let closeTimer = null;
 
-  function openPanel(blockId, key) {
+  function openPanel(beatId, key) {
     clearTimeout(closeTimer);
-    const block = document.getElementById(blockId);
-    if (!block) return;
-    const panelId = 'fp-' + blockId.replace('wb-','');
-    const panel = document.getElementById(panelId);
+    const beat  = document.getElementById(beatId);
+    if (!beat) return;
+    const panel = beat.querySelector('.pb-panel');
     if (!panel) return;
-    const d = data[blockId]?.[key];
+    const d = data[beatId]?.[key];
     if (!d) return;
 
     // Update text
@@ -789,42 +879,90 @@ window.addEventListener('scroll', () => {
     if (bod) bod.textContent = d.body;
     if (cta) { cta.textContent = d.cta; cta.href = d.href; }
 
+    // Update text in pb-detail (inside pb-inner, above the photo)
+    const detail = beat.querySelector('.pb-detail');
+    if (detail) {
+      const bod = detail.querySelector('.pb-detail-body');
+      const cta = detail.querySelector('.pb-detail-cta');
+      if (bod) bod.textContent = d.body;
+      if (cta) { cta.textContent = d.cta; cta.href = d.href; }
+    }
+
     // Swap image
-    panel.querySelectorAll('.fp-img').forEach(img => img.classList.remove('active'));
-    const target = panel.querySelector(`.fp-img[data-key="${key}"]`);
+    panel.querySelectorAll('.pb-panel-img').forEach(img => img.classList.remove('active'));
+    const target = panel.querySelector(`.pb-panel-img[data-key="${key}"]`);
     if (target) target.classList.add('active');
 
-    // Open panel
-    block.classList.add('panel-open');
-
-    // Highlight active pill
+    // Open
+    beat.classList.add('panel-open');
     document.querySelectorAll('.wm-tag').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll(`.wm-tag[data-panel="${blockId}"][data-key="${key}"]`).forEach(t => t.classList.add('active'));
+    document.querySelectorAll(`.wm-tag[data-pillar="${beatId}"][data-key="${key}"]`).forEach(t => t.classList.add('active'));
   }
 
-  function closePanel(blockId) {
+  function closePanel(beatId) {
     closeTimer = setTimeout(() => {
-      const block = document.getElementById(blockId);
-      if (block) block.classList.remove('panel-open');
+      const beat = document.getElementById(beatId);
+      if (beat) beat.classList.remove('panel-open');
       document.querySelectorAll('.wm-tag').forEach(t => t.classList.remove('active'));
-    }, 600);
+    }, 500);
   }
 
-  document.querySelectorAll('.wm-tag[data-panel]').forEach(tag => {
-    const blockId = tag.dataset.panel;
-    const key = tag.dataset.key;
-    tag.addEventListener('mouseenter', () => openPanel(blockId, key));
-    tag.addEventListener('mouseleave', () => closePanel(blockId));
-    // Keep panel open when hovering over it
-    const block = document.getElementById(blockId);
-    if (block) {
-      const panelId = 'fp-' + blockId.replace('wb-','');
-      const panel = document.getElementById(panelId);
+  document.querySelectorAll('.wm-tag[data-pillar]').forEach(tag => {
+    const beatId = tag.dataset.pillar;
+    const key    = tag.dataset.key;
+    tag.addEventListener('mouseenter', () => openPanel(beatId, key));
+    tag.addEventListener('mouseleave', () => closePanel(beatId));
+
+    // Keep panel open when hovering over the panel itself
+    const beat = document.getElementById(beatId);
+    if (beat) {
+      const panel = beat.querySelector('.pb-panel');
       if (panel) {
         panel.addEventListener('mouseenter', () => clearTimeout(closeTimer));
-        panel.addEventListener('mouseleave', () => closePanel(blockId));
+        panel.addEventListener('mouseleave', () => closePanel(beatId));
       }
     }
+  });
+})();
+
+// ══  LIGHTBOX  ══
+(function(){
+  const images = Array.from(document.querySelectorAll('.lightbox-trigger img')).map(img => img.src);
+  const lb     = document.getElementById('lightbox');
+  const lbImg  = document.getElementById('lbImg');
+  const lbCtr  = document.getElementById('lbCounter');
+  let current  = 0;
+
+  function open(index) {
+    current = ((index % images.length) + images.length) % images.length;
+    lbImg.src = images[current];
+    lbCtr.textContent = (current + 1) + ' / ' + images.length;
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.lightbox-trigger').forEach(el => {
+    el.addEventListener('click', () => open(parseInt(el.dataset.index)));
+  });
+
+  document.getElementById('lbClose').addEventListener('click', close);
+  document.getElementById('lbPrev').addEventListener('click', () => open(current - 1));
+  document.getElementById('lbNext').addEventListener('click', () => open(current + 1));
+
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') open(current - 1);
+    if (e.key === 'ArrowRight') open(current + 1);
   });
 })();
 
@@ -853,6 +991,20 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
 }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// ══  PILLAR BEATS SCROLL REVEAL  ══
+(function(){
+  const beats = document.querySelectorAll('.pillar-beat');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('on');
+        e.target.querySelector('.pb-inner').classList.add('on');
+      }
+    });
+  }, { threshold: 0.25 });
+  beats.forEach(b => obs.observe(b));
+})();
 
 // ══  HERO CAROUSEL ══
 (function(){
