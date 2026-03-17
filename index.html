@@ -84,10 +84,15 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 }
 .hero-bio-cta{
   margin-top:2.8rem;display:inline-flex;align-items:center;gap:.75rem;
-  font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--accent);text-decoration:none;
-  border-bottom:1px solid var(--accent);padding-bottom:2px;width:fit-content;
-  transition:color .2s,border-color .2s;
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--white);text-decoration:none;
+  background:linear-gradient(135deg,var(--accent),#c8a96e);
+  padding:.75rem 1.8rem;border-radius:2px;
+  width:fit-content;font-weight:500;
+  box-shadow:0 0 24px rgba(212,104,138,.25);
+  transition:transform .2s ease,box-shadow .2s ease,opacity .2s ease;
+}
+.hero-bio-cta:hover{transform:translateY(-2px);box-shadow:0 6px 32px rgba(212,104,138,.45);opacity:.92}
 }
 .hero-bio-cta:hover{color:var(--white);border-color:var(--white)}
 .hero-bio-right{position:relative;overflow:hidden;height:100%}
@@ -416,7 +421,7 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
         <span class="hl2">DESIGN</span> AND<br>
         <span class="hl2">COMMUNITY</span>
       </div>
-      <a href="#projects" class="hero-bio-cta">See the work &nbsp;</a>
+      <a href="#contact" class="hero-bio-cta">Work with me &nbsp;→</a>
     </div>
     <div class="hero-bio-right">
       <div class="hero-carousel" id="heroCarousel">
