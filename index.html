@@ -22,7 +22,7 @@ body{background:var(--bg);color:var(--white);font-family:"DM Sans",sans-serif;ov
 /* \u9552  NAV \u9552 \u9552  */
 nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;justify-content:space-between;align-items:center;padding:1.8rem 3rem;transition:background .4s}
 nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
-.nav-logo{font-family:"Bebas Neue",sans-serif;font-size:1.05rem;letter-spacing:.2em;color:var(--white);text-decoration:none}
+.nav-logo{font-family:"Bebas Neue",sans-serif;font-size:1.4rem;letter-spacing:.2em;color:var(--white);text-decoration:none}
 .nav-links{display:flex;gap:2.5rem;align-items:center}
 .nav-link{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
 .nav-link:hover{color:var(--white)}
@@ -34,8 +34,9 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 
 /* MAKE SPACE — phase 1 */
 .hero-words{
-  position:absolute;inset:0;z-index:2;
+  position:absolute;inset:0;z-index:4;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding-top:5rem;
   text-align:center;pointer-events:none;
   transition:opacity 7s ease, transform 7s ease;
 }
@@ -58,13 +59,13 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 
 /* BIO PANEL — phase 2, lives inside hero */
 .hero-bio{
-  position:absolute;inset:0;z-index:2;
+  position:absolute;inset:0;z-index:1;
   display:grid;grid-template-columns:55% 45%;
   opacity:0;visibility:hidden;pointer-events:none;
   transition:opacity 1.4s ease, visibility 0s linear 1.4s;
 }
 .hero-bio.visible{
-  opacity:1;visibility:visible;pointer-events:auto;
+  opacity:1;visibility:visible;pointer-events:auto;z-index:3;
   transition:opacity 1.4s ease, visibility 0s linear 0s;
 }
 .hero-bio-left{
@@ -92,7 +93,7 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 .hero-bio-right{position:relative;overflow:hidden}
 .hero-bio-photo{
   position:absolute;inset:0;
-  background-position:center 12%;
+  background-position:30% center;
   background-size:cover;
   background-repeat:no-repeat;
   filter:grayscale(1) brightness(1.15) contrast(1.05);
@@ -293,7 +294,7 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   .hero-bio-photo{
     position:absolute;
     inset:0;
-    background-position:68% 12%;
+    background-position:40% center;
     background-size:cover;
     background-repeat:no-repeat;
     filter:grayscale(1) brightness(1.15) contrast(1.05);
