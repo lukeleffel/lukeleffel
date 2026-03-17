@@ -383,42 +383,217 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 }
 .pb-detail-cta{ margin-top:.2rem; }
 
-/* ══  LIGHTBOX  ══ */
+/* ══  PHOTO GALLERY  ══ */
+.s-gallery{
+  padding:6vw 3.5rem 8vw;
+  position:relative;z-index:10;background:var(--bg);
+}
+.gallery-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem;
+}
+.gallery-title{
+  font-family:"Bebas Neue",sans-serif;
+  font-size:clamp(1.4rem,3vw,2.8rem);
+  letter-spacing:.1em;color:var(--white);
+}
+.gallery-filters{
+  display:flex;gap:.5rem;
+}
+.gallery-filter{
+  font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+  background:none;border:1px solid rgba(242,237,230,.15);
+  color:var(--muted);padding:.35rem 1rem;border-radius:20px;
+  cursor:pointer;transition:all .2s;
+}
+.gallery-filter:hover,.gallery-filter.active{
+  border-color:var(--accent);color:var(--white);
+}
+.gallery-grid{
+  columns:4 240px;gap:8px;
+}
+.gallery-item{
+  break-inside:avoid;margin-bottom:8px;
+  cursor:zoom-in;overflow:hidden;border-radius:2px;
+  position:relative;
+}
+.gallery-item img{
+  display:block;width:100%;
+  filter:saturate(.55) brightness(.72);
+  transition:filter .5s ease, transform .5s ease;
+}
+.gallery-item:hover img{
+  filter:saturate(.9) brightness(.88);transform:scale(1.03);
+}
+.gallery-item.hidden{ display:none; }
+
+/* ══  CUSTOM CURSOR LABEL  ══ */
+.cursor-label{
+  position:fixed;
+  pointer-events:none;
+  z-index:900;
+  font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--white);
+  background:rgba(5,6,11,.8);
+  border:1px solid rgba(212,104,138,.4);
+  padding:.3rem .7rem;border-radius:20px;
+  opacity:0;transition:opacity .15s ease;
+  transform:translate(12px, -50%);
+  white-space:nowrap;
+}
+.cursor-label.visible{ opacity:1; }
+
+@media(max-width:768px){
+  .s-gallery{ padding:8vw 1.4rem 10vw; }
+  .gallery-grid{ columns:2 160px; }
+}
 .lightbox{
   position:fixed;inset:0;z-index:1000;
-  background:rgba(5,6,11,.96);
-  display:flex;align-items:center;justify-content:center;
+  background:rgba(5,6,11,.97);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
   opacity:0;pointer-events:none;
   transition:opacity .35s ease;
 }
 .lightbox.open{opacity:1;pointer-events:auto}
 .lb-img-wrap{
-  max-width:90vw;max-height:88vh;
+  max-width:88vw;max-height:72vh;
   display:flex;align-items:center;justify-content:center;
 }
 .lb-img{
-  max-width:90vw;max-height:85vh;
-  object-fit:contain;
-  border-radius:2px;
-  transition:opacity .25s ease;
+  max-width:88vw;max-height:72vh;
+  object-fit:contain;border-radius:2px;
+  transition:opacity .2s ease;
 }
+.lb-img.fading{opacity:0}
 .lb-close,.lb-prev,.lb-next{
   position:absolute;background:none;border:none;
   color:var(--white);cursor:pointer;
-  font-size:1.6rem;line-height:1;
-  transition:color .2s,transform .2s;
-  padding:.5rem;
+  transition:color .2s,transform .2s;padding:.5rem;
 }
-.lb-close{ top:1.5rem;right:2rem;font-size:1.2rem;letter-spacing:.1em; }
+.lb-close{ top:1.5rem;right:2rem;font-size:1.1rem;letter-spacing:.1em; }
 .lb-close:hover{ color:var(--accent); }
 .lb-prev{ left:2rem;top:50%;transform:translateY(-50%);font-size:3rem; }
 .lb-next{ right:2rem;top:50%;transform:translateY(-50%);font-size:3rem; }
 .lb-prev:hover,.lb-next:hover{ color:var(--accent);transform:translateY(-50%) scale(1.1); }
-.lb-counter{
-  position:absolute;bottom:1.8rem;left:50%;transform:translateX(-50%);
-  font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+.lb-meta{
+  display:flex;align-items:center;gap:1.5rem;
+  margin-top:1rem;
 }
+.lb-category{
+  font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--accent);
+}
+.lb-counter{
+  font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+}
+.lb-filters{
+  display:flex;gap:.5rem;margin-top:.8rem;
+}
+.lb-filter{
+  font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+  background:none;border:1px solid rgba(242,237,230,.15);
+  color:var(--muted);padding:.3rem .85rem;border-radius:20px;
+  cursor:pointer;transition:all .2s;
+}
+.lb-filter:hover,.lb-filter.active{
+  border-color:var(--accent);color:var(--white);
+}
+.lb-cta-bar{
+  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:1.2rem;
+}
+.lb-cta-line{
+  font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+}
+.lb-cta-btn{ white-space:nowrap; }
 .rc.lightbox-trigger{ cursor:zoom-in; }
+
+/* ══  GALLERY MODAL  ══ */
+.gallery-modal{
+  position:fixed;inset:0;z-index:999;
+  background:rgba(5,6,11,.97);
+  display:flex;flex-direction:column;
+  opacity:0;pointer-events:none;
+  transition:opacity .35s ease;
+  overflow:hidden;
+}
+.gallery-modal.open{ opacity:1;pointer-events:auto; }
+.gm-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.8rem 3rem 1rem;
+  border-bottom:1px solid rgba(242,237,230,.07);
+  flex-shrink:0;
+}
+.gm-title{
+  font-family:"Bebas Neue",sans-serif;
+  font-size:clamp(1.8rem,3vw,3rem);
+  letter-spacing:.06em;
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.gm-close{
+  background:none;border:none;color:var(--muted);
+  font-size:1rem;letter-spacing:.12em;cursor:pointer;
+  transition:color .2s;
+}
+.gm-close:hover{ color:var(--white); }
+.gm-grid{
+  flex:1;overflow-y:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:4px;
+  padding:4px;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(212,104,138,.3) transparent;
+}
+.gm-grid::-webkit-scrollbar{ width:4px; }
+.gm-grid::-webkit-scrollbar-thumb{ background:rgba(212,104,138,.3);border-radius:2px; }
+.gm-item{
+  position:relative;overflow:hidden;
+  aspect-ratio:4/3;
+  cursor:zoom-in;background:#1a1612;
+}
+.gm-item img{
+  width:100%;height:100%;object-fit:cover;
+  filter:saturate(.55) brightness(.72);
+  transition:filter .5s ease,transform .5s ease;
+  display:block;
+}
+.gm-item:hover img{ filter:saturate(.9) brightness(.88);transform:scale(1.04); }
+.gm-cta-bar{
+  display:flex;align-items:center;justify-content:center;gap:1.2rem;
+  padding:1.2rem 3rem;
+  border-top:1px solid rgba(242,237,230,.07);
+  flex-shrink:0;
+}
+.gm-cta-line{ font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim); }
+
+/* ══  CUSTOM CURSOR  ══ */
+.custom-cursor{
+  position:fixed;z-index:2000;pointer-events:none;
+  font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--white);background:rgba(5,6,11,.75);
+  padding:.3rem .7rem;border-radius:20px;
+  border:1px solid rgba(212,104,138,.5);
+  opacity:0;transform:translate(-50%,-120%);
+  transition:opacity .15s ease;
+  white-space:nowrap;
+}
+.custom-cursor.visible{ opacity:1; }
+
+@media(max-width:768px){
+  .gm-header{ padding:1.2rem 1.4rem .8rem; }
+  .gm-grid{ grid-template-columns:repeat(2,1fr); }
+  .gm-cta-bar{ padding:1rem 1.4rem;flex-direction:column;gap:.6rem; }
+}
+.river-strip{
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  cursor:grab;
+}
+.river-strip::-webkit-scrollbar{ display:none; }
+.river-strip.dragging{ cursor:grabbing; animation-play-state:paused; }
+.river-strip.dragging .river-track{ animation-play-state:paused; }
 
 /* ══  FLOATING PILL OVERLAY  ══ */
 #pill-overlay{
@@ -617,8 +792,8 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
       <h2 class="pb-word">PHOTOGRAPHY</h2>
       <p class="pb-sub">Hospitality through a lens.</p>
       <div class="pb-tags">
-        <a href="#" class="wm-tag" data-pillar="pb-photography" data-key="brand">Brand</a>
-        <a href="#" class="wm-tag" data-pillar="pb-photography" data-key="lifestyle">Lifestyle</a>
+        <a href="#gallery" class="wm-tag" data-pillar="pb-photography" data-key="brand" data-gallery="brand">Brand</a>
+        <a href="#gallery" class="wm-tag" data-pillar="pb-photography" data-key="lifestyle" data-gallery="lifestyle">Lifestyle</a>
       </div>
       <div class="pb-detail">
         <p class="pb-detail-body"></p>
@@ -685,39 +860,89 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
 <!-- ══  PHOTOGRAPHY MARQUEE  ══ -->
 <div class="world-block" id="wb-photography">
   <div class="strips-wrap">
-    <!-- Row 1 -->
+
+    <!-- Row 1: Brand — scrolls left -->
     <div class="river-strip">
-      <div class="river-track rl" style="--spd:60s">
-        <div class="rc lightbox-trigger" style="width:340px;height:300px" data-index="0"><img src="https://images.pixieset.com/170698901/53de54d0191cd1e5e2d9abd6b0cd50ef-xxlarge.jpg" alt="café" loading="lazy"></div>
-        <div class="rc lightbox-trigger" style="width:420px;height:300px" data-index="1"><img src="https://images.pixieset.com/170698901/31d81c8641ea98f237722f9cdf67cd59-xxlarge.jpg" alt="café" loading="lazy"></div>
-        <div class="rc lightbox-trigger" style="width:280px;height:300px" data-index="2"><img src="https://images.pixieset.com/170698901/ea446f631ef14996ba2866c6e4f44ce9-xxlarge.jpg" alt="café" loading="lazy"></div>
-        <div class="rc lightbox-trigger" style="width:360px;height:300px" data-index="3"><img src="https://images.pixieset.com/170698901/d0e03ea7c215ad772d501d2b550f3d63-xxlarge.jpg" alt="café" loading="lazy"></div>
-        <div class="rc lightbox-trigger" style="width:300px;height:300px" data-index="4"><img src="https://images.pixieset.com/170698901/b8be42261fb500c1fd5529228e4db0e9-xxlarge.jpg" alt="café" loading="lazy"></div>
-        <div class="rc lightbox-trigger" style="width:300px;height:300px" data-index="5"><img src="https://images.pixieset.com/170698901/7fc8c6ced58904dc2918078beaa0d5c1-xxlarge.jpg" alt="café" loading="lazy"></div>
-        <div class="rc lightbox-trigger" style="width:240px;height:300px" data-index="6"><img src="https://images.pixieset.com/170698901/e5cab2b3ebc09aea0cb50f2bc84a03d1-xxlarge.jpg" alt="café" loading="lazy"></div>
-        <div class="rc lightbox-trigger" style="width:420px;height:300px" data-index="7"><img src="https://images.pixieset.com/170698901/cd823821bd6923745401b8724098fd6f-xxlarge.jpg" alt="café" loading="lazy"></div>
-        <div class="rc lightbox-trigger" style="width:300px;height:300px" data-index="8"><img src="https://images.pixieset.com/170698901/dc1fa6dc2b9187cf1c7cd87c67d2be66-xxlarge.jpg" alt="café" loading="lazy"></div>
+      <div class="river-track rl" style="--spd:65s">
+        <div class="rc lightbox-trigger" style="width:360px;height:280px" data-index="0"  data-category="brand"><img src="https://images.pixieset.com/356284011/3662931ffb5d87b509b778aeacb1b4c0-xxlarge.jpg" alt="brand" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:420px;height:280px" data-index="1"  data-category="brand"><img src="https://images.pixieset.com/356284011/2c201966ec8dfb3fbee6a2c9cb04bcc4-xxlarge.jpg" alt="brand" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:300px;height:280px" data-index="2"  data-category="brand"><img src="https://images.pixieset.com/170698901/04daffb0ba08d003db4723b1b1c51402-xxlarge.jpg" alt="brand" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:380px;height:280px" data-index="3"  data-category="brand"><img src="https://images.pixieset.com/491983901/b93034fdac170c71fbb3ec89d332c22f-xxlarge.jpg" alt="brand" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:460px;height:280px" data-index="4"  data-category="brand"><img src="https://images.pixieset.com/838159801/5d6db36e75ddbf263c7a06356103f287-xxlarge.jpg" alt="brand" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:300px;height:280px" data-index="5"  data-category="brand"><img src="https://images.pixieset.com/838159801/3e0a8267300c67794dc651eb886592f4-xxlarge.jpg" alt="brand" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:400px;height:280px" data-index="6"  data-category="brand"><img src="https://images.pixieset.com/481484801/3ea04b35d40098f6a2cb5721df97c242-xxlarge.jpg" alt="brand" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:340px;height:280px" data-index="7"  data-category="brand"><img src="https://images.pixieset.com/789599601/b4f4506fc20af023c5ebf92c7fe7ad69-xxlarge.jpg" alt="brand" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:280px;height:280px" data-index="8"  data-category="brand"><img src="https://images.pixieset.com/288199601/a1068e0bd31166712d014163aec957a2-xxlarge.jpg" alt="brand" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:420px;height:280px" data-index="9"  data-category="brand"><img src="https://images.pixieset.com/548005401/131ced6ef3f1583f1412db9ec340483d-xxlarge.jpg" alt="brand" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:360px;height:280px" data-index="10" data-category="brand"><img src="https://images.pixieset.com/271028201/b7baac838dc0785c3af367d96875850d-xxlarge.jpg" alt="brand" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:300px;height:280px" data-index="11" data-category="brand"><img src="https://images.pixieset.com/782382101/369872ba1af82888b894ceeae3874ffe-xxlarge.jpg" alt="brand" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:440px;height:280px" data-index="12" data-category="brand"><img src="https://images.pixieset.com/577358301/5f2abd1f8f538485d827574a97900046-xxlarge.jpg" alt="brand" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:340px;height:280px" data-index="13" data-category="brand"><img src="https://images.pixieset.com/782382101/a58bc6b2d6b92634b5dceb9fa506f371-xxlarge.jpg" alt="brand" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:380px;height:280px" data-index="14" data-category="brand"><img src="https://images.pixieset.com/577358301/020fcb44fdac7608d969c9263702dfed-xxlarge.jpg" alt="brand" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:320px;height:280px" data-index="15" data-category="brand"><img src="https://images.pixieset.com/433839801/8796cbd380b449ca88e2050867392725-xxlarge.jpg" alt="brand" loading="lazy"></div>
       </div>
     </div>
-    <!-- Row 2 -->
+
+    <!-- Row 2: Lifestyle — scrolls right -->
     <div class="river-strip" style="margin-top:10px">
-      <div class="river-track rr" style="--spd:70s">
-        <div class="rc lightbox-trigger" style="width:460px;height:220px" data-index="9"><img src="https://images.pixieset.com/170698901/3b0d998ff86e929361253ce3eec8e3d3-xxlarge.jpg" alt="café" loading="lazy"></div>
-        <div class="rc lightbox-trigger" style="width:380px;height:220px" data-index="10"><img src="https://images.pixieset.com/170698901/fe6bf431e47e9320177875936c6cb664-xxlarge.jpg" alt="café" loading="lazy"></div>
-        <div class="rc lightbox-trigger" style="width:280px;height:220px" data-index="11"><img src="https://images.pixieset.com/170698901/2b73f28216dca1729a4431622cf5f806-xxlarge.jpg" alt="café" loading="lazy"></div>
-        <div class="rc lightbox-trigger" style="width:320px;height:220px" data-index="12"><img src="https://images.pixieset.com/170698901/052ff034a20d76e65a95a76f657a29ac-xxlarge.jpg" alt="café" loading="lazy"></div>
-        <div class="rc lightbox-trigger" style="width:460px;height:220px" data-index="13"><img src="https://images.pixieset.com/170698901/1d89b45e469418c1dd328c3e8f0c9ab2-xxlarge.jpg" alt="café" loading="lazy"></div>
-        <div class="rc lightbox-trigger" style="width:340px;height:220px" data-index="14"><img src="https://images.pixieset.com/170698901/2fb909b28e64b618f748aa7b070e7891-xxlarge.jpg" alt="café" loading="lazy"></div>
-        <div class="rc lightbox-trigger" style="width:380px;height:220px" data-index="15"><img src="https://images.pixieset.com/170698901/53de54d0191cd1e5e2d9abd6b0cd50ef-xxlarge.jpg" alt="café" loading="lazy"></div>
-        <div class="rc lightbox-trigger" style="width:280px;height:220px" data-index="16"><img src="https://images.pixieset.com/170698901/31d81c8641ea98f237722f9cdf67cd59-xxlarge.jpg" alt="café" loading="lazy"></div>
-        <div class="rc lightbox-trigger" style="width:460px;height:220px" data-index="17"><img src="https://images.pixieset.com/170698901/ea446f631ef14996ba2866c6e4f44ce9-xxlarge.jpg" alt="café" loading="lazy"></div>
+      <div class="river-track rr" style="--spd:75s">
+        <div class="rc lightbox-trigger" style="width:460px;height:220px" data-index="16" data-category="lifestyle"><img src="https://images.pixieset.com/276962901/94f852fda7285acd9c869df7bbe95c5d-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:320px;height:220px" data-index="17" data-category="lifestyle"><img src="https://images.pixieset.com/400260901/731bf3ab2572cf9dcde195f66f933e2e-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:400px;height:220px" data-index="18" data-category="lifestyle"><img src="https://images.pixieset.com/356284011/fcbb8909cd36755784491804e9e6cea5-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:280px;height:220px" data-index="19" data-category="lifestyle"><img src="https://images.pixieset.com/780360901/febe28e68b9e2572b5beebff32da4848-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:380px;height:220px" data-index="20" data-category="lifestyle"><img src="https://images.pixieset.com/863356701/e5ba237e26444426bb35a67be6c3c0ed-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:340px;height:220px" data-index="21" data-category="lifestyle"><img src="https://images.pixieset.com/388511701/921ed1bf0bbaef173f3ba892b1ba9188-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:460px;height:220px" data-index="22" data-category="lifestyle"><img src="https://images.pixieset.com/999491701/1b6527b8af892e7aa22ccb8cd4890dfa-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:300px;height:220px" data-index="23" data-category="lifestyle"><img src="https://images.pixieset.com/481484801/9ca47c33521488543483f4ceea63728b-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:420px;height:220px" data-index="24" data-category="lifestyle"><img src="https://images.pixieset.com/481484801/0e65fd7263d39de9626b1e3d1445b3d7-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:360px;height:220px" data-index="25" data-category="lifestyle"><img src="https://images.pixieset.com/288199601/60abfbaf7e7480cd76ec647316924e18-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:300px;height:220px" data-index="26" data-category="lifestyle"><img src="https://images.pixieset.com/288199601/c4e9bb90c468d56c3bd1bbb28e69bf1f-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:440px;height:220px" data-index="27" data-category="lifestyle"><img src="https://images.pixieset.com/010580101/8897867c6c9f11d551b429649fa309db-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:340px;height:220px" data-index="28" data-category="lifestyle"><img src="https://images.pixieset.com/010580101/8f89031a73b1be162fb8e48b716844bc-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:380px;height:220px" data-index="29" data-category="lifestyle"><img src="https://images.pixieset.com/010580101/3e1b4c0d8f8c972d5320548a7bba677e-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:280px;height:220px" data-index="30" data-category="lifestyle"><img src="https://images.pixieset.com/433839801/9e0aab482212b68a97c63492d24479ea-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:460px;height:220px" data-index="31" data-category="lifestyle"><img src="https://images.pixieset.com/276962901/b21e994e895ef914b020f9b6d61caf83-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+      </div>
+    </div>
+
+    <!-- Row 3: Lifestyle — scrolls left -->
+    <div class="river-strip" style="margin-top:10px">
+      <div class="river-track rl" style="--spd:80s">
+        <div class="rc lightbox-trigger" style="width:380px;height:200px" data-index="32" data-category="lifestyle"><img src="https://images.pixieset.com/577358301/0448a569d1db98ffc1c322e5ed865c4b-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:300px;height:200px" data-index="33" data-category="lifestyle"><img src="https://images.pixieset.com/577358301/d77fc14042967c45f06861452fc03764-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:440px;height:200px" data-index="34" data-category="lifestyle"><img src="https://images.pixieset.com/577358301/21977c5b04af152702774e321572b5a6-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:320px;height:200px" data-index="35" data-category="lifestyle"><img src="https://images.pixieset.com/577358301/18699923a44d5a0df37e1e108ebee8d6-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:460px;height:200px" data-index="36" data-category="lifestyle"><img src="https://images.pixieset.com/509169401/ba43a3b1bb79764c4b5ca9546d1595e4-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:340px;height:200px" data-index="37" data-category="lifestyle"><img src="https://images.pixieset.com/744636501/2953531f7cdb2d93bc21b5bc27ff45b2-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:280px;height:200px" data-index="38" data-category="lifestyle"><img src="https://images.pixieset.com/433839801/14a715ddfff5c2ddfff7f74ae8ece9aa-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:420px;height:200px" data-index="39" data-category="lifestyle"><img src="https://images.pixieset.com/433839801/1dcaf8b965f642674a778c55a2977640-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:360px;height:200px" data-index="40" data-category="lifestyle"><img src="https://images.pixieset.com/586778301/409a1689050867851467e213fc56fbb6-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:300px;height:200px" data-index="41" data-category="lifestyle"><img src="https://images.pixieset.com/577358301/ce335405f71566503c5828c7579fb593-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:440px;height:200px" data-index="42" data-category="lifestyle"><img src="https://images.pixieset.com/586778301/8163b570ca47a5eef898af33161d2f35-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:380px;height:200px" data-index="43" data-category="lifestyle"><img src="https://images.pixieset.com/96222889/0c79dbfa9c209250c23c1ca8914bf0d0-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:320px;height:200px" data-index="44" data-category="lifestyle"><img src="https://images.pixieset.com/96222889/f361203285fb9a5aacc80ed0deaccc91-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:460px;height:200px" data-index="45" data-category="lifestyle"><img src="https://images.pixieset.com/86264779/06df4bb8d63964e13285f82c8cb9cdfd-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:340px;height:200px" data-index="46" data-category="lifestyle"><img src="https://images.pixieset.com/675217101/4bd12eea726b3c9a814c4ad8a9d7d362-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
+        <div class="rc lightbox-trigger" style="width:400px;height:200px" data-index="47" data-category="lifestyle"><img src="https://images.pixieset.com/675217101/1f372dc1051984ce8129a8e115b18201-xxlarge.jpg" alt="lifestyle" loading="lazy"></div>
       </div>
     </div>
 
   </div><!-- /strips-wrap -->
 </div><!-- /wb-photography -->
 
-<!-- ══  LIGHTBOX  ══ -->
+<!-- ══  GALLERY MODAL  ══ -->
+<div class="gallery-modal" id="galleryModal" aria-hidden="true">
+  <div class="gm-header">
+    <span class="gm-title" id="gmTitle">Brand</span>
+    <button class="gm-close" id="gmClose" aria-label="Close">✕</button>
+  </div>
+  <div class="gm-grid" id="gmGrid"></div>
+  <div class="gm-cta-bar">
+    <p class="gm-cta-line">Like what you see?</p>
+    <a href="#contact" class="fp-cta gm-cta-btn" id="gmCtaBtn">Let's work together →</a>
+  </div>
+</div>
+
 <div class="lightbox" id="lightbox" aria-hidden="true">
   <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
   <button class="lb-prev" id="lbPrev" aria-label="Previous">‹</button>
@@ -725,8 +950,18 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   <div class="lb-img-wrap">
     <img class="lb-img" id="lbImg" src="" alt="">
   </div>
-  <div class="lb-counter" id="lbCounter"></div>
+  <div class="lb-meta">
+    <span class="lb-category" id="lbCategory"></span>
+    <span class="lb-counter" id="lbCounter"></span>
+  </div>
+  <div class="lb-cta-bar">
+    <p class="lb-cta-line">Like what you see?</p>
+    <a href="#contact" class="lb-cta-btn fp-cta" id="lbCtaBtn">Let's work together →</a>
+  </div>
 </div>
+
+<!-- ══  CUSTOM CURSOR  ══ -->
+<div class="custom-cursor" id="customCursor"></div>
 <section class="s-cta" id="contact">
   <div class="cta-glow"></div>
   <p class="cta-label reveal">Let's build something</p>
@@ -911,32 +1146,56 @@ window.addEventListener('scroll', () => {
     const beatId = tag.dataset.pillar;
     const key    = tag.dataset.key;
     tag.addEventListener('mouseenter', () => openPanel(beatId, key));
-    tag.addEventListener('mouseleave', () => closePanel(beatId));
+  });
 
-    // Keep panel open when hovering over the panel itself
-    const beat = document.getElementById(beatId);
-    if (beat) {
-      const panel = beat.querySelector('.pb-panel');
-      if (panel) {
-        panel.addEventListener('mouseenter', () => clearTimeout(closeTimer));
-        panel.addEventListener('mouseleave', () => closePanel(beatId));
-      }
-    }
+  document.querySelectorAll('.pillar-beat').forEach(beat => {
+    beat.addEventListener('mouseenter', () => clearTimeout(closeTimer));
+    beat.addEventListener('mouseleave', () => closePanel(beat.id));
   });
 })();
 
 // ══  LIGHTBOX  ══
 (function(){
-  const images = Array.from(document.querySelectorAll('.lightbox-trigger img')).map(img => img.src);
-  const lb     = document.getElementById('lightbox');
-  const lbImg  = document.getElementById('lbImg');
-  const lbCtr  = document.getElementById('lbCounter');
-  let current  = 0;
+  const allTriggers = Array.from(document.querySelectorAll('.lightbox-trigger'));
+  const allImages   = allTriggers.map(el => ({
+    src:      el.querySelector('img').src,
+    category: el.dataset.category || 'all',
+    index:    parseInt(el.dataset.index)
+  }));
 
-  function open(index) {
-    current = ((index % images.length) + images.length) % images.length;
-    lbImg.src = images[current];
-    lbCtr.textContent = (current + 1) + ' / ' + images.length;
+  const lb      = document.getElementById('lightbox');
+  const lbImg   = document.getElementById('lbImg');
+  const lbCtr   = document.getElementById('lbCounter');
+  const lbCat   = document.getElementById('lbCategory');
+  const lbCtaBtn= document.getElementById('lbCtaBtn');
+
+  let filtered  = allImages.slice();
+  let current   = 0;
+  let touchStartX = 0;
+
+  function setFilter(cat) {
+    filtered = cat === 'all' ? allImages.slice() : allImages.filter(i => i.category === cat);
+    document.querySelectorAll('.lb-filter').forEach(b => b.classList.toggle('active', b.dataset.filter === cat));
+    // Jump to first in filtered set
+    if (filtered.length) showImage(0);
+  }
+
+  function showImage(idx) {
+    current = ((idx % filtered.length) + filtered.length) % filtered.length;
+    const item = filtered[current];
+    lbImg.classList.add('fading');
+    setTimeout(() => {
+      lbImg.src = item.src;
+      lbImg.onload = () => lbImg.classList.remove('fading');
+    }, 150);
+    lbCat.textContent = item.category.charAt(0).toUpperCase() + item.category.slice(1);
+    lbCtr.textContent = (current + 1) + ' / ' + filtered.length;
+  }
+
+  function open(triggerIndex) {
+    // Find position in current filtered set
+    const pos = filtered.findIndex(i => i.index === triggerIndex);
+    showImage(pos >= 0 ? pos : 0);
     lb.classList.add('open');
     lb.setAttribute('aria-hidden','false');
     document.body.style.overflow = 'hidden';
@@ -948,21 +1207,149 @@ window.addEventListener('scroll', () => {
     document.body.style.overflow = '';
   }
 
-  document.querySelectorAll('.lightbox-trigger').forEach(el => {
+  // Expose for gallery
+  window._openLightbox = function(triggerIndex, filterCat) {
+    if (filterCat) setFilter(filterCat);
+    const pos = filtered.findIndex(i => i.index === triggerIndex);
+    showImage(pos >= 0 ? pos : 0);
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  allTriggers.forEach(el => {
     el.addEventListener('click', () => open(parseInt(el.dataset.index)));
   });
 
   document.getElementById('lbClose').addEventListener('click', close);
-  document.getElementById('lbPrev').addEventListener('click', () => open(current - 1));
-  document.getElementById('lbNext').addEventListener('click', () => open(current + 1));
+  document.getElementById('lbPrev').addEventListener('click', () => showImage(current - 1));
+  document.getElementById('lbNext').addEventListener('click', () => showImage(current + 1));
+
+  // Close lightbox and scroll to contact
+  lbCtaBtn.addEventListener('click', () => close());
 
   lb.addEventListener('click', e => { if (e.target === lb) close(); });
 
+  // Keyboard + swipe
   document.addEventListener('keydown', e => {
     if (!lb.classList.contains('open')) return;
-    if (e.key === 'Escape') close();
-    if (e.key === 'ArrowLeft') open(current - 1);
-    if (e.key === 'ArrowRight') open(current + 1);
+    if (e.key === 'Escape')      close();
+    if (e.key === 'ArrowLeft')   showImage(current - 1);
+    if (e.key === 'ArrowRight')  showImage(current + 1);
+  });
+  lb.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
+  lb.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) showImage(current + (dx < 0 ? 1 : -1));
+  });
+})();
+
+// ══  GALLERY MODAL  ══
+(function(){
+  const allTriggers = Array.from(document.querySelectorAll('.lightbox-trigger'));
+  const modal  = document.getElementById('galleryModal');
+  const grid   = document.getElementById('gmGrid');
+  const title  = document.getElementById('gmTitle');
+  const close  = document.getElementById('gmClose');
+  const ctaBtn = document.getElementById('gmCtaBtn');
+
+  function openGallery(cat) {
+    // Clear grid
+    grid.innerHTML = '';
+    title.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+
+    // Build items
+    const items = allTriggers.filter(el => el.dataset.category === cat);
+    items.forEach(el => {
+      const img = el.querySelector('img');
+      const item = document.createElement('div');
+      item.className = 'gm-item';
+      item.innerHTML = `<img src="${img.src}" alt="${cat}" loading="lazy">`;
+      item.addEventListener('click', () => {
+        closeGallery();
+        window._openLightbox(parseInt(el.dataset.index), cat);
+      });
+      grid.appendChild(item);
+    });
+
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeGallery() {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+
+  close.addEventListener('click', closeGallery);
+  ctaBtn.addEventListener('click', closeGallery);
+  modal.addEventListener('click', e => { if (e.target === modal) closeGallery(); });
+  document.addEventListener('keydown', e => {
+    if (modal.classList.contains('open') && e.key === 'Escape') closeGallery();
+  });
+
+  window._openGallery = openGallery;
+})();
+
+// ══  PILL CLICK → GALLERY MODAL  ══
+document.querySelectorAll('.wm-tag[data-gallery]').forEach(tag => {
+  tag.addEventListener('click', e => {
+    e.preventDefault();
+    window._openGallery(tag.dataset.gallery);
+  });
+});
+
+// ══  CUSTOM CURSOR ON MARQUEE  ══
+(function(){
+  const cursor = document.getElementById('customCursor');
+
+  document.querySelectorAll('.lightbox-trigger').forEach(el => {
+    el.style.cursor = 'none';
+    el.addEventListener('mouseenter', () => {
+      const cat = el.dataset.category;
+      cursor.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+      cursor.classList.add('visible');
+    });
+    el.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top  = e.clientY + 'px';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.classList.remove('visible');
+    });
+  });
+})();
+(function(){
+  document.querySelectorAll('.river-strip').forEach(strip => {
+    let isDown = false, startX = 0, scrollLeft = 0;
+
+    strip.addEventListener('mousedown', e => {
+      isDown = true;
+      strip.classList.add('dragging');
+      startX = e.pageX - strip.offsetLeft;
+      scrollLeft = strip.scrollLeft;
+    });
+    strip.addEventListener('mouseleave', () => { isDown = false; strip.classList.remove('dragging'); });
+    strip.addEventListener('mouseup',    () => { isDown = false; strip.classList.remove('dragging'); });
+    strip.addEventListener('mousemove',  e => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x    = e.pageX - strip.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      strip.scrollLeft = scrollLeft - walk;
+    });
+
+    // Touch scroll is native — just pause animation while touching
+    strip.addEventListener('touchstart', () => {
+      strip.querySelectorAll('.river-track').forEach(t => t.style.animationPlayState = 'paused');
+    }, {passive:true});
+    strip.addEventListener('touchend', () => {
+      setTimeout(() => {
+        strip.querySelectorAll('.river-track').forEach(t => t.style.animationPlayState = 'running');
+      }, 800);
+    }, {passive:true});
   });
 })();
 
