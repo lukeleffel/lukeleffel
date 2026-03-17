@@ -6,8 +6,8 @@
 
 <!-- ══  SEO  ══ -->
 <title>Luke Leffel</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMDUwNjBiIi8+CiAgPHRleHQgeD0iMiIgeT0iMjYiCiAgICBmb250LWZhbWlseT0iQXJpYWwgTmFycm93LCBBcmlhbCwgc2Fucy1zZXJpZiIKICAgIGZvbnQtc2l6ZT0iMjIiCiAgICBmb250LXdlaWdodD0iOTAwIgogICAgbGV0dGVyLXNwYWNpbmc9Ii0xIgogICAgZmlsbD0iI2YyZWRlNiI+TEw8L3RleHQ+Cjwvc3ZnPgo=">
-<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMDUwNjBiIi8+CiAgPHRleHQgeD0iMiIgeT0iMjYiCiAgICBmb250LWZhbWlseT0iQXJpYWwgTmFycm93LCBBcmlhbCwgc2Fucy1zZXJpZiIKICAgIGZvbnQtc2l6ZT0iMjIiCiAgICBmb250LXdlaWdodD0iOTAwIgogICAgbGV0dGVyLXNwYWNpbmc9Ii0xIgogICAgZmlsbD0iI2YyZWRlNiI+TEw8L3RleHQ+Cjwvc3ZnPgo=">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPHRleHQgeD0iMyIgeT0iMjciCiAgICBmb250LWZhbWlseT0iQXJpYWwgTmFycm93LCBBcmlhbCwgc2Fucy1zZXJpZiIKICAgIGZvbnQtc2l6ZT0iMjYiCiAgICBmb250LXdlaWdodD0iOTAwIgogICAgZmlsbD0iI2YyZWRlNiI+TDwvdGV4dD4KPC9zdmc+">
+
 <meta name="description" content="Luke Leffel is a café photographer and hospitality strategist based in Columbus, Ohio. Food photography, brand photography, and café consulting rooted in a culture of care.">
 <meta name="keywords" content="cafe photographer columbus, cafe photographer columbus ohio, food photographer columbus ohio, food photography columbus ohio, hospitality photographer, brand photographer columbus, cafe consultant columbus, hospitality strategist ohio">
 <meta name="author" content="Luke Leffel">
@@ -314,7 +314,7 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
   padding:6vh 0;
 }
 .pillar-beat[data-align="left"]  .pb-inner{ margin-left:8vw; }
-.pillar-beat[data-align="right"] .pb-inner{ margin-left:auto; margin-right:8vw; }
+.pillar-beat[data-align="right"] .pb-inner{ margin-left:auto; margin-right:8vw; text-align:right; }
 .pillar-beat[data-align="center"] .pb-inner{ margin:0; text-align:left; }
 .pillar-beat[data-align="center"] { justify-content: flex-start; padding-left: 8vw; }
 
@@ -381,7 +381,99 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 }
 
 
-/* \u9552  RIVER \u9552 \u9552  */
+/* ══  SLOWDOWN SUMMIT  ══ */
+.s-slowdown{
+  position:relative;z-index:10;background:var(--bg);
+  padding:7vw 3.5rem 7vw;
+  border-top:1px solid rgba(242,237,230,.06);
+  border-bottom:1px solid rgba(242,237,230,.06);
+}
+.sd-inner{
+  display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
+}
+.sd-left{
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+}
+.sd-featured{
+  display:block;font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;
+  color:#f5c842;margin-bottom:1.8rem;
+}
+.sd-logo{
+  display:block;width:100%;max-width:420px;margin-bottom:1.4rem;
+}
+.sd-meta{
+  font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;
+  color:#f5c842;margin-bottom:2rem;
+}
+.sd-map-link{
+  color:#f5c842;text-decoration:none;
+  transition:opacity .2s;
+}
+.sd-map-link:hover{ opacity:.7; }
+.sd-body{
+  font-size:clamp(.88rem,1.1vw,1rem);font-weight:300;
+  line-height:1.8;color:var(--dim);max-width:40ch;
+  margin-bottom:2.2rem;text-align:center;
+}
+.sd-ctas{ display:flex;flex-direction:column;gap:1rem;align-items:center; }
+.sd-ticket-cta{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--bg);text-decoration:none;
+  background:linear-gradient(135deg,#f5c842,#e8a820);
+  border:none;padding:.65rem 1.6rem;border-radius:20px;
+  font-weight:500;
+  transition:opacity .2s,transform .2s;
+  width:fit-content;
+}
+.sd-ticket-cta:hover{ opacity:.88;transform:translateY(-1px); }
+.sd-right{
+  position:relative;height:640px;overflow:hidden;border-radius:2px;
+}
+.sd-img{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  transition:transform .8s cubic-bezier(.16,1,.3,1);
+}
+.sd-img-bw{ filter:grayscale(1) brightness(.9) contrast(1.05); }
+.sd-right:hover .sd-img{ transform:scale(1.02); }
+
+@media(max-width:768px){
+  .s-slowdown{ padding:12vw 1.4rem 12vw; }
+  .sd-inner{ grid-template-columns:1fr;gap:3rem; }
+  .sd-right{ height:420px; }
+  .sd-logo{ max-width:280px; }
+}
+.gallery-title-row{
+  display:flex;align-items:baseline;justify-content:space-between;
+  padding:6vw 3.5rem 2rem;
+  position:relative;z-index:10;
+}
+.gallery-title{
+  font-family:"Bebas Neue",sans-serif;
+  font-size:clamp(2.5rem,6vw,6rem);
+  line-height:1;letter-spacing:.04em;color:var(--white);
+  font-weight:400;
+}
+.gallery-title .g{
+  background:var(--grad);-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;background-clip:text;
+}
+.gallery-title-pills{
+  display:flex;gap:.6rem;
+}
+
+@media(max-width:768px){
+  .s-slowdown{ padding:12vw 1.4rem 0; }
+  .sd-inner{ grid-template-columns:1fr;gap:3rem; }
+  .sd-right{ height:360px; }
+  .sd-photo-strip{ grid-template-columns:1fr; }
+  .sd-strip-img{ height:260px; }
+  .sd-logo{ max-width:280px; }
+  .gallery-title-row{ flex-direction:column;gap:1rem;padding:10vw 1.4rem 2rem; }
+}
+
+/* ══  RIVER  ══ */
 .world-moment{padding:5vw 3.5rem 2.2vw;position:relative;z-index:10}
 .wm-title{font-family:"DM Sans",sans-serif;font-size:clamp(1.6rem,3.2vw,3.2rem);font-weight:300;line-height:1;letter-spacing:.06em;text-transform:uppercase;margin-bottom:1.2rem}
 .wm-title .g{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -431,6 +523,10 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 .fp-cta{display:inline-flex;align-items:center;gap:.6rem;font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--white);text-decoration:none;background:linear-gradient(135deg,rgba(123,143,232,.25),rgba(224,95,160,.25));border:1px solid rgba(212,104,138,.4);padding:.55rem 1.2rem;border-radius:20px;transition:background .25s,border-color .25s;width:fit-content}
 .fp-cta:hover{background:linear-gradient(135deg,rgba(123,143,232,.45),rgba(224,95,160,.45));border-color:rgba(212,104,138,.8)}
 .wm-tag.active{background:linear-gradient(135deg,rgba(123,143,232,.45),rgba(224,95,160,.45));border-color:rgba(212,104,138,.8)}
+/* When Solo on White panel is open, gradient the detail text so it reads on the white photo bg */
+#pb-strategy.sow-open .pb-detail-body{
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
 .pb-tags{
   display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem;
   pointer-events:auto;
@@ -816,6 +912,24 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   </div>
 </section>
 
+<!-- ══  SLOWDOWN SUMMIT FEATURE  ══ -->
+<section class="s-slowdown" id="slowdown">
+  <div class="sd-inner reveal">
+    <div class="sd-left">
+      <span class="sd-featured">Featured Event</span>
+      <img src="https://images.pixieset.com/170698901/1fedb0aa487e3343d74ce68e5a3ec0ee-xxlarge.png" alt="Seen & Still" class="sd-logo">
+      <p class="sd-meta">April 27, 2026 · <a href="https://maps.google.com/?q=Columbus+Museum+of+Art,+480+E+Broad+St,+Columbus+OH+43215" target="_blank" class="sd-map-link">Columbus Museum of Art</a></p>
+      <p class="sd-body">This April, I'll be leading a portrait session and reflection experience at The Slowdown Summit, a leadership development conference designed for introverted, neurodiverse, and quiet professionals.</p>
+      <div class="sd-ctas">
+        <a href="https://www.slowdownsummit.co/" target="_blank" class="sd-ticket-cta">Get your tickets here →</a>
+      </div>
+    </div>
+    <div class="sd-right">
+      <div class="sd-img sd-img-bw" style="background-image:url('https://images.pixieset.com/170698901/0d7bd5a559c1beb6a54580e60846da32-xxlarge.jpg')"></div>
+    </div>
+  </div>
+</section>
+
 <!-- ══  PILLARS NARRATIVE  ══ -->
 <section class="s-pillars" id="work">
 
@@ -886,7 +1000,16 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
 
 </section>
 
-<!-- \u9552  THE RIVER \u9552 \u9552  -->
+<!-- ══  SLOWDOWN SUMMIT  ══ -->
+<!-- ══  PHOTOGRAPHY MARQUEE TITLE  ══ -->
+<div class="gallery-title-row">
+  <h2 class="gallery-title"><span class="g">GALLERY</span></h2>
+  <div class="gallery-title-pills">
+    <button class="gm-filter active" data-filter="all" onclick="window._openGallery('all')">All</button>
+    <button class="gm-filter" data-filter="brand" onclick="window._openGallery('brand')">Brand</button>
+    <button class="gm-filter" data-filter="lifestyle" onclick="window._openGallery('lifestyle')">Lifestyle</button>
+  </div>
+</div>
 
 <!-- ══  PHOTOGRAPHY MARQUEE  ══ -->
 <div class="world-block" id="wb-photography">
@@ -1172,6 +1295,8 @@ window.addEventListener('scroll', () => {
 
     // Open
     beat.classList.add('panel-open');
+    // Toggle gradient text class when Solo on White panel is active
+    beat.classList.toggle('sow-open', key === 'soloonwhite');
     document.querySelectorAll('.wm-tag').forEach(t => t.classList.remove('active'));
     document.querySelectorAll(`.wm-tag[data-pillar="${beatId}"][data-key="${key}"]`).forEach(t => t.classList.add('active'));
   }
