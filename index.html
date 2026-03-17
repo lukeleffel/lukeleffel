@@ -468,7 +468,12 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 
 @media(max-width:768px){
   .gm-header{ padding:1.2rem 1.4rem .8rem; }
-  .gm-grid{ columns:2 140px;padding:0 4px 4px; }
+  .gm-grid{
+    columns:2 140px;
+    padding:0 4px 4px;
+    overflow-y:auto;
+    overflow-x:hidden;
+  }
   .gm-filters{ padding:.6rem 1.4rem 1rem; }
   .gm-cta-bar{ padding:.8rem 1.4rem 1.2rem;flex-direction:column;gap:.5rem; }
 }
@@ -923,27 +928,27 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   });
 })();
 
-// \u9552  HERO SEQUENCE \u9552 \u9552 
-// Phase 1: MAKE SPACE fades in (~1s). Holds until 2s, then exits over 7s.
-// Phase 2: Bio fades in at 3s, overlapping the MAKE SPACE fade-out.
+// ══  HERO SEQUENCE  ══
+// Phase 1: MAKE SPACE fades in (~1s). Holds until 1s, then exits over 7s.
+// Phase 2: Bio fades in at 2s, overlapping the MAKE SPACE fade-out.
 (function() {
   const words = document.getElementById('heroWords');
   const bio   = document.getElementById('heroBio');
 
-  // Start fade-out of MAKE SPACE at 2s (7s transition)
+  // Start fade-out of MAKE SPACE at 1s (7s transition)
   setTimeout(() => {
     words.classList.add('exit');
-  }, 2000);
+  }, 1000);
 
-  // Bio begins fading in at 3s
+  // Bio begins fading in at 2s
   setTimeout(() => {
     bio.classList.add('visible');
-  }, 3000);
+  }, 2000);
 
-  // Clean up words element after it's fully gone (2s + 7s = 9s)
+  // Clean up words element after it's fully gone (1s + 7s = 8s)
   setTimeout(() => {
     words.style.display = 'none';
-  }, 9000);
+  }, 8000);
 
 })();
 
