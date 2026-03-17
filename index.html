@@ -412,7 +412,10 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 
 /* Masonry grid */
 .gm-grid{
-  flex:1;overflow-y:auto;
+  flex:1;
+  overflow-y:auto;
+  overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
   columns:4 220px;
   gap:6px;
   padding:0 6px 6px;
@@ -1058,16 +1061,19 @@ window.addEventListener('scroll', () => {
     }, 500);
   }
 
-  document.querySelectorAll('.wm-tag[data-pillar]').forEach(tag => {
-    const beatId = tag.dataset.pillar;
-    const key    = tag.dataset.key;
-    tag.addEventListener('mouseenter', () => openPanel(beatId, key));
-  });
+  // Only wire hover behavior on non-touch devices
+  if (!('ontouchstart' in window)) {
+    document.querySelectorAll('.wm-tag[data-pillar]').forEach(tag => {
+      const beatId = tag.dataset.pillar;
+      const key    = tag.dataset.key;
+      tag.addEventListener('mouseenter', () => openPanel(beatId, key));
+    });
 
-  document.querySelectorAll('.pillar-beat').forEach(beat => {
-    beat.addEventListener('mouseenter', () => clearTimeout(closeTimer));
-    beat.addEventListener('mouseleave', () => closePanel(beat.id));
-  });
+    document.querySelectorAll('.pillar-beat').forEach(beat => {
+      beat.addEventListener('mouseenter', () => clearTimeout(closeTimer));
+      beat.addEventListener('mouseleave', () => closePanel(beat.id));
+    });
+  }
 })();
 
 // ══  GALLERY + LIGHTBOX SYSTEM  ══
@@ -1203,6 +1209,12 @@ window.addEventListener('scroll', () => {
 
   // Pillar pill clicks → open gallery pre-filtered
   document.querySelectorAll('.wm-tag[data-gallery]').forEach(tag => {
+    // Fire on touchstart to avoid double-tap on mobile
+    tag.addEventListener('touchstart', e => {
+      e.preventDefault();
+      gmOpen(tag.dataset.gallery);
+    }, {passive:false});
+    // Keep click for desktop
     tag.addEventListener('click', e => {
       e.preventDefault();
       gmOpen(tag.dataset.gallery);
