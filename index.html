@@ -165,9 +165,9 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 }
 .hero-bio-type, h1.hero-bio-type{
   font-family:"Bebas Neue",sans-serif;
-  font-size:clamp(2.1rem,7.7vw,3.1rem);
+  font-size:clamp(2.8rem,5vw,6.2rem);
   line-height:.94;letter-spacing:.01em;color:var(--white);
-  font-weight:400; /* Bebas Neue has no bold; reset browser h1 bold */
+  font-weight:400;
 }
 .hero-bio-type .hl{color:var(--accent)}
 .hero-bio-type .hl2{
@@ -378,6 +378,7 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
   .pillar-beat[data-align="right"] .pb-inner{ margin-left:auto;margin-right:0; text-align:right; }
   .pillar-beat[data-align="center"] .pb-inner{ margin:0; text-align:left; }
   .pb-word{ font-size:clamp(4rem,18vw,8rem); }
+  #pb-photography .pb-word{ font-size:clamp(3rem,14vw,8rem); }
 }
 
 
@@ -559,7 +560,9 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 .pb-panel-img.active{ opacity:1; }
 .pb-panel-overlay{
   position:absolute;inset:0;
-  background:linear-gradient(to right, rgba(5,6,11,.75) 0%, rgba(5,6,11,.4) 50%, transparent 100%);
+  background:
+    linear-gradient(to right, rgba(5,6,11,.82) 0%, rgba(5,6,11,.55) 55%, rgba(5,6,11,.25) 100%),
+    linear-gradient(to top, rgba(5,6,11,.6) 0%, transparent 50%);
   z-index:2;
   pointer-events:none;
 }
@@ -738,6 +741,7 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
   padding:5vw 3.5rem;
   border-bottom:1px solid rgba(242,237,230,.06);
   overflow:hidden;
+  text-align:center;
 }
 .manifesto-text{
   font-family:"Bebas Neue",sans-serif;
@@ -1176,8 +1180,8 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
     <button class="gm-filter" data-filter="lifestyle">Lifestyle</button>
   </div>
   <div class="gm-cta-bar">
-    <p class="gm-cta-line">Like what you see?</p>
-    <a href="https://calendly.com/lukeleffel-info/30min" target="_blank" class="fp-cta gm-cta-btn" id="gmCtaBtn">Let's work together →</a>
+    <p class="gm-cta-line">Need clear imagery for your brand?</p>
+    <a href="https://calendly.com/lukeleffel-info/30min" target="_blank" class="fp-cta gm-cta-btn" id="gmCtaBtn">Work with me →</a>
   </div>
 </div>
 
@@ -1349,8 +1353,8 @@ window.addEventListener('scroll', () => {
 (function(){
   const data = {
     'pb-photography': {
-      brand:     { title:'Brand',     body:'Brand strategy through the lens of hospitality, from launch campaigns to ongoing content partnerships.', cta:'Work with me →', href:'https://calendly.com/lukeleffel-info/30min', gallery:'brand' },
-      lifestyle: { title:'Lifestyle', body:'Documentary and editorial photography capturing the warmth, ritual, and culture of everyday café life.',  cta:'Work with me →', href:'https://calendly.com/lukeleffel-info/30min', gallery:'lifestyle' }
+      brand:     { title:'Brand',     body:'Brand strategy through the lens of hospitality, from launch campaigns to ongoing content partnerships.', cta:'View brand gallery →', href:'#gallery', gallery:'brand',     galleryCta:true },
+      lifestyle: { title:'Lifestyle', body:'Documentary and editorial photography capturing the warmth, ritual, and culture of everyday café life.',  cta:'View lifestyle gallery →', href:'#gallery', gallery:'lifestyle', galleryCta:true }
     },
     'pb-strategy': {
       consulting:  { title:'Consulting',    body:'Operations, training and design oriented toward sustainable business that fosters true hospitality and a culture of care.', cta:'Work with me →',       href:'https://calendly.com/lukeleffel-info/30min' },
@@ -1389,13 +1393,31 @@ window.addEventListener('scroll', () => {
       const cta = detail.querySelector('.pb-detail-cta');
       const galleryLink = detail.querySelector('.pb-detail-gallery-link');
       if (bod) bod.textContent = d.body;
-      if (cta) { cta.textContent = d.cta; cta.href = d.href; }
-      if (galleryLink) {
-        if (d.gallery) {
+      if (d.galleryCta && d.gallery) {
+        // Photography: primary CTA opens gallery, secondary is work with me
+        if (cta) {
+          cta.textContent = d.cta;
+          cta.href = '#';
+          cta.onclick = (e) => { e.preventDefault(); window._openGallery(d.gallery); };
+        }
+        if (galleryLink) {
           galleryLink.style.display = 'inline-flex';
-          galleryLink.onclick = (e) => { e.preventDefault(); window._openGallery(d.gallery); };
-        } else {
-          galleryLink.style.display = 'none';
+          galleryLink.textContent = 'Work with me →';
+          galleryLink.href = 'https://calendly.com/lukeleffel-info/30min';
+          galleryLink.target = '_blank';
+          galleryLink.onclick = null;
+        }
+      } else {
+        if (cta) { cta.textContent = d.cta; cta.href = d.href; cta.onclick = null; }
+        if (galleryLink) {
+          if (d.gallery) {
+            galleryLink.style.display = 'inline-flex';
+            galleryLink.textContent = 'View gallery →';
+            galleryLink.href = '#';
+            galleryLink.onclick = (e) => { e.preventDefault(); window._openGallery(d.gallery); };
+          } else {
+            galleryLink.style.display = 'none';
+          }
         }
       }
     }
