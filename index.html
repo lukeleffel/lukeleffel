@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- ══  SEO  ══ -->
-<title>Luke Leffel</title>
+<title>Luke Leffel | Cafe Photographer & Entrepreneur</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPHRleHQgeD0iMyIgeT0iMjciCiAgICBmb250LWZhbWlseT0iQXJpYWwgTmFycm93LCBBcmlhbCwgc2Fucy1zZXJpZiIKICAgIGZvbnQtc2l6ZT0iMjYiCiAgICBmb250LXdlaWdodD0iOTAwIgogICAgZmlsbD0iI2YyZWRlNiI+TDwvdGV4dD4KPC9zdmc+">
 
 <meta name="description" content="Luke Leffel is a café photographer and hospitality strategist based in Columbus, Ohio. Food photography, brand photography, and café consulting rooted in a culture of care.">
@@ -583,6 +583,14 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
   color:var(--dim);line-height:1.7;margin-bottom:1rem;
 }
 .pb-detail-cta{ margin-top:.2rem; }
+.pb-detail-actions{ display:flex;flex-wrap:wrap;align-items:center;gap:.8rem;margin-top:.2rem; }
+.pb-detail-gallery-link{
+  font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;
+  border-bottom:1px solid rgba(242,237,230,.25);padding-bottom:2px;
+  transition:color .2s,border-color .2s;
+}
+.pb-detail-gallery-link:hover{ color:var(--white);border-color:var(--white); }
 
 /* ══  GALLERY  ══ */
 .gallery-modal{
@@ -723,7 +731,52 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 .lb-cta-btn{ white-space:nowrap; }
 .rc.lightbox-trigger{ cursor:none; }
 
-/* ══  CUSTOM CURSOR  ══ */
+/* ══  MANIFESTO STRIP  ══ */
+.s-manifesto{
+  position:relative;z-index:10;
+  background:var(--bg);
+  padding:5vw 3.5rem;
+  border-bottom:1px solid rgba(242,237,230,.06);
+  overflow:hidden;
+}
+.manifesto-text{
+  font-family:"Bebas Neue",sans-serif;
+  font-size:clamp(3rem,8vw,10rem);
+  line-height:.9;
+  letter-spacing:.02em;
+  color:var(--white);
+  margin:0;
+}
+.manifesto-grad{
+  background:var(--grad);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+@media(max-width:768px){
+  .s-manifesto{ padding:10vw 1.4rem; }
+}
+
+/* ══  HERO TEXT SWAP  ══ */
+.hero-swap-wrap{
+  position:relative;
+  display:block;
+}
+.hero-swap-a,
+.hero-swap-b{
+  display:block;
+  transition:opacity 1.2s ease;
+}
+.hero-swap-b{
+  position:absolute;
+  top:0;left:0;width:100%;
+  opacity:0;
+}
+.hs-working{
+  color:var(--white);
+  -webkit-text-fill-color:var(--white);
+}
+/* Animation states toggled by JS */
+.hero-swap-wrap.show-b .hero-swap-a{ opacity:0; }
+.hero-swap-wrap.show-b .hero-swap-b{ opacity:1; }
 .custom-cursor{
   position:fixed;z-index:2000;pointer-events:none;
   font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;
@@ -846,8 +899,9 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   <a href="#" class="nav-logo">LUKE LEFFEL</a>
   <div class="nav-links">
     <a href="#pb-photography" class="nav-link">Photography</a>
-    <a href="#pb-strategy" class="nav-link">Strategy</a>
+    <a href="#pb-strategy" class="nav-link">Café Strategy</a>
     <a href="#pb-connection" class="nav-link">Connection</a>
+    <a href="#slowdown" class="nav-link">Events</a>
     <a href="https://calendly.com/lukeleffel-info/30min" target="_blank" class="nav-cta">Work With Me</a>
   </div>
   <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -857,8 +911,9 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
 
 <div class="mobile-drawer" id="mobileDrawer">
   <a href="#pb-photography" class="drawer-link">Photography</a>
-  <a href="#pb-strategy" class="drawer-link">Strategy</a>
+  <a href="#pb-strategy" class="drawer-link">Café Strategy</a>
   <a href="#pb-connection" class="drawer-link">Connection</a>
+  <a href="#slowdown" class="drawer-link">Events</a>
   <a href="https://calendly.com/lukeleffel-info/30min" target="_blank" class="drawer-cta">Work With Me</a>
 </div>
 
@@ -877,15 +932,31 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
     <div class="hero-bio-left">
       <!-- h1 is visually styled identically — just gives Google a clear primary signal -->
       <h1 class="hero-bio-type">
-        I'M <span class="hl">LUKE LEFFEL,</span><br>
-        PHOTOGRAPHER,<br>
-        <span class="hl">CAFE STRATEGIST</span><br>
-        AND <span class="hl">CONNECTOR</span><br>
-        WORKING AT THE<br>
-        INTERSECTION OF<br>
-        <span class="hl2">HOSPITALITY,</span><br>
-        <span class="hl2">DESIGN</span> AND<br>
-        <span class="hl2">COMMUNITY</span>
+        <span class="hero-swap-wrap">
+          <!-- State A: original -->
+          <span class="hero-swap-a">
+            I'M <span class="hl">LUKE LEFFEL,</span><br>
+            PHOTOGRAPHER,<br>
+            <span class="hl">CAFE STRATEGIST</span><br>
+            AND <span class="hl">CONNECTOR</span><br>
+            <span class="hs-working">WORKING AT THE</span><br>
+            <span class="hs-working">INTERSECTION OF</span><br>
+            <span class="hl2">HOSPITALITY,</span><br>
+            <span class="hl2">DESIGN</span> AND<br>
+            <span class="hl2">COMMUNITY</span>
+          </span>
+          <!-- State B: swap -->
+          <span class="hero-swap-b">
+            I'M <span class="hl">LUKE LEFFEL,</span><br>
+            PHOTOGRAPHER,<br>
+            <span class="hl">CAFE STRATEGIST</span><br>
+            AND <span class="hl">CONNECTOR</span><br>
+            <span class="hs-working">WORKING WITH</span><br>
+            <span class="hl2">FOUNDERS</span> <span class="hs-working">AND</span><br>
+            <span class="hl2">BRANDS</span> <span class="hs-working">THAT</span><br>
+            <span class="hl2">GIVE A SH*T</span>
+          </span>
+        </span>
       </h1>
       <a href="https://calendly.com/lukeleffel-info/30min" target="_blank" class="hero-bio-cta">Work with me &nbsp;→</a>
     </div>
@@ -912,6 +983,11 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   </div>
 </section>
 
+<!-- ══  CULTURE OF CARE STATEMENT  ══ -->
+<div class="s-manifesto">
+  <p class="manifesto-text">WE'RE BUILDING A <span class="manifesto-grad">CULTURE OF CARE</span></p>
+</div>
+
 <!-- ══  SLOWDOWN SUMMIT FEATURE  ══ -->
 <section class="s-slowdown" id="slowdown">
   <div class="sd-inner reveal">
@@ -937,14 +1013,17 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   <div class="pillar-beat" id="pb-photography" data-align="left">
     <div class="pb-inner">
       <h2 class="pb-word">PHOTOGRAPHY</h2>
-      <p class="pb-sub">Share your unmistakable passion through the lens of hospitality.</p>
+      <p class="pb-sub">Your unmistakable passion through the lens of hospitality</p>
       <div class="pb-tags">
-        <a href="#gallery" class="wm-tag" data-pillar="pb-photography" data-key="brand" data-gallery="brand">Brand</a>
-        <a href="#gallery" class="wm-tag" data-pillar="pb-photography" data-key="lifestyle" data-gallery="lifestyle">Lifestyle</a>
+        <a href="#" class="wm-tag" data-pillar="pb-photography" data-key="brand">Brand</a>
+        <a href="#" class="wm-tag" data-pillar="pb-photography" data-key="lifestyle">Lifestyle</a>
       </div>
       <div class="pb-detail">
         <p class="pb-detail-body"></p>
-        <a href="#" class="pb-detail-cta fp-cta"></a>
+        <div class="pb-detail-actions">
+          <a href="#" class="pb-detail-cta fp-cta"></a>
+          <a href="#" class="pb-detail-gallery-link">View gallery →</a>
+        </div>
       </div>
     </div>
     <div class="pb-panel" id="pbp-photography">
@@ -958,7 +1037,7 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   <div class="pillar-beat" id="pb-strategy" data-align="right">
     <div class="pb-inner">
       <h2 class="pb-word">CAFÉ<br>STRATEGY</h2>
-      <p class="pb-sub">How to build profitable third places.</p>
+      <p class="pb-sub">How to build profitable third places</p>
       <div class="pb-tags">
         <a href="#" class="wm-tag" data-pillar="pb-strategy" data-key="consulting">Consulting</a>
         <a href="#" class="wm-tag" data-pillar="pb-strategy" data-key="soloonwhite">Solo on White</a>
@@ -979,7 +1058,7 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   <div class="pillar-beat" id="pb-connection" data-align="center">
     <div class="pb-inner">
       <h2 class="pb-word">CONNECTION</h2>
-      <p class="pb-sub">Creating a culture of care.</p>
+      <p class="pb-sub">Creating a culture of care</p>
       <div class="pb-tags">
         <a href="#" class="wm-tag" data-pillar="pb-connection" data-key="spill">SPILL</a>
         <a href="#" class="wm-tag" data-pillar="pb-connection" data-key="coaching">Coaching</a>
@@ -1201,7 +1280,31 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
 
 })();
 
-// \u9552  SCROLL PARALLAX on hero \u9552 \u9552 
+// ══  HERO TEXT SWAP LOOP  ══
+// Waits for bio to be visible, then cycles between
+// "HOSPITALITY, DESIGN AND COMMUNITY" and "GIVING A SH*T"
+(function() {
+  const wrap = document.querySelector('.hero-swap-wrap');
+  if (!wrap) return;
+
+  // Timings (ms)
+  const HOLD_A   = 5000;  // how long original text shows
+  const HOLD_B   = 4500;  // how long the swap text shows
+  const START_DELAY = 4500; // wait for bio to fully appear first
+
+  function cycleToB() {
+    wrap.classList.add('show-b');
+    setTimeout(cycleToA, HOLD_B);
+  }
+  function cycleToA() {
+    wrap.classList.remove('show-b');
+    setTimeout(cycleToB, HOLD_A);
+  }
+
+  setTimeout(() => {
+    setTimeout(cycleToB, HOLD_A);
+  }, START_DELAY);
+})();
 const hero = document.getElementById('hero');
 window.addEventListener('scroll', () => {
   const y  = window.scrollY;
@@ -1246,8 +1349,8 @@ window.addEventListener('scroll', () => {
 (function(){
   const data = {
     'pb-photography': {
-      brand:     { title:'Brand',        body:'Brand strategy through the lens of hospitality, from launch campaigns to ongoing content partnerships.', cta:'Work with me →', href:'https://calendly.com/lukeleffel-info/30min' },
-      lifestyle: { title:'Lifestyle',    body:'Documentary and editorial photography capturing the warmth, ritual, and culture of everyday café life.',  cta:'Work with me →', href:'https://calendly.com/lukeleffel-info/30min' }
+      brand:     { title:'Brand',     body:'Brand strategy through the lens of hospitality, from launch campaigns to ongoing content partnerships.', cta:'Work with me →', href:'https://calendly.com/lukeleffel-info/30min', gallery:'brand' },
+      lifestyle: { title:'Lifestyle', body:'Documentary and editorial photography capturing the warmth, ritual, and culture of everyday café life.',  cta:'Work with me →', href:'https://calendly.com/lukeleffel-info/30min', gallery:'lifestyle' }
     },
     'pb-strategy': {
       consulting:  { title:'Consulting',    body:'Operations, training and design oriented toward sustainable business that fosters true hospitality and a culture of care.', cta:'Work with me →',       href:'https://calendly.com/lukeleffel-info/30min' },
@@ -1284,8 +1387,17 @@ window.addEventListener('scroll', () => {
     if (detail) {
       const bod = detail.querySelector('.pb-detail-body');
       const cta = detail.querySelector('.pb-detail-cta');
+      const galleryLink = detail.querySelector('.pb-detail-gallery-link');
       if (bod) bod.textContent = d.body;
       if (cta) { cta.textContent = d.cta; cta.href = d.href; }
+      if (galleryLink) {
+        if (d.gallery) {
+          galleryLink.style.display = 'inline-flex';
+          galleryLink.onclick = (e) => { e.preventDefault(); window._openGallery(d.gallery); };
+        } else {
+          galleryLink.style.display = 'none';
+        }
+      }
     }
 
     // Swap image
@@ -1311,6 +1423,7 @@ window.addEventListener('scroll', () => {
 
   // Only wire hover behavior on non-touch devices
   if (!('ontouchstart' in window)) {
+    // Desktop: hover to open panels
     document.querySelectorAll('.wm-tag[data-pillar]').forEach(tag => {
       const beatId = tag.dataset.pillar;
       const key    = tag.dataset.key;
@@ -1320,6 +1433,25 @@ window.addEventListener('scroll', () => {
     document.querySelectorAll('.pillar-beat').forEach(beat => {
       beat.addEventListener('mouseenter', () => clearTimeout(closeTimer));
       beat.addEventListener('mouseleave', () => closePanel(beat.id));
+    });
+  } else {
+    // Mobile: tap to toggle panel open/closed
+    document.querySelectorAll('.wm-tag[data-pillar]').forEach(tag => {
+      tag.addEventListener('touchstart', e => {
+        // Only intercept non-gallery pills (gallery pills handled separately)
+        if (tag.dataset.gallery) return;
+        e.preventDefault();
+        const beatId = tag.dataset.pillar;
+        const key    = tag.dataset.key;
+        const beat   = document.getElementById(beatId);
+        const alreadyOpen = beat && beat.classList.contains('panel-open') &&
+                            beat.querySelector(`.pb-panel-img[data-key="${key}"].active`);
+        if (alreadyOpen) {
+          closePanel(beatId);
+        } else {
+          openPanel(beatId, key);
+        }
+      }, {passive:false});
     });
   }
 })();
