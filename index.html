@@ -49,7 +49,7 @@
       },
       "sameAs": [
         "https://soloonwhite.com",
-        "https://instagram.com/lukeleffel"
+        "https://www.instagram.com/lukeleffel/"
       ]
     },
     {
@@ -740,8 +740,7 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 .s-manifesto{
   position:relative;z-index:10;
   background:var(--bg);
-  padding:5vw 3.5rem;
-  border-bottom:1px solid rgba(242,237,230,.06);
+  padding:5vw 3.5rem 1.5vw;
   overflow:hidden;
   text-align:center;
 }
@@ -818,9 +817,9 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 /* ══  BRANDS MARQUEE  ══ */
 .s-brands{
   position:relative;z-index:10;background:var(--bg);
-  padding:3.5rem 0;
-  border-top:1px solid rgba(242,237,230,.06);
+  padding:1rem 0 4rem;
   overflow:hidden;
+  border-bottom:1px solid rgba(242,237,230,.06);
 }
 .brands-label{
   font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;
@@ -845,10 +844,16 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
   letter-spacing:.08em;
   color:rgba(242,237,230,.35);
   white-space:nowrap;
+  text-decoration:none;
   transition:color .3s;
-  cursor:default;
+  -webkit-text-fill-color:rgba(242,237,230,.35);
 }
-.brand-name:hover{ color:var(--white); }
+.brand-name:hover{
+  background:var(--grad);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
 .brand-sep{ color:var(--accent);font-size:1rem;opacity:.5;flex-shrink:0; }
 @keyframes brandScroll{
   from{ transform:translateX(0); }
@@ -1003,8 +1008,8 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
             <span class="hl">CAFE STRATEGIST</span><br>
             AND <span class="hl">CONNECTOR</span><br>
             <span class="hs-working">WORKING WITH</span><br>
-            <span class="hl2">FOUNDERS</span> <span class="hs-working">AND</span><br>
-            <span class="hl2">BRANDS</span> <span class="hs-working">THAT</span><br>
+            <span class="hl2">BRANDS</span> <span class="hs-working">AND</span><br>
+            <span class="hl2">FOUNDERS</span> <span class="hs-working">THAT</span><br>
             <span class="hl2">GIVE A SH*T</span>
           </span>
         </span>
@@ -1040,40 +1045,45 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
 </div>
 <!-- ══  BRANDS MARQUEE  ══ -->
 <section class="s-brands">
-  <p class="brands-label">Brands I've worked with</p>
+  <p class="brands-label">You're in good company</p>
   <div class="brands-strip">
     <div class="brands-track">
-      <span class="brand-name">notNeutral</span>
+      <a href="https://pixiesbrew.com/" target="_blank" class="brand-name">Pixies Brew</a>
       <span class="brand-sep">—</span>
-      <span class="brand-name">Third Wave Water</span>
+      <a href="https://www.coffeefest.com/" target="_blank" class="brand-name">Coffee Fest</a>
       <span class="brand-sep">—</span>
-      <span class="brand-name">Pixies Brew</span>
+      <a href="https://www.coffeefest.com/latte-art-world-championship-open" target="_blank" class="brand-name">Latte Art World Championship</a>
       <span class="brand-sep">—</span>
-      <span class="brand-name">CoffeeFest Orlando</span>
+      <a href="https://www.notneutral.com/" target="_blank" class="brand-name">notNeutral</a>
       <span class="brand-sep">—</span>
-      <span class="brand-name">World Latte Art Championship</span>
+      <a href="https://thirdwavewater.com/" target="_blank" class="brand-name">Third Wave Water</a>
       <span class="brand-sep">—</span>
-      <span class="brand-name">Wildroot Coffee</span>
+      <a href="https://www.slowdownsummit.co/" target="_blank" class="brand-name">Slowdown Summit</a>
       <span class="brand-sep">—</span>
-      <span class="brand-name">Slowdown Summit</span>
+      <a href="https://www.onelinecoffee.com/" target="_blank" class="brand-name">One Line Coffee</a>
       <span class="brand-sep">—</span>
-      <span class="brand-name">Columbus Museum of Art</span>
+      <a href="https://callinyourbluffcoffee.com/" target="_blank" class="brand-name">Callin Your Bluff</a>
       <span class="brand-sep">—</span>
-      <span class="brand-name">notNeutral</span>
+      <a href="https://www.urbanacafe.com/" target="_blank" class="brand-name">Urbana Cafe</a>
       <span class="brand-sep">—</span>
-      <span class="brand-name">Third Wave Water</span>
+      <!-- duplicate for seamless loop -->
+      <a href="https://pixiesbrew.com/" target="_blank" class="brand-name">Pixies Brew</a>
       <span class="brand-sep">—</span>
-      <span class="brand-name">Pixies Brew</span>
+      <a href="https://www.coffeefest.com/" target="_blank" class="brand-name">Coffee Fest</a>
       <span class="brand-sep">—</span>
-      <span class="brand-name">CoffeeFest Orlando</span>
+      <a href="https://www.coffeefest.com/latte-art-world-championship-open" target="_blank" class="brand-name">Latte Art World Championship</a>
       <span class="brand-sep">—</span>
-      <span class="brand-name">World Latte Art Championship</span>
+      <a href="https://www.notneutral.com/" target="_blank" class="brand-name">notNeutral</a>
       <span class="brand-sep">—</span>
-      <span class="brand-name">Wildroot Coffee</span>
+      <a href="https://thirdwavewater.com/" target="_blank" class="brand-name">Third Wave Water</a>
       <span class="brand-sep">—</span>
-      <span class="brand-name">Slowdown Summit</span>
+      <a href="https://www.slowdownsummit.co/" target="_blank" class="brand-name">Slowdown Summit</a>
       <span class="brand-sep">—</span>
-      <span class="brand-name">Columbus Museum of Art</span>
+      <a href="https://www.onelinecoffee.com/" target="_blank" class="brand-name">One Line Coffee</a>
+      <span class="brand-sep">—</span>
+      <a href="https://callinyourbluffcoffee.com/" target="_blank" class="brand-name">Callin Your Bluff</a>
+      <span class="brand-sep">—</span>
+      <a href="https://www.urbanacafe.com/" target="_blank" class="brand-name">Urbana Cafe</a>
       <span class="brand-sep">—</span>
     </div>
   </div>
@@ -1104,7 +1114,7 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   <div class="pillar-beat" id="pb-photography" data-align="left">
     <div class="pb-inner">
       <h2 class="pb-word">PHOTOGRAPHY</h2>
-      <p class="pb-sub">Your unmistakable passion through the lens of hospitality</p>
+      <p class="pb-sub">Your brand through the lens of hospitality</p>
       <div class="pb-tags">
         <a href="#" class="wm-tag" data-pillar="pb-photography" data-key="brand">Brand</a>
         <a href="#" class="wm-tag" data-pillar="pb-photography" data-key="lifestyle">Lifestyle</a>
@@ -1310,8 +1320,8 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   <ul class="f-links">
     <li><a href="https://soloonwhite.com" target="_blank">Solo on White</a></li>
     <li><a href="#">SPILL</a></li>
-    <li><a href="#">Substack</a></li>
-    <li><a href="#">Instagram</a></li>
+    <li><a href="https://substack.com/@lukeleffel" target="_blank">Substack</a></li>
+    <li><a href="https://www.instagram.com/lukeleffel/" target="_blank">Instagram</a></li>
     <li><a href="#">Privacy Policy</a></li>
   </ul>
   <span class="f-copy">© 2025</span>
