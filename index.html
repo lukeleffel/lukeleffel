@@ -609,8 +609,6 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
   display:flex;align-items:center;justify-content:space-between;
   padding:1.6rem 3rem 1rem;
   flex-shrink:0;
-  position:sticky;
-  top:0;
   background:var(--bg);
   z-index:10;
   border-bottom:1px solid rgba(242,237,230,.06);
@@ -1735,7 +1733,9 @@ window.addEventListener('scroll', () => {
     document.body.style.overflow = '';
   }
 
-  document.getElementById('gmClose').addEventListener('click', gmClose);
+  const gmCloseBtn = document.getElementById('gmClose');
+  gmCloseBtn.addEventListener('click', gmClose);
+  gmCloseBtn.addEventListener('touchstart', e => { e.preventDefault(); gmClose(); }, {passive:false});
   gmCtaBtn.addEventListener('click', gmClose);
   modal.addEventListener('click', e => { if (e.target === modal) gmClose(); });
   document.addEventListener('keydown', e => {
