@@ -646,7 +646,6 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
   background:#111;
   aspect-ratio:3/2;
 }
-.gm-item.tall{ aspect-ratio:2/3; }
 .gm-item img{
   display:block;width:100%;height:100%;
   object-fit:cover;
@@ -693,7 +692,6 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
     padding:0 3px 3px;
   }
   .gm-item{ aspect-ratio:4/3; }
-  .gm-item.tall{ aspect-ratio:3/4; }
   .gm-filters{ padding:.6rem 1.4rem 1rem; }
   .gm-cta-bar{ padding:.8rem 1.4rem 1.2rem;flex-direction:column;gap:.5rem; }
 }
@@ -843,11 +841,11 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
   font-family:"Bebas Neue",sans-serif;
   font-size:clamp(1.4rem,2.5vw,2.2rem);
   letter-spacing:.08em;
-  color:rgba(242,237,230,.35);
+  color:rgba(242,237,230,.58);
   white-space:nowrap;
   text-decoration:none;
   transition:color .3s;
-  -webkit-text-fill-color:rgba(242,237,230,.35);
+  -webkit-text-fill-color:rgba(242,237,230,.58);
 }
 .brand-name:hover{
   background:var(--grad);
@@ -1676,12 +1674,10 @@ window.addEventListener('scroll', () => {
     document.querySelectorAll('.gm-filter').forEach(b => b.classList.toggle('active', b.dataset.filter === cat));
 
     const items = cat === 'all' ? allTriggers : allTriggers.filter(el => el.dataset.category === cat);
-    // Pattern: make every 3rd item tall (spans 2 rows) for organic masonry feel
-    const tallPattern = [false, false, true, false, false, true, false, true, false, false, false, true];
     items.forEach((el, i) => {
       const src  = el.querySelector('img').src;
       const item = document.createElement('div');
-      item.className = 'gm-item' + (tallPattern[i % tallPattern.length] ? ' tall' : '');
+      item.className = 'gm-item';
       item.dataset.category = el.dataset.category;
       item.dataset.index = el.dataset.index;
 
