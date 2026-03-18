@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 
 <!-- ══  SEO  ══ -->
 <title>Luke Leffel | Cafe Photographer & Entrepreneur</title>
@@ -255,6 +258,19 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 .mobile-drawer a{font-family:"Bebas Neue",sans-serif;font-size:clamp(2.5rem,10vw,4rem);letter-spacing:.08em;color:var(--white);text-decoration:none;transition:color .2s}
 .mobile-drawer a:hover{color:var(--accent)}
 .mobile-drawer .drawer-cta{color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:4px}
+.drawer-close{
+  position:absolute;top:1.8rem;right:2rem;
+  background:none;border:none;
+  color:var(--white);font-size:1.4rem;
+  cursor:pointer;
+  padding:.5rem;
+  line-height:1;
+  opacity:.7;
+  transition:opacity .2s;
+  -webkit-tap-highlight-color:transparent;
+  z-index:10;
+}
+.drawer-close:hover,.drawer-close:active{ opacity:1; }
 .s-bio{
   position:relative;z-index:10;background:var(--bg);
   display:grid;grid-template-columns:55% 45%;min-height:100vh;
@@ -619,18 +635,18 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
   letter-spacing:.08em;color:var(--white);
 }
 .gm-close{
-  background:none;border:none;
+  background:rgba(242,237,230,.08);
+  border:1px solid rgba(242,237,230,.25);
   color:var(--white);
-  font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;
-  cursor:pointer;transition:color .2s, opacity .2s;
-  opacity:.7;
-  position:sticky;
-  padding:.4rem .6rem;
-  border:1px solid rgba(242,237,230,.2);
+  font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;
+  cursor:pointer;
+  transition:background .2s, border-color .2s;
+  padding:.45rem .9rem;
   border-radius:20px;
   flex-shrink:0;
+  -webkit-tap-highlight-color:transparent;
 }
-.gm-close:hover{ color:var(--white);opacity:1;border-color:rgba(242,237,230,.5); }
+.gm-close:hover,.gm-close:active{ background:rgba(242,237,230,.18);border-color:rgba(242,237,230,.5); }
 
 /* Gallery — outer container scrolls, inner uses CSS columns for true masonry */
 .gm-grid{
@@ -969,6 +985,7 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
 </nav>
 
 <div class="mobile-drawer" id="mobileDrawer">
+  <button class="drawer-close" id="drawerClose" aria-label="Close menu">✕</button>
   <a href="#pb-photography" class="drawer-link">Photography</a>
   <a href="#pb-strategy" class="drawer-link">Café Strategy</a>
   <a href="#pb-connection" class="drawer-link">Connection</a>
@@ -1344,23 +1361,37 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   }
 })();
 
-// \u9552  HAMBURGER MENU \u9552 \u9552 
+// ══  HAMBURGER MENU  ══
 (function(){
-  const btn = document.getElementById('hamburger');
-  const drawer = document.getElementById('mobileDrawer');
+  const btn       = document.getElementById('hamburger');
+  const drawer    = document.getElementById('mobileDrawer');
+  const closeBtn  = document.getElementById('drawerClose');
   if (!btn || !drawer) return;
+
+  function openDrawer() {
+    drawer.classList.add('open');
+    btn.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    btn.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
   btn.addEventListener('click', () => {
-    const open = drawer.classList.toggle('open');
-    btn.classList.toggle('open', open);
-    document.body.style.overflow = open ? 'hidden' : '';
+    drawer.classList.contains('open') ? closeDrawer() : openDrawer();
   });
+
+  // Dedicated close button inside drawer
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeDrawer);
+    closeBtn.addEventListener('touchstart', e => { e.preventDefault(); closeDrawer(); }, {passive:false});
+  }
+
   // Close on any drawer link click
   drawer.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      drawer.classList.remove('open');
-      btn.classList.remove('open');
-      document.body.style.overflow = '';
-    });
+    a.addEventListener('click', closeDrawer);
   });
 })();
 
