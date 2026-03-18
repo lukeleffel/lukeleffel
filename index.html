@@ -561,8 +561,8 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 .pb-panel-overlay{
   position:absolute;inset:0;
   background:
-    linear-gradient(to right, rgba(5,6,11,.82) 0%, rgba(5,6,11,.55) 55%, rgba(5,6,11,.25) 100%),
-    linear-gradient(to top, rgba(5,6,11,.6) 0%, transparent 50%);
+    linear-gradient(to right, rgba(5,6,11,.92) 0%, rgba(5,6,11,.65) 55%, rgba(5,6,11,.35) 100%),
+    linear-gradient(to top, rgba(5,6,11,.7) 0%, transparent 50%);
   z-index:2;
   pointer-events:none;
 }
@@ -622,7 +622,7 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 }
 .gm-close:hover{ color:var(--white); }
 
-/* Grid — two-column masonry-feel using CSS grid with row spans */
+/* Grid */
 .gm-grid{
   flex:1;
   overflow-y:auto;
@@ -630,7 +630,7 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
   -webkit-overflow-scrolling:touch;
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  grid-auto-rows:160px;
+  grid-auto-rows:auto;
   gap:4px;
   padding:0 4px 4px;
   align-content:start;
@@ -644,9 +644,9 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
   cursor:zoom-in;
   position:relative;
   background:#111;
-  grid-row:span 1;
+  aspect-ratio:3/2;
 }
-.gm-item.tall{ grid-row:span 2; }
+.gm-item.tall{ aspect-ratio:2/3; }
 .gm-item img{
   display:block;width:100%;height:100%;
   object-fit:cover;
@@ -688,10 +688,12 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
   .gm-header{ padding:1.2rem 1.4rem .8rem; }
   .gm-grid{
     grid-template-columns:repeat(2,1fr);
-    grid-auto-rows:140px;
+    grid-auto-rows:auto;
     gap:3px;
     padding:0 3px 3px;
   }
+  .gm-item{ aspect-ratio:4/3; }
+  .gm-item.tall{ aspect-ratio:3/4; }
   .gm-filters{ padding:.6rem 1.4rem 1rem; }
   .gm-cta-bar{ padding:.8rem 1.4rem 1.2rem;flex-direction:column;gap:.5rem; }
 }
@@ -1026,7 +1028,7 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
         <p class="pb-detail-body"></p>
         <div class="pb-detail-actions">
           <a href="#" class="pb-detail-cta fp-cta"></a>
-          <a href="#" class="pb-detail-gallery-link">View gallery →</a>
+          <a href="#" class="pb-detail-gallery-link">View gallery</a>
         </div>
       </div>
     </div>
@@ -1394,18 +1396,14 @@ window.addEventListener('scroll', () => {
       const galleryLink = detail.querySelector('.pb-detail-gallery-link');
       if (bod) bod.textContent = d.body;
       if (d.galleryCta && d.gallery) {
-        // Photography: primary CTA opens gallery, secondary is work with me
-        if (cta) {
-          cta.textContent = d.cta;
-          cta.href = '#';
-          cta.onclick = (e) => { e.preventDefault(); window._openGallery(d.gallery); };
-        }
+        // Photography: only show gallery link, no work with me
+        if (cta) { cta.style.display = 'none'; }
         if (galleryLink) {
           galleryLink.style.display = 'inline-flex';
-          galleryLink.textContent = 'Work with me →';
-          galleryLink.href = 'https://calendly.com/lukeleffel-info/30min';
-          galleryLink.target = '_blank';
-          galleryLink.onclick = null;
+          galleryLink.textContent = 'View gallery';
+          galleryLink.href = '#';
+          galleryLink.target = '';
+          galleryLink.onclick = (e) => { e.preventDefault(); window._openGallery(d.gallery); };
         }
       } else {
         if (cta) { cta.textContent = d.cta; cta.href = d.href; cta.onclick = null; }
