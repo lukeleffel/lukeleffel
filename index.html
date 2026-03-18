@@ -240,7 +240,7 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 .hero-scroll-txt{font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
 
 /* \u9552  MOBILE MENU \u9552 \u9552  */
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;z-index:300;position:relative}
+.hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;z-index:300;position:relative}
 .hamburger span{display:block;width:22px;height:1.5px;background:var(--white);transition:transform .3s ease,opacity .3s ease}
 .hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
 .hamburger.open span:nth-child(2){opacity:0}
@@ -815,11 +815,56 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 .cta-email{font-size:clamp(1rem,1.8vw,1.4rem);font-weight:300;color:var(--dim);text-decoration:none;letter-spacing:.06em;border-bottom:1px solid rgba(242,237,230,.15);padding-bottom:.25rem;transition:color .3s,border-color .3s;position:relative;z-index:2}
 .cta-email:hover{color:var(--white);border-color:var(--accent)}
 
+/* ══  BRANDS MARQUEE  ══ */
+.s-brands{
+  position:relative;z-index:10;background:var(--bg);
+  padding:3.5rem 0;
+  border-top:1px solid rgba(242,237,230,.06);
+  overflow:hidden;
+}
+.brands-label{
+  font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--muted);text-align:center;margin-bottom:1.8rem;
+}
+.brands-strip{
+  overflow:hidden;position:relative;
+}
+.brands-strip::before,.brands-strip::after{
+  content:"";position:absolute;top:0;bottom:0;width:12vw;z-index:2;pointer-events:none;
+}
+.brands-strip::before{ left:0;background:linear-gradient(to right,var(--bg),transparent); }
+.brands-strip::after{  right:0;background:linear-gradient(to left,var(--bg),transparent); }
+.brands-track{
+  display:flex;align-items:center;gap:2rem;
+  width:max-content;
+  animation:brandScroll 35s linear infinite;
+}
+.brand-name{
+  font-family:"Bebas Neue",sans-serif;
+  font-size:clamp(1.4rem,2.5vw,2.2rem);
+  letter-spacing:.08em;
+  color:rgba(242,237,230,.35);
+  white-space:nowrap;
+  transition:color .3s;
+  cursor:default;
+}
+.brand-name:hover{ color:var(--white); }
+.brand-sep{ color:var(--accent);font-size:1rem;opacity:.5;flex-shrink:0; }
+@keyframes brandScroll{
+  from{ transform:translateX(0); }
+  to{   transform:translateX(-50%); }
+}
+@media(max-width:768px){
+  .s-brands{ padding:2.5rem 0; }
+  .brand-name{ font-size:clamp(1.1rem,5vw,1.6rem); }
+}
+
 footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:10;background:var(--bg)}
 .f-logo{font-family:"Bebas Neue",sans-serif;font-size:1rem;letter-spacing:.18em;color:rgba(242,237,230,.18)}
 .f-links{display:flex;gap:2rem;list-style:none}
 .f-links a{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,237,230,.2);text-decoration:none;transition:color .2s}
 .f-links a:hover{color:var(--white)}
+.f-links-label{font-size:.5rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(242,237,230,.25);margin-bottom:.4rem;list-style:none}
 .f-copy{font-size:.63rem;color:rgba(242,237,230,.1)}
 
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s cubic-bezier(.16,1,.3,1)}
@@ -829,10 +874,9 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
 
 /* \u9552  MOBILE \u9552 \u9552  */
 @media(max-width:768px){
-  /* Nav \'97 show hamburger, hide desktop links */
+  /* Nav — hide desktop links on mobile, drawer handles it */
   nav{padding:1.2rem 1.4rem}
   .nav-links{display:none}
-  .hamburger{display:flex}
   .mobile-drawer{display:flex}
 
   /* Hero \'97 true full screen on mobile */
@@ -905,9 +949,8 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   <a href="#" class="nav-logo">LUKE LEFFEL</a>
   <div class="nav-links">
     <a href="#pb-photography" class="nav-link">Photography</a>
-    <a href="#pb-strategy" class="nav-link">Café Strategy</a>
-    <a href="#pb-connection" class="nav-link">Connection</a>
-    <a href="#slowdown" class="nav-link">Events</a>
+    <a href="https://soloonwhite.com" target="_blank" class="nav-link">Solo on White</a>
+    <a href="#" class="nav-link">SPILL</a>
     <a href="https://calendly.com/lukeleffel-info/30min" target="_blank" class="nav-cta">Work With Me</a>
   </div>
   <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -920,6 +963,8 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   <a href="#pb-strategy" class="drawer-link">Café Strategy</a>
   <a href="#pb-connection" class="drawer-link">Connection</a>
   <a href="#slowdown" class="drawer-link">Events</a>
+  <a href="https://soloonwhite.com" target="_blank" class="drawer-link">Solo on White</a>
+  <a href="#" class="drawer-link">SPILL Coffee Magazine</a>
   <a href="https://calendly.com/lukeleffel-info/30min" target="_blank" class="drawer-cta">Work With Me</a>
 </div>
 
@@ -993,6 +1038,46 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
 <div class="s-manifesto">
   <p class="manifesto-text">WE'RE BUILDING A <span class="manifesto-grad">CULTURE OF CARE</span></p>
 </div>
+<!-- ══  BRANDS MARQUEE  ══ -->
+<section class="s-brands">
+  <p class="brands-label">Brands I've worked with</p>
+  <div class="brands-strip">
+    <div class="brands-track">
+      <span class="brand-name">notNeutral</span>
+      <span class="brand-sep">—</span>
+      <span class="brand-name">Third Wave Water</span>
+      <span class="brand-sep">—</span>
+      <span class="brand-name">Pixies Brew</span>
+      <span class="brand-sep">—</span>
+      <span class="brand-name">CoffeeFest Orlando</span>
+      <span class="brand-sep">—</span>
+      <span class="brand-name">World Latte Art Championship</span>
+      <span class="brand-sep">—</span>
+      <span class="brand-name">Wildroot Coffee</span>
+      <span class="brand-sep">—</span>
+      <span class="brand-name">Slowdown Summit</span>
+      <span class="brand-sep">—</span>
+      <span class="brand-name">Columbus Museum of Art</span>
+      <span class="brand-sep">—</span>
+      <span class="brand-name">notNeutral</span>
+      <span class="brand-sep">—</span>
+      <span class="brand-name">Third Wave Water</span>
+      <span class="brand-sep">—</span>
+      <span class="brand-name">Pixies Brew</span>
+      <span class="brand-sep">—</span>
+      <span class="brand-name">CoffeeFest Orlando</span>
+      <span class="brand-sep">—</span>
+      <span class="brand-name">World Latte Art Championship</span>
+      <span class="brand-sep">—</span>
+      <span class="brand-name">Wildroot Coffee</span>
+      <span class="brand-sep">—</span>
+      <span class="brand-name">Slowdown Summit</span>
+      <span class="brand-sep">—</span>
+      <span class="brand-name">Columbus Museum of Art</span>
+      <span class="brand-sep">—</span>
+    </div>
+  </div>
+</section>
 
 <!-- ══  SLOWDOWN SUMMIT FEATURE  ══ -->
 <section class="s-slowdown" id="slowdown">
@@ -1217,6 +1302,8 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   <h2 class="cta-head reveal rd1">START A<br><span>CONVERSATION</span></h2>
   <a href="https://calendly.com/lukeleffel-info/30min" target="_blank" class="cta-email reveal rd2">Book a time to talk →</a>
 </section>
+
+<!-- ══  BRANDS MARQUEE  ══ -->
 
 <footer>
   <span class="f-logo">LUKE LEFFEL</span>
