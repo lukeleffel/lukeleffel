@@ -609,6 +609,11 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
   display:flex;align-items:center;justify-content:space-between;
   padding:1.6rem 3rem 1rem;
   flex-shrink:0;
+  position:sticky;
+  top:0;
+  background:var(--bg);
+  z-index:10;
+  border-bottom:1px solid rgba(242,237,230,.06);
 }
 .gm-title{
   font-family:"Bebas Neue",sans-serif;
@@ -616,11 +621,18 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
   letter-spacing:.08em;color:var(--white);
 }
 .gm-close{
-  background:none;border:none;color:var(--muted);
+  background:none;border:none;
+  color:var(--white);
   font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;
-  cursor:pointer;transition:color .2s;
+  cursor:pointer;transition:color .2s, opacity .2s;
+  opacity:.7;
+  position:sticky;
+  padding:.4rem .6rem;
+  border:1px solid rgba(242,237,230,.2);
+  border-radius:20px;
+  flex-shrink:0;
 }
-.gm-close:hover{ color:var(--white); }
+.gm-close:hover{ color:var(--white);opacity:1;border-color:rgba(242,237,230,.5); }
 
 /* Gallery — outer container scrolls, inner uses CSS columns for true masonry */
 .gm-grid{
@@ -1111,8 +1123,8 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
       <h2 class="pb-word">PHOTOGRAPHY</h2>
       <p class="pb-sub">Your brand through the lens of hospitality</p>
       <div class="pb-tags">
-        <a href="#" class="wm-tag" data-pillar="pb-photography" data-key="brand">Brand</a>
-        <a href="#" class="wm-tag" data-pillar="pb-photography" data-key="lifestyle">Lifestyle</a>
+        <a href="#" class="wm-tag" data-pillar="pb-photography" data-key="brand" data-gallery="brand">Brand</a>
+        <a href="#" class="wm-tag" data-pillar="pb-photography" data-key="lifestyle" data-gallery="lifestyle">Lifestyle</a>
       </div>
       <div class="pb-detail">
         <p class="pb-detail-body"></p>
