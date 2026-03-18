@@ -240,14 +240,14 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 .hero-scroll-txt{font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
 
 /* \u9552  MOBILE MENU \u9552 \u9552  */
-.hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;z-index:300;position:relative}
+.hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;z-index:300;position:relative;margin-left:1rem}
 .hamburger span{display:block;width:22px;height:1.5px;background:var(--white);transition:transform .3s ease,opacity .3s ease}
 .hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
 .mobile-drawer{
-  display:none;position:fixed;inset:0;z-index:250;
-  background:rgba(10,9,8,.97);backdrop-filter:blur(16px);
+  display:flex;position:fixed;inset:0;z-index:350;
+  background:rgba(10,9,8,.99);backdrop-filter:blur(16px);
   flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;
   opacity:0;pointer-events:none;transition:opacity .35s ease;
 }
@@ -805,7 +805,8 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 .river-strip.dragging{ cursor:grabbing; }
 .river-strip.dragging .river-track{ animation-play-state:paused; }
 
-/* ══  CTA  ══ */padding:10vw 3.5rem 12vw;position:relative;overflow:hidden;z-index:10;background:var(--bg)}
+/* ══  CTA  ══ */
+.s-cta{padding:10vw 3.5rem 12vw;position:relative;overflow:hidden;z-index:10;background:var(--bg)}
 .cta-glow{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(212,104,138,.08) 0%,transparent 70%);bottom:-200px;right:-100px;pointer-events:none}
 .cta-label{font-size:.63rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent2);margin-bottom:2.5rem;display:flex;align-items:center;gap:1rem}
 .cta-label::before{content:"";width:36px;height:1px;background:var(--accent2);display:block}
@@ -882,7 +883,6 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   /* Nav — hide desktop links on mobile, drawer handles it */
   nav{padding:1.2rem 1.4rem}
   .nav-links{display:none}
-  .mobile-drawer{display:flex}
 
   /* Hero \'97 true full screen on mobile */
   .s-hero{height:100dvh;min-height:500px}
@@ -1310,7 +1310,7 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   <div class="cta-glow"></div>
   <p class="cta-label reveal">Let's build something</p>
   <h2 class="cta-head reveal rd1">START A<br><span>CONVERSATION</span></h2>
-  <a href="https://calendly.com/lukeleffel-info/30min" target="_blank" class="cta-email reveal rd2">Book a time to talk →</a>
+  <a href="https://calendly.com/lukeleffel-info/30min" target="_blank" class="hero-bio-cta reveal rd2">Work With Me &nbsp;→</a>
 </section>
 
 <!-- ══  BRANDS MARQUEE  ══ -->
