@@ -963,7 +963,7 @@ window.addEventListener('scroll', () => {
       soloonwhite: { title:'Solo on White', body:'Clear imagery and a focused online ordering platform that drives revenue and increases conversion.',                          cta:'Visit Solo on White →', href:'https://soloonwhite.com' }
     },
     'pb-connection': {
-      spill:    { title:'SPILL Coffee Magazine', body:'A media brand documenting the people, places, and ideas behind café culture.',                                        cta:'Visit SPILL →', href:'https://spillcafemag.com' },
+      spill:    { title:'SPILL Coffee Magazine', body:'A media brand documenting the people, places, and ideas behind café culture.',                                        cta:'Visit SPILL Cafe Magazine →', href:'https://spillcafemag.com' },
       coaching: { title:'Coaching',              body:'One-on-one work for hospitality obsessed founders, café owners and anyone who really gives a sh*t.',                  cta:'Work with me →', intakeType:'other' },
       speaking: { title:'Speaking',              body:'Keynotes and workshops on the Culture of Care, third-place philosophy, and designing for connection.',                 cta:'Work with me →', intakeType:'speaking' }
     }
@@ -1011,25 +1011,31 @@ window.addEventListener('scroll', () => {
     }, 500);
   }
 
-  if(!('ontouchstart' in window)){
-    document.querySelectorAll('.wm-tag[data-pillar]').forEach(tag=>{
-      tag.addEventListener('mouseenter', ()=>openPanel(tag.dataset.pillar, tag.dataset.key));
-    });
-    document.querySelectorAll('.pillar-beat').forEach(beat=>{
-      beat.addEventListener('mouseenter', ()=>clearTimeout(closeTimer));
-      beat.addEventListener('mouseleave', ()=>closePanel(beat.id));
-    });
-  } else {
-    document.querySelectorAll('.wm-tag[data-pillar]').forEach(tag=>{
-      tag.addEventListener('touchstart', e=>{
-        if(tag.dataset.gallery){ e.preventDefault(); window._openGallery(tag.dataset.gallery); return; }
-        e.preventDefault();
-        const beat = document.getElementById(tag.dataset.pillar);
-        const already = beat && beat.classList.contains('panel-open') && beat.querySelector(`.pb-panel-img[data-key="${tag.dataset.key}"].active`);
-        if(already) closePanel(tag.dataset.pillar); else openPanel(tag.dataset.pillar, tag.dataset.key);
-      },{passive:false});
-    });
-  }
+  // All pillars: click/tap to open (photography keeps hover since it opens gallery)
+  document.querySelectorAll('.wm-tag[data-pillar]').forEach(tag=>{
+    // Photography pills open gallery on click
+    if(tag.dataset.gallery){
+      tag.addEventListener('click', e=>{ e.preventDefault(); window._openGallery(tag.dataset.gallery); });
+      tag.addEventListener('touchstart', e=>{ e.preventDefault(); window._openGallery(tag.dataset.gallery); },{passive:false});
+      return;
+    }
+    // Strategy + Connection: click toggles panel
+    function handleActivate(e){
+      e.preventDefault();
+      const beatId = tag.dataset.pillar;
+      const beat   = document.getElementById(beatId);
+      const alreadyActive = beat && beat.classList.contains('panel-open') &&
+        beat.querySelector(`.pb-panel-img[data-key="${tag.dataset.key}"].active`);
+      if(alreadyActive){
+        closePanel(beatId);
+      } else {
+        clearTimeout(closeTimer);
+        openPanel(beatId, tag.dataset.key);
+      }
+    }
+    tag.addEventListener('click', handleActivate);
+    tag.addEventListener('touchstart', e=>{ e.preventDefault(); handleActivate(e); },{passive:false});
+  });
 })();
 
 // ══  GALLERY + LIGHTBOX  ══
