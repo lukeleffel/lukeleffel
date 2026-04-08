@@ -1,0 +1,15 @@
+{
+  "name": "Luke Leffel",
+  "short_name": "LL",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "theme_color": "#05060b",
+  "background_color": "#05060b",
+  "display": "standalone",
+  "start_url": "/"
+}
