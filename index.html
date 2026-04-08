@@ -194,12 +194,8 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 /* ══  PILLS — ENHANCED AFFORDANCE  ══ */
 .pb-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem;pointer-events:auto;justify-content:flex-start}
 .pillar-beat[data-align="right"] .pb-tags{justify-content:flex-end}
-.wm-tag{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--white);text-decoration:none;padding:.35rem .9rem;border-radius:20px;background:linear-gradient(135deg,rgba(123,143,232,.18),rgba(224,95,160,.18));border:1px solid rgba(212,104,138,.3);transition:background .25s,border-color .25s,box-shadow .25s,transform .15s;cursor:pointer;display:inline-flex;align-items:center;gap:.3rem;position:relative}
-.wm-tag .tag-arrow{opacity:0;transform:translateX(-4px);transition:opacity .2s,transform .2s;font-style:normal}
-.wm-tag:hover .tag-arrow,.wm-tag.active .tag-arrow{opacity:1;transform:none}
-.wm-tag:hover,.wm-tag.active{background:linear-gradient(135deg,rgba(123,143,232,.35),rgba(224,95,160,.35));border-color:rgba(212,104,138,.8);box-shadow:0 0 14px rgba(212,104,138,.2);transform:translateY(-1px)}
-.wm-tag .tag-icon{font-size:.7em;opacity:.7;transition:opacity .2s}
-.wm-tag:hover .tag-icon{opacity:1}
+.wm-tag{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,237,230,.6);text-decoration:none;padding:.36rem 1rem;border-radius:2px;background:rgba(242,237,230,.05);border:1px solid rgba(242,237,230,.12);transition:background .2s,border-color .2s,color .2s,box-shadow .2s,transform .15s;cursor:pointer;display:inline-flex;align-items:center;font-weight:400;position:relative}
+.wm-tag:hover,.wm-tag.active{background:rgba(212,104,138,.14);border-color:rgba(212,104,138,.55);color:var(--white);box-shadow:0 0 12px rgba(212,104,138,.12);transform:translateY(-1px)}
 
 /* ══  IN-PILLAR PANEL  ══ */
 .pb-panel{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .45s ease;z-index:1}
@@ -386,6 +382,11 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
 .intake-input:focus,.intake-select:focus,.intake-textarea:focus{border-color:rgba(212,104,138,.55);background:rgba(242,237,230,.08)}
 .intake-select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpolyline points='1 1 6 6 11 1' fill='none' stroke='rgba(242,237,230,0.4)' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem}
 .intake-select option{background:#0f0e14;color:var(--white)}
+.intake-checks{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.2rem}
+.intake-check{display:inline-flex;align-items:center;gap:.45rem;cursor:pointer;padding:.38rem .9rem;border-radius:2px;border:1px solid rgba(242,237,230,.12);background:rgba(242,237,230,.04);transition:background .18s,border-color .18s;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,237,230,.6);user-select:none}
+.intake-check:hover{background:rgba(242,237,230,.08);border-color:rgba(242,237,230,.2);color:var(--white)}
+.intake-check input[type="checkbox"]{display:none}
+.intake-check:has(input:checked){background:rgba(212,104,138,.15);border-color:rgba(212,104,138,.55);color:var(--white)}
 .intake-textarea{resize:vertical;min-height:110px;line-height:1.6}
 .intake-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .intake-submit{width:100%;margin-top:.4rem;background:linear-gradient(135deg,var(--accent),#c8a96e);border:none;border-radius:2px;color:var(--bg);font-family:"DM Sans",sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:.85rem 1.5rem;cursor:pointer;transition:opacity .2s,transform .2s;display:flex;align-items:center;justify-content:center;gap:.6rem}
@@ -414,7 +415,7 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   .world-moment{padding:10vw 1.4rem 4vw}
   .wm-title{font-size:clamp(1.4rem,6vw,2.2rem)}
   .wm-tags{gap:.4rem}
-  .wm-tag{font-size:.68rem;padding:.3rem .75rem}
+  .wm-tag{font-size:.63rem;padding:.3rem .8rem}
   .fp-overlay{padding:1.6rem 1.4rem}
   .fp-title{font-size:clamp(1.8rem,8vw,3rem)}
   .fp-body{font-size:.8rem;max-width:100%}
@@ -606,11 +607,9 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
       <h2 class="pb-word">PHOTOGRAPHY</h2>
       <p class="pb-sub">Your brand through the lens of hospitality</p>
       <div class="pb-tags">
-        <a href="#" class="wm-tag" data-pillar="pb-photography" data-key="brand" data-gallery="brand">
-          <span class="tag-icon">⊞</span> Brand <span class="tag-arrow">→</span>
+        <a href="#" class="wm-tag" data-pillar="pb-photography" data-key="brand" data-gallery="brand"> Brand
         </a>
-        <a href="#" class="wm-tag" data-pillar="pb-photography" data-key="lifestyle" data-gallery="lifestyle">
-          <span class="tag-icon">⊞</span> Lifestyle <span class="tag-arrow">→</span>
+        <a href="#" class="wm-tag" data-pillar="pb-photography" data-key="lifestyle" data-gallery="lifestyle"> Lifestyle
         </a>
       </div>
       <div class="pb-detail">
@@ -635,10 +634,10 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
       <p class="pb-sub">How to build profitable third places</p>
       <div class="pb-tags">
         <a href="#" class="wm-tag" data-pillar="pb-strategy" data-key="consulting">
-          Consulting <span class="tag-arrow">→</span>
+          Consulting
         </a>
         <a href="#" class="wm-tag" data-pillar="pb-strategy" data-key="soloonwhite">
-          Solo on White <span class="tag-arrow">→</span>
+          Solo on White
         </a>
       </div>
       <div class="pb-detail">
@@ -660,13 +659,13 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
       <p class="pb-sub">Creating a culture of care</p>
       <div class="pb-tags">
         <a href="#" class="wm-tag" data-pillar="pb-connection" data-key="spill">
-          SPILL <span class="tag-arrow">→</span>
+          SPILL
         </a>
         <a href="#" class="wm-tag" data-pillar="pb-connection" data-key="coaching">
-          Coaching <span class="tag-arrow">→</span>
+          Coaching
         </a>
         <a href="#" class="wm-tag" data-pillar="pb-connection" data-key="speaking">
-          Speaking <span class="tag-arrow">→</span>
+          Speaking
         </a>
       </div>
       <div class="pb-detail">
@@ -848,17 +847,16 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
           </div>
         </div>
         <div class="intake-field">
-          <label class="intake-label" for="intake-type">What do you need?</label>
-          <select class="intake-select" id="intake-type" name="type" required>
-            <option value="" disabled selected>Select a service</option>
-            <option value="brand-photography">Brand Photography</option>
-            <option value="lifestyle-photography">Lifestyle Photography</option>
-            <option value="solo-on-white">Solo on White / Menu Photography</option>
-            <option value="cafe-consulting">Café Consulting</option>
-            <option value="speaking">Speaking / Workshop</option>
-            <option value="spill-partnership">SPILL Partnership</option>
-            <option value="other">Something else</option>
-          </select>
+          <label class="intake-label">What do you need? <span style="opacity:.4;font-size:.55rem">(select all that apply)</span></label>
+          <div class="intake-checks" id="intake-checks">
+            <label class="intake-check"><input type="checkbox" name="type" value="brand-photography"><span>Brand Photography</span></label>
+            <label class="intake-check"><input type="checkbox" name="type" value="lifestyle-photography"><span>Lifestyle Photography</span></label>
+            <label class="intake-check"><input type="checkbox" name="type" value="solo-on-white"><span>Solo on White / Menu</span></label>
+            <label class="intake-check"><input type="checkbox" name="type" value="cafe-consulting"><span>Café Consulting</span></label>
+            <label class="intake-check"><input type="checkbox" name="type" value="speaking"><span>Speaking / Workshop</span></label>
+            <label class="intake-check"><input type="checkbox" name="type" value="spill-partnership"><span>SPILL Partnership</span></label>
+            <label class="intake-check"><input type="checkbox" name="type" value="other"><span>Something else</span></label>
+          </div>
         </div>
         <div class="intake-field">
           <label class="intake-label" for="intake-message">Tell me more</label>
@@ -1168,11 +1166,29 @@ window.addEventListener('scroll', () => {
 const revObs = new IntersectionObserver(entries=>entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('on'); }),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
 
-// ══  PILLAR REVEALS  ══
+// ══  PILLAR REVEALS + AUTO-OPEN FIRST PANEL  ══
 (function(){
+  const firstKey = { 'pb-photography':'brand', 'pb-strategy':'consulting', 'pb-connection':'spill' };
   const obs = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('on'); e.target.querySelector('.pb-inner')?.classList.add('on'); } });
-  },{threshold:0.25});
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      const beat = e.target;
+      beat.classList.add('on');
+      beat.querySelector('.pb-inner')?.classList.add('on');
+      // Auto-reveal first panel image on scroll in, if none open yet
+      const key = firstKey[beat.id];
+      if(key && !beat.classList.contains('panel-open')){
+        const panel = beat.querySelector('.pb-panel');
+        if(panel){
+          panel.querySelectorAll('.pb-panel-img').forEach(i=>i.classList.remove('active'));
+          const img = panel.querySelector(`.pb-panel-img[data-key="${key}"]`);
+          if(img) img.classList.add('active');
+          beat.classList.add('panel-open');
+          beat.querySelector(`.wm-tag[data-key="${key}"]`)?.classList.add('active');
+        }
+      }
+    });
+  },{threshold:0.3});
   document.querySelectorAll('.pillar-beat').forEach(b=>obs.observe(b));
 })();
 
@@ -1210,8 +1226,8 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
     modal.setAttribute('aria-hidden','false');
     document.body.style.overflow = 'hidden';
     if(type){
-      const sel = document.getElementById('intake-type');
-      for(let o of sel.options){ if(o.value===type){ sel.value=type; break; } }
+      const cb = document.querySelector(`#intake-checks input[value="${type}"]`);
+      if(cb) cb.checked = true;
     }
     setTimeout(()=>document.getElementById('intake-name').focus(), 300);
   };
@@ -1232,8 +1248,10 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
     const email = document.getElementById('intake-email').value.trim();
     const type  = document.getElementById('intake-type').value;
 
+    // collect checked services
+    const checkedBoxes = Array.from(document.querySelectorAll('#intake-checks input:checked')).map(cb=>cb.value);
     let valid = true;
-    [['intake-name',name],['intake-email',email],['intake-type',type]].forEach(([id,val])=>{
+    [['intake-name',name],['intake-email',email]].forEach(([id,val])=>{
       if(!val){
         const el = document.getElementById(id);
         el.style.borderColor='rgba(212,104,138,.9)'; el.style.background='rgba(212,104,138,.06)';
@@ -1241,6 +1259,12 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
         valid = false;
       }
     });
+    if(!checkedBoxes.length){
+      const checks = document.getElementById('intake-checks');
+      checks.style.outline='1px solid rgba(212,104,138,.8)'; checks.style.borderRadius='2px';
+      setTimeout(()=>{ checks.style.outline=''; },1500);
+      valid = false;
+    }
     if(!valid) return;
 
     submitBtn.disabled = true;
@@ -1251,7 +1275,8 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
         method:'POST',
         headers:{'Accept':'application/json','Content-Type':'application/json'},
         body: JSON.stringify({
-          name,email,type,
+          name, email,
+          services: checkedBoxes.join(', '),
           message: document.getElementById('intake-message').value,
           _subject: `New inquiry from ${name}`
         })
@@ -1260,8 +1285,8 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
     } catch {
       // Fallback: pre-filled mailto
       const msg = document.getElementById('intake-message').value;
-      const sub = encodeURIComponent(`New inquiry — ${type}`);
-      const bod = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nService: ${type}\n\n${msg}`);
+      const sub = encodeURIComponent(`New inquiry — ${checkedBoxes.join(', ')}`);
+      const bod = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nServices: ${checkedBoxes.join(', ')}\n\n${msg}`);
       window.open(`mailto:luke@lukeleffel.com?subject=${sub}&body=${bod}`);
     }
 
