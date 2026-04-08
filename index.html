@@ -214,6 +214,8 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 /* ══  PILLS — ENHANCED AFFORDANCE  ══ */
 .pb-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem;pointer-events:auto;justify-content:flex-start}
 .pillar-beat[data-align="right"] .pb-tags{justify-content:flex-end}
+.pillar-beat[data-align="right"] .pb-detail{text-align:right}
+.pillar-beat[data-align="right"] .pb-detail-actions{justify-content:flex-end}
 .wm-tag{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,237,230,.6);text-decoration:none;padding:.36rem 1rem;border-radius:2px;background:rgba(242,237,230,.05);border:1px solid rgba(242,237,230,.12);transition:background .2s,border-color .2s,color .2s,box-shadow .2s,transform .15s;cursor:pointer;display:inline-flex;align-items:center;font-weight:400;position:relative}
 .wm-tag:hover,.wm-tag.active{background:rgba(212,104,138,.14);border-color:rgba(212,104,138,.55);color:var(--white);box-shadow:0 0 12px rgba(212,104,138,.12);transform:translateY(-1px)}
 
@@ -227,7 +229,7 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 .pillar-beat.panel-open .pb-detail{opacity:1;transform:none;pointer-events:auto}
 .pb-detail-body{font-size:clamp(.8rem,1vw,.9rem);font-weight:300;color:var(--dim);line-height:1.7;margin-bottom:1rem}
 .pb-detail-actions{display:flex;flex-wrap:wrap;align-items:center;gap:.8rem;margin-top:.2rem}
-.pb-detail-gallery-link{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:1px solid rgba(242,237,230,.25);padding-bottom:2px;transition:color .2s,border-color .2s}
+.pb-detail-gallery-link{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(212,104,138,.3);padding-bottom:2px;transition:color .2s,border-color .2s}
 .pb-detail-gallery-link:hover{color:var(--white);border-color:var(--white)}
 .pb-detail-cta.fp-cta{background:linear-gradient(135deg,rgba(123,143,232,.15),rgba(224,95,160,.15));border:1px solid rgba(212,104,138,.4);transition:background .25s,border-color .25s,box-shadow .2s,transform .2s}
 .pb-detail-cta.fp-cta:hover{background:linear-gradient(135deg,rgba(123,143,232,.4),rgba(224,95,160,.4));border-color:rgba(212,104,138,.9);box-shadow:0 4px 18px rgba(212,104,138,.22);transform:translateY(-1px)}
@@ -657,7 +659,6 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
       <div class="pb-detail">
         <p class="pb-detail-body"></p>
         <div class="pb-detail-actions">
-          <a href="#" class="pb-detail-cta fp-cta"></a>
           <a href="#" class="pb-detail-gallery-link">View gallery</a>
         </div>
       </div>
@@ -1053,31 +1054,42 @@ window.addEventListener('scroll', () => {
     }, 500);
   }
 
-  // All pillars: click/tap to open (photography keeps hover since it opens gallery)
+  const isTouch = ('ontouchstart' in window);
+
   document.querySelectorAll('.wm-tag[data-pillar]').forEach(tag=>{
-    // Photography pills open gallery on click
-    if(tag.dataset.gallery){
-      tag.addEventListener('click', e=>{ e.preventDefault(); window._openGallery(tag.dataset.gallery); });
-      tag.addEventListener('touchstart', e=>{ e.preventDefault(); window._openGallery(tag.dataset.gallery); },{passive:false});
+    const isPhoto = !!tag.dataset.gallery;
+
+    if(isPhoto){
+      // Photography: hover opens panel on desktop, tap opens gallery on touch
+      if(!isTouch){
+        tag.addEventListener('mouseenter', ()=>{ clearTimeout(closeTimer); openPanel(tag.dataset.pillar, tag.dataset.key); });
+      } else {
+        tag.addEventListener('touchstart', e=>{ e.preventDefault(); window._openGallery(tag.dataset.gallery); },{passive:false});
+      }
       return;
     }
-    // Strategy + Connection: click toggles panel
+
+    // Strategy + Connection: click/tap toggles panel
     function handleActivate(e){
       e.preventDefault();
       const beatId = tag.dataset.pillar;
       const beat   = document.getElementById(beatId);
       const alreadyActive = beat && beat.classList.contains('panel-open') &&
         beat.querySelector(`.pb-panel-img[data-key="${tag.dataset.key}"].active`);
-      if(alreadyActive){
-        closePanel(beatId);
-      } else {
-        clearTimeout(closeTimer);
-        openPanel(beatId, tag.dataset.key);
-      }
+      if(alreadyActive){ closePanel(beatId); } else { clearTimeout(closeTimer); openPanel(beatId, tag.dataset.key); }
     }
     tag.addEventListener('click', handleActivate);
     tag.addEventListener('touchstart', e=>{ e.preventDefault(); handleActivate(e); },{passive:false});
   });
+
+  // Photography beat: mouseleave closes panel on desktop
+  if(!isTouch){
+    const photoBeat = document.getElementById('pb-photography');
+    if(photoBeat){
+      photoBeat.addEventListener('mouseenter', ()=>clearTimeout(closeTimer));
+      photoBeat.addEventListener('mouseleave', ()=>closePanel('pb-photography'));
+    }
+  }
 })();
 
 // ══  GALLERY + LIGHTBOX  ══
