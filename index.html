@@ -1247,9 +1247,7 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
     submitTxt.textContent = 'Sending…';
 
     try {
-      // ⚠️  Replace YOUR_FORM_ID with your Formspree form ID
-      // Sign up free at formspree.io — takes 2 minutes
-      const res = await fetch('https://formspree.io/f/YOUR_FORM_ID',{
+      const res = await fetch('https://formspree.io/f/mreodrje',{
         method:'POST',
         headers:{'Accept':'application/json','Content-Type':'application/json'},
         body: JSON.stringify({
