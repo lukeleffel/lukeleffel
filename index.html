@@ -401,11 +401,10 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
 .intake-field{margin-bottom:1.4rem}
 .intake-label{display:block;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,237,230,.5);margin-bottom:.5rem}
 .intake-input,.intake-select,.intake-textarea{width:100%;background:rgba(242,237,230,.05);border:1px solid rgba(242,237,230,.12);border-radius:2px;color:var(--white);font-family:"DM Sans",sans-serif;font-size:.88rem;padding:.75rem 1rem;outline:none;transition:border-color .2s,background .2s;appearance:none;-webkit-appearance:none;box-sizing:border-box}
+.intake-input::placeholder,.intake-textarea::placeholder{color:rgba(242,237,230,.2)}
 .intake-input:focus,.intake-select:focus,.intake-textarea:focus{border-color:rgba(212,104,138,.55);background:rgba(242,237,230,.08)}
-.intake-select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpolyline points='1 1 6 6 11 1' fill='none' stroke='rgba(242,237,230,0.4)' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem}
-.intake-select option{background:#0f0e14;color:var(--white)}
 .intake-checks{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.2rem}
-.intake-check{display:inline-flex;align-items:center;gap:.45rem;cursor:pointer;padding:.38rem .9rem;border-radius:2px;border:1px solid rgba(242,237,230,.12);background:rgba(242,237,230,.04);transition:background .18s,border-color .18s;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,237,230,.6);user-select:none}
+.intake-check{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;cursor:pointer;padding:.38rem .9rem;border-radius:2px;border:1px solid rgba(242,237,230,.12);background:rgba(242,237,230,.04);transition:background .18s,border-color .18s;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,237,230,.6);user-select:none;width:calc(50% - .23rem);box-sizing:border-box}
 .intake-check:hover{background:rgba(242,237,230,.08);border-color:rgba(242,237,230,.2);color:var(--white)}
 .intake-check input[type="checkbox"]{display:none}
 .intake-check:has(input:checked){background:rgba(212,104,138,.15);border-color:rgba(212,104,138,.55);color:var(--white)}
@@ -493,7 +492,6 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
 </div>
 
 <!-- ══  HERO  ══ -->
-<!-- Primary H1 for SEO — visually hidden -->
 <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Food & Cafe Photographer Columbus Ohio — Brand, Lifestyle & Product Photography | Luke Leffel</h1>
 <section class="s-hero" id="hero">
   <div class="hero-words" id="heroWords">
@@ -558,10 +556,10 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   <p class="manifesto-text">WE'RE BUILDING A <span class="manifesto-grad">CULTURE OF CARE</span></p>
 </div>
 
-<!-- ══  SEO COPY — visually hidden, crawler readable  ══ -->
+<!-- ══  SEO COPY — visually hidden  ══ -->
 <div style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;" aria-hidden="true">
   <h2>Food Photographer Columbus Ohio</h2>
-  <p>Luke Leffel is a food photographer and cafe photographer based in Columbus, Ohio. Specializing in food photography, cafe photography, brand photography, lifestyle photography, and product photography for cafes, coffee shops, and restaurants across Ohio and the Midwest. Luke's work as a food and beverage photographer in Columbus Ohio spans brand campaigns, menu photography, lifestyle photography for hospitality brands, and editorial cafe photography. Available for product photography Columbus Ohio, brand photography Columbus Ohio, lifestyle photographer Columbus Ohio, and cafe photography Columbus Ohio engagements.</p>
+  <p>Luke Leffel is a food photographer and cafe photographer based in Columbus, Ohio. Specializing in food photography, cafe photography, brand photography, lifestyle photography, and product photography for cafes, coffee shops, and restaurants across Ohio and the Midwest.</p>
   <ul>
     <li>Food photography Columbus Ohio</li>
     <li>Food photographer Columbus Ohio</li>
@@ -651,10 +649,8 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
       <h2 class="pb-word" aria-label="Food and Cafe Photography Columbus Ohio">PHOTOGRAPHY</h2>
       <p class="pb-sub">Your brand through the lens of hospitality</p>
       <div class="pb-tags">
-        <a href="#" class="wm-tag" data-pillar="pb-photography" data-key="brand" data-gallery="brand"> Brand
-        </a>
-        <a href="#" class="wm-tag" data-pillar="pb-photography" data-key="lifestyle" data-gallery="lifestyle"> Lifestyle
-        </a>
+        <a href="#" class="wm-tag" data-pillar="pb-photography" data-key="brand" data-gallery="brand"> Brand</a>
+        <a href="#" class="wm-tag" data-pillar="pb-photography" data-key="lifestyle" data-gallery="lifestyle"> Lifestyle</a>
       </div>
       <div class="pb-detail">
         <p class="pb-detail-body"></p>
@@ -676,12 +672,8 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
       <h2 class="pb-word" aria-label="Cafe Consulting and Hospitality Strategy Columbus Ohio">CAFÉ<br>STRATEGY</h2>
       <p class="pb-sub">How to build profitable third places</p>
       <div class="pb-tags">
-        <a href="#" class="wm-tag" data-pillar="pb-strategy" data-key="consulting">
-          Consulting
-        </a>
-        <a href="#" class="wm-tag" data-pillar="pb-strategy" data-key="soloonwhite">
-          Solo on White
-        </a>
+        <a href="#" class="wm-tag" data-pillar="pb-strategy" data-key="consulting">Consulting</a>
+        <a href="#" class="wm-tag" data-pillar="pb-strategy" data-key="soloonwhite">Solo on White</a>
       </div>
       <div class="pb-detail">
         <p class="pb-detail-body"></p>
@@ -701,15 +693,9 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
       <h2 class="pb-word" aria-label="Cafe Community and Culture of Care Columbus Ohio">CONNECTION</h2>
       <p class="pb-sub">Creating a culture of care</p>
       <div class="pb-tags">
-        <a href="#" class="wm-tag" data-pillar="pb-connection" data-key="spill">
-          SPILL
-        </a>
-        <a href="#" class="wm-tag" data-pillar="pb-connection" data-key="coaching">
-          Coaching
-        </a>
-        <a href="#" class="wm-tag" data-pillar="pb-connection" data-key="speaking">
-          Speaking
-        </a>
+        <a href="#" class="wm-tag" data-pillar="pb-connection" data-key="spill">SPILL</a>
+        <a href="#" class="wm-tag" data-pillar="pb-connection" data-key="coaching">Coaching</a>
+        <a href="#" class="wm-tag" data-pillar="pb-connection" data-key="speaking">Speaking</a>
       </div>
       <div class="pb-detail">
         <p class="pb-detail-body"></p>
@@ -865,6 +851,7 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
     <li><a href="https://spillcafemag.com" target="_blank">SPILL</a></li>
     <li><a href="https://substack.com/@lukeleffel" target="_blank">Substack</a></li>
     <li><a href="https://www.instagram.com/lukeleffel/" target="_blank">Instagram</a></li>
+    <li><a href="mailto:heythere@lukeleffel.com">heythere@lukeleffel.com</a></li>
     <li><a href="#">Privacy Policy</a></li>
   </ul>
   <span class="f-copy">© 2025</span>
@@ -877,7 +864,7 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
     <div class="intake-form-wrap" id="intakeFormWrap">
       <span class="intake-eyebrow">Let's build something</span>
       <h2 class="intake-title" id="intake-title-el">START A<br>CONVERSATION</h2>
-      <p class="intake-sub">Tell me a bit about your project and I'll be in touch within 48 hours.</p>
+      <p class="intake-sub">Tell me a bit about your project and I'll be in touch within 48 hours. Or email directly: <a href="mailto:heythere@lukeleffel.com" style="color:var(--accent);text-decoration:none;">heythere@lukeleffel.com</a></p>
       <form id="intakeForm" novalidate>
         <div class="intake-row">
           <div class="intake-field">
@@ -897,7 +884,6 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
             <label class="intake-check"><input type="checkbox" name="type" value="solo-on-white"><span>Solo on White / Menu</span></label>
             <label class="intake-check"><input type="checkbox" name="type" value="cafe-consulting"><span>Café Consulting</span></label>
             <label class="intake-check"><input type="checkbox" name="type" value="speaking"><span>Speaking / Workshop</span></label>
-            <label class="intake-check"><input type="checkbox" name="type" value="spill-partnership"><span>SPILL Partnership</span></label>
             <label class="intake-check"><input type="checkbox" name="type" value="other"><span>Something else</span></label>
           </div>
         </div>
@@ -923,7 +909,7 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
 </div>
 
 <script>
-// ══  MOBILE BIO PHOTO — Pixieset URL, no base64  ══
+// ══  MOBILE BIO PHOTO  ══
 (function(){
   if (window.innerWidth <= 768) {
     const right = document.querySelector('.hero-bio-right');
@@ -1020,12 +1006,10 @@ window.addEventListener('scroll', () => {
     const d     = data[beatId]?.[key];             if(!d)    return;
     const panel = beat.querySelector('.pb-panel');  if(!panel)return;
 
-    // Swap panel image
     panel.querySelectorAll('.pb-panel-img').forEach(i=>i.classList.remove('active'));
     const img = panel.querySelector(`.pb-panel-img[data-key="${key}"]`);
     if(img) img.classList.add('active');
 
-    // Update pb-detail
     const detail = beat.querySelector('.pb-detail');
     if(detail){
       const body    = detail.querySelector('.pb-detail-body');
@@ -1060,7 +1044,6 @@ window.addEventListener('scroll', () => {
     const isPhoto = !!tag.dataset.gallery;
 
     if(isPhoto){
-      // Photography: hover opens panel on desktop, tap opens gallery on touch
       if(!isTouch){
         tag.addEventListener('mouseenter', ()=>{ clearTimeout(closeTimer); openPanel(tag.dataset.pillar, tag.dataset.key); });
       } else {
@@ -1069,7 +1052,6 @@ window.addEventListener('scroll', () => {
       return;
     }
 
-    // Strategy + Connection: click/tap toggles panel
     function handleActivate(e){
       e.preventDefault();
       const beatId = tag.dataset.pillar;
@@ -1082,7 +1064,6 @@ window.addEventListener('scroll', () => {
     tag.addEventListener('touchstart', e=>{ e.preventDefault(); handleActivate(e); },{passive:false});
   });
 
-  // Photography beat: mouseleave closes panel on desktop
   if(!isTouch){
     const photoBeat = document.getElementById('pb-photography');
     if(photoBeat){
@@ -1097,7 +1078,6 @@ window.addEventListener('scroll', () => {
   const allTriggers = Array.from(document.querySelectorAll('.lightbox-trigger'));
   const allImages   = allTriggers.map(el=>({ src:el.querySelector('img').src, category:el.dataset.category||'brand', index:parseInt(el.dataset.index) }));
 
-  // — LIGHTBOX —
   const lb     = document.getElementById('lightbox');
   const lbImg  = document.getElementById('lbImg');
   const lbCtr  = document.getElementById('lbCounter');
@@ -1235,7 +1215,6 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
       const beat = e.target;
       beat.classList.add('on');
       beat.querySelector('.pb-inner')?.classList.add('on');
-      // Auto-reveal first panel image on scroll in, if none open yet
       const key = firstKey[beat.id];
       if(key && !beat.classList.contains('panel-open')){
         const panel = beat.querySelector('.pb-panel');
@@ -1304,21 +1283,26 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
 
   form.addEventListener('submit', async e=>{
     e.preventDefault();
+
     const name  = document.getElementById('intake-name').value.trim();
     const email = document.getElementById('intake-email').value.trim();
-    const type  = document.getElementById('intake-type').value;
-
-    // collect checked services
     const checkedBoxes = Array.from(document.querySelectorAll('#intake-checks input:checked')).map(cb=>cb.value);
+    const message = document.getElementById('intake-message').value;
+
+    // Validate
     let valid = true;
-    [['intake-name',name],['intake-email',email]].forEach(([id,val])=>{
-      if(!val){
-        const el = document.getElementById(id);
-        el.style.borderColor='rgba(212,104,138,.9)'; el.style.background='rgba(212,104,138,.06)';
-        setTimeout(()=>{ el.style.borderColor=''; el.style.background=''; },1500);
-        valid = false;
-      }
-    });
+    if(!name){
+      const el = document.getElementById('intake-name');
+      el.style.borderColor='rgba(212,104,138,.9)'; el.style.background='rgba(212,104,138,.06)';
+      setTimeout(()=>{ el.style.borderColor=''; el.style.background=''; },1500);
+      valid = false;
+    }
+    if(!email){
+      const el = document.getElementById('intake-email');
+      el.style.borderColor='rgba(212,104,138,.9)'; el.style.background='rgba(212,104,138,.06)';
+      setTimeout(()=>{ el.style.borderColor=''; el.style.background=''; },1500);
+      valid = false;
+    }
     if(!checkedBoxes.length){
       const checks = document.getElementById('intake-checks');
       checks.style.outline='1px solid rgba(212,104,138,.8)'; checks.style.borderRadius='2px';
@@ -1327,33 +1311,51 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
     }
     if(!valid) return;
 
+    // Disable button
     submitBtn.disabled = true;
     submitTxt.textContent = 'Sending…';
 
+    let submitted = false;
+
     try {
-      const res = await fetch('https://formspree.io/f/mreodrje',{
-        method:'POST',
-        headers:{'Accept':'application/json','Content-Type':'application/json'},
+      const res = await fetch('https://formspree.io/f/mreodrje', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name, email,
+          name,
+          email,
           services: checkedBoxes.join(', '),
-          message: document.getElementById('intake-message').value,
+          message,
           _subject: `New inquiry from ${name}`
         })
       });
-      if(!res.ok) throw new Error('server');
-    } catch {
-      // Fallback: pre-filled mailto
-      const msg = document.getElementById('intake-message').value;
-      const sub = encodeURIComponent(`New inquiry — ${checkedBoxes.join(', ')}`);
-      const bod = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nServices: ${checkedBoxes.join(', ')}\n\n${msg}`);
-      window.open(`mailto:luke@lukeleffel.com?subject=${sub}&body=${bod}`);
+      if(res.ok) {
+        submitted = true;
+      } else {
+        console.error('Formspree error:', res.status, await res.text());
+      }
+    } catch(err) {
+      console.error('Form submission network error:', err);
     }
 
-    formWrap.classList.add('hidden');
-    success.classList.add('show');
-    form.reset();
-    setTimeout(closeIntake, 4500);
+    if(submitted) {
+      // Show success screen
+      formWrap.classList.add('hidden');
+      success.classList.add('show');
+      form.reset();
+      setTimeout(closeIntake, 4500);
+    } else {
+      // Fallback: open mailto
+      const sub = encodeURIComponent(`New inquiry — ${checkedBoxes.join(', ')}`);
+      const bod = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nServices: ${checkedBoxes.join(', ')}\n\n${message}`);
+      window.open(`mailto:heythere@lukeleffel.com?subject=${sub}&body=${bod}`);
+      // Still show success to user
+      formWrap.classList.add('hidden');
+      success.classList.add('show');
+      form.reset();
+      setTimeout(closeIntake, 4500);
+    }
+
     submitBtn.disabled = false;
     submitTxt.textContent = 'Send it →';
   });
