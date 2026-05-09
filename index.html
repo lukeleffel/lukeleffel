@@ -452,7 +452,7 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   <div class="nav-links">
     <a href="#pb-photography" class="nav-link">Photography</a>
     <a href="https://soloonwhite.com" target="_blank" class="nav-link">Solo on White</a>
-    <a href="https://spillcafemag.com" target="_blank" class="nav-link">SPILL</a>
+    <a href="https://cafesmagazine.com" target="_blank" class="nav-link">Cafes Magazine</a>
     <button onclick="openIntake()" class="nav-cta">Work With Me</button>
   </div>
   <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -466,7 +466,7 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   <a href="#pb-strategy" class="drawer-link">Café Strategy</a>
   <a href="#pb-connection" class="drawer-link">Connection</a>
   <a href="https://soloonwhite.com" target="_blank" class="drawer-link">Solo on White</a>
-  <a href="https://spillcafemag.com" target="_blank" class="drawer-link">SPILL Coffee Magazine</a>
+  <a href="https://cafesmagazine.com" target="_blank" class="drawer-link">Cafes Magazine</a>
   <a href="#" onclick="openIntake();return false;" class="drawer-cta">Work With Me</a>
 </div>
 
@@ -650,7 +650,7 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
       <h2 class="pb-word" aria-label="Cafe Community and Culture of Care Columbus Ohio">CONNECTION</h2>
       <p class="pb-sub">Creating a culture of care</p>
       <div class="pb-tags">
-        <a href="#" class="wm-tag" data-pillar="pb-connection" data-key="spill">SPILL</a>
+        <a href="#" class="wm-tag" data-pillar="pb-connection" data-key="spill">Cafes Magazine</a>
         <a href="#" class="wm-tag" data-pillar="pb-connection" data-key="coaching">Coaching</a>
         <a href="#" class="wm-tag" data-pillar="pb-connection" data-key="speaking">Speaking</a>
       </div>
@@ -805,7 +805,7 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
   <span class="f-logo">LUKE LEFFEL</span>
   <ul class="f-links">
     <li><a href="https://soloonwhite.com" target="_blank">Solo on White</a></li>
-    <li><a href="https://spillcafemag.com" target="_blank">SPILL</a></li>
+    <li><a href="https://cafesmagazine.com" target="_blank">Cafes Magazine</a></li>
     <li><a href="https://substack.com/@lukeleffel" target="_blank">Substack</a></li>
     <li><a href="https://www.instagram.com/lukeleffel/" target="_blank">Instagram</a></li>
     <li><a href="mailto:heythere@lukeleffel.com">heythere@lukeleffel.com</a></li>
@@ -949,9 +949,9 @@ window.addEventListener('scroll', () => {
       soloonwhite: { title:'Solo on White', body:'Clear imagery and a focused online ordering platform that drives revenue and increases conversion.',                          cta:'Visit Solo on White →', href:'https://soloonwhite.com' }
     },
     'pb-connection': {
-      spill:    { title:'SPILL Coffee Magazine', body:'A media brand documenting the people, places, and ideas behind café culture.',                                        cta:'Visit SPILL Cafe Magazine →', href:'https://spillcafemag.com' },
-      coaching: { title:'Coaching',              body:'One-on-one work for hospitality obsessed founders, café owners and anyone who really gives a sh*t.',                  cta:'Work with me →', intakeType:'other' },
-      speaking: { title:'Speaking',              body:'Keynotes and workshops on the Culture of Care, third-place philosophy, and designing for connection.',                 cta:'Work with me →', intakeType:'speaking' }
+      spill:    { title:'Cafes Magazine', body:'A media brand documenting the people, places, and ideas behind café culture.',                                        cta:'Visit Cafes Magazine →', href:'https://cafesmagazine.com' },
+      coaching: { title:'Coaching',       body:'One-on-one work for hospitality obsessed founders, café owners and anyone who really gives a sh*t.',                  cta:'Work with me →', intakeType:'other' },
+      speaking: { title:'Speaking',       body:'Keynotes and workshops on the Culture of Care, third-place philosophy, and designing for connection.',                 cta:'Work with me →', intakeType:'speaking' }
     }
   };
 
@@ -1296,17 +1296,14 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
     }
 
     if(submitted) {
-      // Show success screen
       formWrap.classList.add('hidden');
       success.classList.add('show');
       form.reset();
       setTimeout(closeIntake, 4500);
     } else {
-      // Fallback: open mailto
       const sub = encodeURIComponent(`New inquiry — ${checkedBoxes.join(', ')}`);
       const bod = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nServices: ${checkedBoxes.join(', ')}\n\n${message}`);
       window.open(`mailto:heythere@lukeleffel.com?subject=${sub}&body=${bod}`);
-      // Still show success to user
       formWrap.classList.add('hidden');
       success.classList.add('show');
       form.reset();
