@@ -83,19 +83,87 @@ img{display:block;max-width:100%;}
 </head>
 <body>
 
+<!-- ============================================================
+     COPY THIS ENTIRE BLOCK into any gallery page.
+     Replace the existing nav + mobile nav + script.
+     Update We Are Cafes href when podcast page is live.
+     ============================================================ -->
+
+<!-- ═══ NAV CSS — paste inside your <style> block ═══ -->
+<style id="nav-css-paste-into-style-block">
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:24px 5vw;background:rgba(247,246,242,.96);}
+.nav__mark{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.06em;}
+.nav__links{display:flex;align-items:center;gap:28px;}
+.nav__links a{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;}
+.nav__links a:hover{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.nav__burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;background:none;border:none;cursor:pointer;padding:4px;}
+.nav__burger span{display:block;width:24px;height:1.5px;background:var(--ink);transition:transform .3s ease,opacity .3s ease;}
+.nav__burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.nav__burger.open span:nth-child(2){opacity:0;}
+.nav__burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+.nav__mobile{display:none;position:fixed;inset:0;z-index:190;background:var(--bone);flex-direction:column;align-items:center;justify-content:center;gap:32px;}
+.nav__mobile.open{display:flex;}
+.nav__mobile a{font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:.04em;}
+.nav__mobile a:hover{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+@media(max-width:760px){.nav__links{display:none;}.nav__burger{display:flex;}}
+</style>
+
+<!-- ═══ NAV HTML — replace your existing nav + mobile nav ═══ -->
 <nav class="nav" id="nav">
   <a href="/" class="nav__mark">LUKE LEFFEL</a>
   <div class="nav__links">
     <a href="https://cafesmagazine.com" target="_blank" rel="noopener">Cafes Magazine</a>
     <!-- WE ARE CAFES LINK — update href here when URL is ready -->
     <a href="https://cafesmagazine.com/pages/wearecafes" target="_blank" rel="noopener">We Are Cafes</a>
-    <!-- ABOUT LINK — points to about.html in the same repo -->
     <a href="/about.html">About/Contact</a>
   </div>
   <button class="nav__burger" id="burger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
+
+<div class="nav__mobile" id="mobileNav">
+  <a href="https://cafesmagazine.com" target="_blank" rel="noopener">Cafes Magazine</a>
+  <!-- WE ARE CAFES LINK — update href here when URL is ready -->
+  <a href="https://cafesmagazine.com/pages/wearecafes" target="_blank" rel="noopener">We Are Cafes</a>
+  <a href="/about.html">About/Contact</a>
+</div>
+
+<!-- ═══ NAV + HIDE-IMAGE SCRIPT — replace your existing script block ═══ -->
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+const burger = document.getElementById('burger');
+const mobileNav = document.getElementById('mobileNav');
+burger.addEventListener('click', () => {
+  burger.classList.toggle('open');
+  mobileNav.classList.toggle('open');
+  document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+});
+mobileNav.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    burger.classList.remove('open');
+    mobileNav.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+// Hide any photo slot with no real URL or that fails to load
+document.querySelectorAll('.stack__item img').forEach(img => {
+  const src = img.getAttribute('src') || '';
+  const isPlaceholder = src.indexOf('PASTE_IMAGE_URL') === 0 || src.trim() === '' || src === 'paste here' || src === 'IMAGE HERE' || src === 'IMAGE';
+  const hideSlot = () => {
+    const item = img.closest('.stack__item');
+    if (item) item.style.display = 'none';
+  };
+  if (isPlaceholder) { hideSlot(); }
+  else { img.addEventListener('error', hideSlot); }
+});
+</script>
 
 <div class="nav__mobile" id="mobileNav">
   <a href="https://cafesmagazine.com" target="_blank" rel="noopener">Cafes Magazine</a>
