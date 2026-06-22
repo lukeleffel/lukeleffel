@@ -152,13 +152,18 @@ a:focus-visible,button:focus-visible{outline:2px solid #C6AEE2;outline-offset:3p
 </head>
 <body>
 
-<nav class="nav">
+<nav class="nav" id="nav">
   <a href="/" class="nav__mark">LUKE LEFFEL</a>
   <div class="nav__links">
     <a href="https://cafesmagazine.com" target="_blank" rel="noopener">Cafes Magazine</a>
-    <a data-pending href="#">We Are Cafes</a>
-    <a href="/#contact">About &amp; Contact</a>
+    <!-- WE ARE CAFES LINK — update href here when URL is ready -->
+    <a href="https://cafesmagazine.com/pages/wearecafes" target="_blank" rel="noopener">We Are Cafes</a>
+    <!-- ABOUT LINK — points to about.html in the same repo -->
+    <a href="/about.html">About/Contact</a>
   </div>
+  <button class="nav__burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <header class="project-head">
