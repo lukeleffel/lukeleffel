@@ -211,7 +211,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #C6AEE2;outline-offset:3p
 .hero__sub{
   text-align:right;
   width:60%;
-  margin:0 0 40px auto;
+  margin:0 0 0 auto;
   padding:14px 7vw 0 0;
   font-size:11px;
   font-weight:600;
@@ -226,7 +226,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #C6AEE2;outline-offset:3p
 .tile{position:relative;overflow:hidden;aspect-ratio:4/3;background:#E8E4DB;display:block;}
 .tile img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;display:block;}
 .tile:hover img{transform:scale(1.04);}
-.tile__label{position:absolute;bottom:12px;right:14px;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:rgba(247,246,242,.9);text-shadow:0 1px 6px rgba(0,0,0,.45);transition:all .2s ease;}
+.tile__label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.06em;text-transform:uppercase;color:rgba(247,246,242,.9);text-shadow:0 1px 8px rgba(0,0,0,.5);transition:all .2s ease;}
 .tile:hover .tile__label{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none;}
 @media(max-width:640px){.grid{grid-template-columns:repeat(2,1fr);}}
 
@@ -269,7 +269,11 @@ a:focus-visible,button:focus-visible{outline:2px solid #C6AEE2;outline-offset:3p
 .contact-row{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;}
 .contact-submit{margin-top:40px;display:inline-flex;align-items:center;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);background:transparent;padding:14px 32px;border-radius:40px;border:1px solid var(--stone);cursor:pointer;transition:border-color .25s ease,background .25s ease,color .25s ease;}
 .contact-submit:hover{border-color:var(--ink);background:var(--ink);color:var(--bone);}
-.contact-success{display:none;text-align:center;padding:3rem 0;}
+.contact-checks{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.4rem;}
+.contact-check{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:.38rem .9rem;border-radius:2px;border:1px solid var(--hair);background:transparent;transition:background .18s,border-color .18s;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--stone);user-select:none;width:calc(50% - .23rem);box-sizing:border-box;}
+.contact-check:hover{border-color:var(--stone);color:var(--ink);}
+.contact-check input[type="checkbox"]{display:none;}
+.contact-check:has(input:checked){background:var(--ink);border-color:var(--ink);color:var(--bone);}
 .contact-success.show{display:block;}
 .contact-success__hed{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,72px);letter-spacing:.02em;margin-bottom:12px;}
 .contact-success__sub{font-size:14px;color:var(--stone);line-height:1.7;}
@@ -284,7 +288,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #C6AEE2;outline-offset:3p
   .hero__sub{width:100%;padding-right:0;margin:12px 0 0;text-align:center;}
 }
 @media(max-width:700px){
-  .grid-section{padding-top:40px;}
+  .grid-section{padding-top:20px;}
 }
 
 /* FOOTER */
@@ -427,15 +431,15 @@ a:focus-visible,button:focus-visible{outline:2px solid #C6AEE2;outline-offset:3p
           <input id="cf-brand" type="text" name="brand" placeholder="Who you're building">
         </div>
         <div class="contact-field">
-          <label for="cf-type">Type of work</label>
-          <select id="cf-type" name="type">
-            <option value="">Select one</option>
-            <option>Brand photography</option>
-            <option>Lifestyle photography</option>
-            <option>Menu / product photography</option>
-            <option>Event coverage</option>
-            <option>Something else</option>
-          </select>
+          <label>What do you need? <span style="font-size:.6rem;font-weight:400;letter-spacing:0;text-transform:none;color:var(--stone);">select all that apply</span></label>
+          <div class="contact-checks" id="cf-checks">
+            <label class="contact-check"><input type="checkbox" name="type" value="brand-photography"><span>Brand Photography</span></label>
+            <label class="contact-check"><input type="checkbox" name="type" value="lifestyle-photography"><span>Lifestyle Photography</span></label>
+            <label class="contact-check"><input type="checkbox" name="type" value="menu-photography"><span>Menu / Product</span></label>
+            <label class="contact-check"><input type="checkbox" name="type" value="event-coverage"><span>Event Coverage</span></label>
+            <label class="contact-check"><input type="checkbox" name="type" value="cafe-consulting"><span>Café Consulting</span></label>
+            <label class="contact-check"><input type="checkbox" name="type" value="something-else"><span>Something Else</span></label>
+          </div>
         </div>
         <div class="contact-field">
           <label for="cf-message">Tell me more</label>
@@ -500,6 +504,7 @@ contactForm.addEventListener('submit', async e => {
   e.preventDefault();
   const name  = document.getElementById('cf-name').value.trim();
   const email = document.getElementById('cf-email').value.trim();
+  const checked = Array.from(document.querySelectorAll('#cf-checks input:checked')).map(cb => cb.value);
   if(!name || !email) return;
   contactSubmit.textContent = 'Sending…';
   contactSubmit.disabled = true;
@@ -510,7 +515,7 @@ contactForm.addEventListener('submit', async e => {
       body:JSON.stringify({
         name, email,
         brand: document.getElementById('cf-brand').value,
-        type:  document.getElementById('cf-type').value,
+        type:  checked.join(', '),
         message: document.getElementById('cf-message').value,
         _subject: `New inquiry from ${name}`
       })
