@@ -50,7 +50,13 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 
 /* HERO */
 .s-hero{position:relative;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--bg)}
-.hero-bio{position:absolute;inset:0;z-index:3;display:grid;grid-template-columns:55% 45%;}
+.hero-words{position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:5rem;text-align:center;pointer-events:none;transition:opacity 7s ease,transform 7s ease}
+.hero-words.exit{opacity:0;transform:scale(1.04)}
+.hw-make{display:block;font-family:"Bebas Neue",sans-serif;font-size:clamp(5rem,30vw,99vw);line-height:.85;letter-spacing:.04em;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:0;animation:fadeUp 1s ease .3s forwards}
+.hw-space{display:block;font-family:"Bebas Neue",sans-serif;font-size:clamp(5rem,30vw,99vw);line-height:.85;letter-spacing:.04em;color:var(--white);opacity:0;animation:fadeUp 1s ease .6s forwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.hero-bio{position:absolute;inset:0;z-index:1;display:grid;grid-template-columns:55% 45%;opacity:0;visibility:hidden;pointer-events:none;transition:opacity 1.4s ease,visibility 0s linear 1.4s}
+.hero-bio.visible{opacity:1;visibility:visible;pointer-events:auto;z-index:3;transition:opacity 1.4s ease,visibility 0s linear 0s}
 .hero-bio-left{display:flex;flex-direction:column;justify-content:center;padding:8rem 3.5rem 6rem}
 .hero-bio-type{font-family:"Bebas Neue",sans-serif;font-size:clamp(2.8rem,5vw,6.2rem);line-height:.94;letter-spacing:.01em;color:var(--white);font-weight:400}
 .hero-bio-type .hl{color:var(--accent)}
@@ -58,8 +64,24 @@ nav.scrolled{background:rgba(10,9,8,.85);backdrop-filter:blur(12px)}
 .hero-bio-cta{margin-top:2.8rem;display:inline-flex;align-items:center;gap:.75rem;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--white);text-decoration:none;background:linear-gradient(135deg,var(--accent),#c8a96e);padding:.75rem 1.8rem;border-radius:2px;width:fit-content;font-weight:500;box-shadow:0 0 24px rgba(212,104,138,.25);transition:transform .2s ease,box-shadow .2s ease,opacity .2s ease;cursor:pointer;border:none;font-family:"DM Sans",sans-serif}
 .hero-bio-cta:hover{transform:translateY(-2px);box-shadow:0 6px 32px rgba(212,104,138,.45);opacity:.92}
 .hero-bio-right{position:relative;overflow:hidden;height:100%}
-.hero-bio-photo{position:absolute;inset:0;background-position:center center;background-size:cover;background-repeat:no-repeat;filter:grayscale(1) brightness(1.15) contrast(1.05)}
-.hero-bio-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to right,var(--bg) 0%,transparent 25%),linear-gradient(to top,var(--bg) 0%,transparent 30%)}
+.hero-carousel{position:absolute;inset:0;width:100%;height:100%}
+.hero-carousel-slide{position:absolute;inset:0;background-position:center center;background-size:cover;background-repeat:no-repeat;filter:grayscale(1) brightness(1.15) contrast(1.05);opacity:0;transition:opacity 1.2s ease}
+.hero-carousel-slide::after{content:"";position:absolute;inset:0;background:linear-gradient(to right,var(--bg) 0%,transparent 25%),linear-gradient(to top,var(--bg) 0%,transparent 30%)}
+.hero-carousel-slide.active{opacity:1}
+.hero-carousel-dots{position:absolute;bottom:2rem;right:2rem;display:flex;gap:.5rem;z-index:5}
+.hc-dot{width:6px;height:6px;border-radius:50%;border:none;cursor:pointer;background:rgba(242,237,230,.25);transition:background .3s,transform .3s;padding:0}
+.hc-dot.active{background:var(--accent);transform:scale(1.3)}
+.hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:.6rem;opacity:0;animation:fadeUp .8s ease 6s forwards}
+.hero-scroll-arrow{display:flex;flex-direction:column;align-items:center;gap:0;animation:sp 2s ease infinite}
+.hero-scroll-arrow svg{width:18px;height:18px;stroke:rgba(212,104,138,.7);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+@keyframes sp{0%,100%{opacity:.3;transform:translateY(-3px)}50%{opacity:1;transform:translateY(3px)}}
+.hero-scroll-txt{font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.hero-swap-wrap{position:relative;display:block}
+.hero-swap-a,.hero-swap-b{display:block;transition:opacity 1.2s ease}
+.hero-swap-b{position:absolute;top:0;left:0;width:100%;opacity:0}
+.hs-working{color:var(--white);-webkit-text-fill-color:var(--white)}
+.hero-swap-wrap.show-b .hero-swap-a{opacity:0}
+.hero-swap-wrap.show-b .hero-swap-b{opacity:1}
 
 /* MANIFESTO */
 .s-manifesto{position:relative;z-index:10;background:var(--bg);padding:5vw 3.5rem 1.5vw;overflow:hidden;text-align:center}
@@ -210,22 +232,58 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
 
 <!-- HERO -->
 <section class="s-hero" id="hero">
-  <div class="hero-bio">
+  <div class="hero-words" id="heroWords">
+    <span class="hw-make">MAKE</span>
+    <span class="hw-space">SPACE</span>
+  </div>
+
+  <div class="hero-bio" id="heroBio">
     <div class="hero-bio-left">
       <h1 class="hero-bio-type">
-        I'M <span class="hl">LUKE LEFFEL,</span><br>
-        PHOTOGRAPHER,<br>
-        <span class="hl">CAFE STRATEGIST</span><br>
-        AND <span class="hl">CONNECTOR</span><br>
-        OBSESSED WITH<br>
-        <span class="hl2">HOSPITALITY,</span><br>
-        <span class="hl2">DESIGN</span> AND<br>
-        <span class="hl2">COMMUNITY</span>
+        <span class="hero-swap-wrap">
+          <span class="hero-swap-a">
+            I'M <span class="hl">LUKE LEFFEL,</span><br>
+            PHOTOGRAPHER,<br>
+            <span class="hl">CAFE STRATEGIST</span><br>
+            AND <span class="hl">CONNECTOR</span><br>
+            <span class="hs-working">OBSESSED WITH</span><br>
+            <span class="hl2">HOSPITALITY,</span><br>
+            <span class="hl2">DESIGN</span> AND<br>
+            <span class="hl2">COMMUNITY</span>
+          </span>
+          <span class="hero-swap-b">
+            I'M <span class="hl">LUKE LEFFEL,</span><br>
+            PHOTOGRAPHER,<br>
+            <span class="hl">CAFE STRATEGIST</span><br>
+            AND <span class="hl">CONNECTOR</span><br>
+            <span class="hs-working">WORKING WITH</span><br>
+            <span class="hl2">BRANDS</span> <span class="hs-working">AND</span><br>
+            <span class="hl2">FOUNDERS</span> <span class="hs-working">THAT</span><br>
+            <span class="hl2">GIVE A SH*T</span>
+          </span>
+        </span>
       </h1>
       <button class="hero-bio-cta" onclick="openIntake()">Work with me</button>
     </div>
     <div class="hero-bio-right">
-      <div class="hero-bio-photo" style="background-image:url('https://images.pixieset.com/170698901/1e8ebb667d3d0d700b65e094a7f3b59f-xxlarge.jpg')"></div>
+      <div class="hero-carousel" id="heroCarousel">
+        <div class="hero-carousel-slide active" style="background-image:url('https://images.pixieset.com/170698901/1e8ebb667d3d0d700b65e094a7f3b59f-xxlarge.jpg')"></div>
+        <div class="hero-carousel-slide" style="background-image:url('https://images.pixieset.com/170698901/7463ff01a9db0523a07ed12df4e51715-xxlarge.jpeg')"></div>
+        <div class="hero-carousel-slide" style="background-image:url('https://images.pixieset.com/170698901/6cd248c54436592eac2a0db28c209233-xxlarge.jpeg')"></div>
+      </div>
+      <div class="hero-carousel-dots" id="carouselDots">
+        <button class="hc-dot active" data-index="0"></button>
+        <button class="hc-dot" data-index="1"></button>
+        <button class="hc-dot" data-index="2"></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll" id="hScroll">
+    <span class="hero-scroll-txt">Scroll</span>
+    <div class="hero-scroll-arrow">
+      <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg viewBox="0 0 24 24" style="margin-top:-6px;opacity:.45"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
   </div>
 </section>
@@ -346,7 +404,7 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
     </div>
     <div class="pb-panel" id="pbp-strategy">
       <div class="pb-panel-img active" data-key="consulting" style="background-image:url('https://images.pixieset.com/170698901/b8be42261fb500c1fd5529228e4db0e9-xxlarge.jpg')"></div>
-      <div class="pb-panel-img" data-key="coaching" style="background-image:url('https://images.pixieset.com/170698901/6fed5617d5f3018ab1e200dd0117af60-xxlarge.jpg')"></div>
+      <div class="pb-panel-img" data-key="coaching" style="background-image:url('https://images.pixieset.com/170698901/b8be42261fb500c1fd5529228e4db0e9-xxlarge.jpg')"></div>
       <div class="pb-panel-img" data-key="sow" style="background-image:url('https://images.pixieset.com/170698901/2473ab9f881799b562728a3a06f9df46-xxlarge.jpg')"></div>
       <div class="pb-panel-overlay"></div>
     </div>
@@ -426,6 +484,53 @@ footer{border-top:1px solid rgba(242,237,230,.06);padding:2.5rem 3.5rem;display:
 </div>
 
 <script>
+// MOBILE BIO PHOTO
+(function(){
+  if (window.innerWidth <= 768) {
+    const carousel = document.getElementById('heroCarousel');
+    if (carousel) {
+      const slide = carousel.querySelector('.hero-carousel-slide');
+      if (slide) slide.style.backgroundImage = "url('https://images.pixieset.com/170698901/1e8ebb667d3d0d700b65e094a7f3b59f-xxlarge.jpg')";
+    }
+  }
+})();
+
+// HERO SEQUENCE — MAKE/SPACE fades out, bio panel fades in
+(function(){
+  const words = document.getElementById('heroWords');
+  const bio   = document.getElementById('heroBio');
+  setTimeout(() => words.classList.add('exit'), 1000);
+  setTimeout(() => bio.classList.add('visible'), 2000);
+  setTimeout(() => words.style.display='none', 8000);
+})();
+
+// HERO TEXT SWAP
+(function(){
+  const wrap = document.querySelector('.hero-swap-wrap');
+  if (!wrap) return;
+  const HOLD_A=5000, HOLD_B=4500, START=4500;
+  function toB(){ wrap.classList.add('show-b'); setTimeout(toA, HOLD_B); }
+  function toA(){ wrap.classList.remove('show-b'); setTimeout(toB, HOLD_A); }
+  setTimeout(() => setTimeout(toB, HOLD_A), START);
+})();
+
+// HERO CAROUSEL
+(function(){
+  const slides = Array.from(document.querySelectorAll('.hero-carousel-slide'));
+  const dots   = Array.from(document.querySelectorAll('.hc-dot'));
+  let current = 0, timer = null;
+  function goTo(n){
+    slides[current].classList.remove('active');
+    if(dots[current]) dots[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    if(dots[current]) dots[current].classList.add('active');
+  }
+  function startAuto(){ clearInterval(timer); timer=setInterval(()=>goTo(current+1),4000); }
+  dots.forEach(dot=>dot.addEventListener('click',()=>{ goTo(parseInt(dot.dataset.index)); startAuto(); }));
+  setTimeout(startAuto, 3500);
+})();
+
 // NAV SCROLL
 window.addEventListener('scroll', () => {
   document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
@@ -472,7 +577,7 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
     'pb-strategy': {
       consulting: { body: 'Operations, training, and design oriented toward sustainable, people-first businesses that foster genuine hospitality.' },
       coaching:   { body: 'Strategic guidance for café owners and founders navigating growth, positioning, and the hard questions.' },
-      sow:        { body: 'Solo on White is a focused platform for product photography and online ordering that drives revenue and increases conversion.' }
+      sow:        { body: 'Solo on White is a focused platform for product photography and online ordering that drives revenue and increases conversion.', dark: true }
     }
   };
 
@@ -497,6 +602,7 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
       const d = data[pillarId]?.[key];
       if (detail && body && d) {
         body.textContent = d.body;
+        body.style.color = d.dark ? 'var(--bg)' : '';
         detail.classList.add('active');
       }
     }
