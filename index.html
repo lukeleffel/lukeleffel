@@ -156,14 +156,14 @@ a:focus-visible,button:focus-visible{outline:2px solid #C6AEE2;outline-offset:3p
 
 /* HERO */
 .hero{
-  min-height:100vh;
+  min-height:max(100vh, 80vw);
   position:relative;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
   background:var(--bone);
-  overflow:visible;
+  overflow:hidden;
   margin:7vw 7vw 0 7vw;
 }
 .hero__photo{
@@ -171,7 +171,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #C6AEE2;outline-offset:3p
   top:0;
   right:0;
   width:60%;
-  aspect-ratio:4/5;
+  height:100%;
   background-image:url('https://images.pixieset.com/577358301/020fcb44fdac7608d969c9263702dfed-xxlarge.jpg');
   background-size:cover;
   background-position:center;
@@ -251,13 +251,13 @@ a:focus-visible,button:focus-visible{outline:2px solid #C6AEE2;outline-offset:3p
 .cta-strip__btn:hover{border-color:var(--ink);background:var(--ink);color:var(--bone);}
 
 /* CONTACT MODAL */
-.contact-modal{position:fixed;inset:0;z-index:400;background:rgba(247,246,242,.97);display:flex;align-items:center;justify-content:center;padding:2rem;opacity:0;pointer-events:none;transition:opacity .3s ease;}
+.contact-modal{position:fixed;inset:0;z-index:400;background:rgba(22,20,15,.45);display:flex;align-items:center;justify-content:center;padding:2rem;opacity:0;pointer-events:none;transition:opacity .3s ease;}
 .contact-modal.open{opacity:1;pointer-events:auto;}
-.contact-inner{width:100%;max-width:560px;position:relative;}
-.contact-close{position:absolute;top:-2rem;right:0;background:none;border:none;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);cursor:pointer;transition:color .2s;}
+.contact-inner{width:100%;max-width:500px;background:var(--bone);border:1px solid var(--hair);padding:2.5rem 2.5rem 2rem;position:relative;max-height:90vh;overflow-y:auto;}
+.contact-close{position:absolute;top:1rem;right:1.2rem;background:none;border:none;font-size:18px;line-height:1;color:var(--stone);cursor:pointer;transition:color .2s;padding:4px;}
 .contact-close:hover{color:var(--ink);}
-.contact-eyebrow{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);margin-bottom:16px;display:block;}
-.contact-hed{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,7vw,80px);line-height:.92;letter-spacing:.01em;color:var(--ink);margin-bottom:36px;}
+.contact-eyebrow{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);margin-bottom:10px;display:block;}
+.contact-hed{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,56px);line-height:.92;letter-spacing:.01em;color:var(--ink);margin-bottom:28px;}
 .contact-field{margin-bottom:0;border-bottom:1px solid var(--hair);padding:22px 0 16px;position:relative;}
 .contact-field label{display:block;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-bottom:8px;}
 .contact-field input,.contact-field select,.contact-field textarea{width:100%;background:transparent;border:none;outline:none;font-family:'Inter',sans-serif;font-size:16px;font-weight:300;color:var(--ink);padding:0;line-height:1.4;-webkit-appearance:none;}
@@ -411,7 +411,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #C6AEE2;outline-offset:3p
 
 <div class="contact-modal" id="contactModal">
   <div class="contact-inner">
-    <button class="contact-close" id="contactClose">✕ Close</button>
+    <button class="contact-close" id="contactClose">×</button>
     <div id="contactFormWrap">
       <span class="contact-eyebrow">Get in touch</span>
       <h2 class="contact-hed">LET'S WORK<br>TOGETHER.</h2>
