@@ -1,0 +1,291 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luke Leffel — Coquine Market</title>
+<meta name="description" content="Coquine Market — photography by Luke Leffel.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="/favicon.svg">
+  
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap');
+:root{--bone:#F7F6F2;--ink:#16140F;--stone:#8A857C;--hair:#E0DCD2;--grad:linear-gradient(100deg,#A8C2EF,#C6AEE2,#F0AFCB);}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bone);color:var(--ink);font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;}
+::selection{background:#C6AEE2;color:var(--ink);}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important;}}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:24px 5vw;background:rgba(247,246,242,.96);}
+.nav__mark{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.06em;}
+.nav__links{display:flex;align-items:center;gap:28px;}
+.nav__links a{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;}
+.nav__links a:hover{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.nav__burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;background:none;border:none;cursor:pointer;padding:4px;}
+.nav__burger span{display:block;width:24px;height:1.5px;background:var(--ink);transition:transform .3s ease,opacity .3s ease;}
+.nav__burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.nav__burger.open span:nth-child(2){opacity:0;}
+.nav__burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+.nav__mobile{display:none;position:fixed;inset:0;z-index:190;background:var(--bone);flex-direction:column;align-items:center;justify-content:center;gap:32px;}
+.nav__mobile.open{display:flex;}
+.nav__mobile a{font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:.04em;}
+.nav__mobile a:hover{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+@media(max-width:760px){.nav__links{display:none;}.nav__burger{display:flex;}}
+
+/* PROJECT HEADER */
+.project-head{padding:140px 6vw 80px;text-align:center;}
+.project-head__title{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,7vw,96px);line-height:.96;letter-spacing:.01em;}
+.project-head__title a:hover{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+
+/* GALLERY */
+.stack{padding:4vw 6vw 8vw;display:flex;flex-direction:column;gap:7vw;}
+.row{display:flex;align-items:flex-start;}
+.row--single{justify-content:center;}
+.row--pair{justify-content:space-between;gap:4vw;}
+.stack__item img{width:100%;height:auto;display:block;}
+.stack__caption{margin-top:14px;font-size:13px;color:var(--stone);}
+.row--single .stack__item{width:62%;}
+.row--single .stack__item--wide{width:78%;}
+.row--single .stack__item--narrow{width:50%;}
+.row--single .stack__item--left{margin-right:auto;}
+.row--single .stack__item--right{margin-left:auto;}
+.row--pair .stack__item{width:46%;}
+.row--pair .stack__item--small{width:38%;}
+.row--pair .stack__item--large{width:54%;}
+.stack__item--drop{margin-top:3vw;}
+.stack__item--lift{margin-top:-2vw;}
+@media(max-width:760px){
+  .stack{gap:10vw;}
+  .row{flex-wrap:wrap;}
+  .row--single .stack__item,.row--single .stack__item--wide,.row--single .stack__item--narrow,
+  .row--pair .stack__item,.row--pair .stack__item--small,.row--pair .stack__item--large{width:100%;}
+  .row--pair{flex-direction:column;gap:8vw;}
+  .stack__item{margin-top:0 !important;margin-left:0 !important;margin-right:0 !important;}
+}
+
+/* CYCLE ARROWS */
+.cycle{padding:48px 6vw;display:flex;justify-content:space-between;align-items:center;}
+.cycle__arrow{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--stone);transition:color .2s ease;}
+.cycle__arrow:hover{color:var(--ink);}
+.cycle__arrow-icon{font-family:'Bebas Neue',sans-serif;font-size:22px;transition:transform .2s ease;}
+.cycle__arrow--prev:hover .cycle__arrow-icon{transform:translateX(-4px);}
+.cycle__arrow--next:hover .cycle__arrow-icon{transform:translateX(4px);}
+
+/* FOOTER */
+.footer{background:var(--ink);padding:32px 5vw;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(247,246,242,.3);}
+.footer a:hover{color:rgba(247,246,242,.7);}
+.footer__links{display:flex;gap:24px;flex-wrap:wrap;}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="/" class="nav__mark">LUKE LEFFEL</a>
+  <div class="nav__links">
+    <a href="https://cafesmagazine.com" target="_blank" rel="noopener">Cafes Magazine</a>
+    <!-- WE ARE CAFES LINK — update href here when URL is ready -->
+    <a href="https://cafesmagazine.com" target="_blank" rel="noopener">We Are Cafes</a>
+    <!-- ABOUT LINK — points to about.html in the same repo -->
+    <a href="/about.html">About/Contact</a>
+  </div>
+  <button class="nav__burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav__mobile" id="mobileNav">
+  <a href="https://cafesmagazine.com" target="_blank" rel="noopener">Cafes Magazine</a>
+  <!-- WE ARE CAFES LINK — update href here when URL is ready -->
+  <a href="https://cafesmagazine.com" target="_blank" rel="noopener">We Are Cafes</a>
+  <a href="/about.html">About/Contact</a>
+</div>
+
+<main class="stack">
+<header class="project-head">
+  <!-- EDIT: project title — also the link text. href points to the brand's own site -->
+  <h1 class="project-head__title">
+    <a href="https://www.coquinepdx.com/market" target="_blank" rel="noopener">Coquine Market</a>
+  </h1>
+</header>
+
+<main class="stack">
+
+  <!-- ============================================================
+       UP TO 20 PHOTOS, grouped into ROWS.
+       Each <div class="row row--single">...</div> holds ONE photo.
+       Each <div class="row row--pair">...</div> holds TWO photos
+       side by side.
+
+       IMPORTANT: every <div class="stack__item ...">...</div> MUST be
+       nested INSIDE a <div class="row ...">...</div>. A stack__item
+       placed outside a row will not size correctly.
+
+       Width modifiers (optional, mix and match):
+         In a single row:  stack__item--wide / --narrow / --left / --right
+         In a pair row:    stack__item--small / --large (uneven pairing)
+       Vertical nudge (optional, any row):
+         stack__item--drop / --lift   nudges a photo down or up slightly
+
+       Caption is optional — delete the <div class="stack__caption">
+       line if you don't want one.
+       Copy/paste a whole <div class="row ...">...</div> block to add
+       more rows. Up to 20 photos total, in any mix of single/pair rows.
+       ============================================================ -->
+
+  <div class="row row--single">
+    <div class="stack__item stack__item--wide">
+      <img src="https://images.pixieset.com/276962901/96787f301eb00c61533774e4876489c9-xxlarge.jpg" alt="coquine" loading="eager">
+    </div>
+  </div>
+
+  <div class="row row--pair">
+    <div class="stack__item stack__item--small">
+      <img src="https://images.pixieset.com/276962901/9a99a6b4154f97d14c1edcba5f6bd507-xxlarge.jpg" alt="coquine" loading="lazy">
+    </div>
+    <div class="stack__item stack__item--large stack__item--drop">
+      <img src="https://images.pixieset.com/276962901/6a683381620dee046cbb76d34a024351-xxlarge.jpg" alt="coquine" loading="lazy">
+    </div>
+  </div>
+
+  <div class="row row--single">
+    <div class="stack__item stack__item--narrow stack__item--left">
+      <img src="https://images.pixieset.com/276962901/766d6cce5a7f92afa3a2730c8973a236-xxlarge.jpg" alt="coquine" loading="lazy">
+    </div>
+  </div>
+
+  <div class="row row--single">
+    <div class="stack__item stack__item--narrow stack__item--right">
+      <img src="https://images.pixieset.com/276962901/94f852fda7285acd9c869df7bbe95c5d-xxlarge.jpg" alt="coquine" loading="lazy">
+    </div>
+  </div>
+
+  <div class="row row--single">
+    <div class="stack__item stack__item--wide stack__item--lift">
+      <img src="https://images.pixieset.com/276962901/25d063bdd9251ad4203bc9154668b91d-xxlarge.jpg" alt="coquine" loading="lazy">
+    </div>
+  </div>
+
+  <div class="row row--pair">
+    <div class="stack__item stack__item--large">
+      <img src="https://images.pixieset.com/276962901/b21e994e895ef914b020f9b6d61caf83-xxlarge.jpg" alt="coquine" loading="lazy">
+    </div>
+    <div class="stack__item stack__item--small stack__item--drop">
+      <img src="https://images.pixieset.com/276962901/18209d6e5037dc288ad4f1b01bf77b32-xxlarge.jpg" alt="coquine" loading="lazy">
+    </div>
+  </div>
+
+  <div class="row row--single">
+    <div class="stack__item stack__item--narrow stack__item--left">
+      <img src="" alt="coquine" loading="lazy">
+    </div>
+  </div>
+
+  <div class="row row--pair">
+    <div class="stack__item stack__item--small">
+      <img src="https://images.pixieset.com/276962901/ac7da22b38186b0fb97ee1db76f78d5b-xxlarge.jpg" alt="coquine" loading="lazy">
+    </div>
+    <div class="stack__item stack__item--large">
+      <img src="https://images.pixieset.com/276962901/18209d6e5037dc288ad4f1b01bf77b32-xxlarge.jpg" alt="coquine" loading="lazy">
+    </div>
+  </div>
+
+  <div class="row row--single">
+    <div class="stack__item stack__item--wide stack__item--drop">
+      <img src="" alt="coquine" loading="lazy">
+    </div>
+  </div>
+
+  <div class="row row--single">
+    <div class="stack__item stack__item--narrow stack__item--right">
+      <img src="" alt="coquine" loading="lazy">
+    </div>
+  </div>
+
+  <div class="row row--pair">
+    <div class="stack__item stack__item--large stack__item--lift">
+      <img src="" alt="coquine" loading="lazy">
+    </div>
+    <div class="stack__item stack__item--small">
+      <img src="" alt="coquine" loading="lazy">
+    </div>
+  </div>
+
+  <div class="row row--single">
+    <div class="stack__item stack__item--wide">
+      <img src="" alt="coquine" loading="lazy">
+    </div>
+  </div>
+
+  <div class="row row--pair">
+    <div class="stack__item stack__item--small stack__item--drop">
+      <img src=" alt="coquine" loading="lazy">
+    </div>
+    <div class="stack__item stack__item--large">
+      <img src="" alt="coquine" loading="lazy">
+    </div>
+  </div>
+
+  <div class="row row--single">
+    <div class="stack__item stack__item--narrow stack__item--left stack__item--lift">
+      <img src="https://images.pixieset.com/276962901/9580d768a8153986bb68cb5fe2c5b4bd-xxlarge.jpg" alt="coquine" loading="lazy">
+    </div>
+  </div>
+
+  <div class="row row--pair">
+    <div class="stack__item stack__item--small">
+      <img src="PASTE_IMAGE_URL_19_HERE" alt="coquine" loading="lazy">
+    </div>
+    <div class="stack__item stack__item--large">
+      <img src="PASTE_IMAGE_URL_20_HERE" alt="sycamcoquineore" loading="lazy">
+    </div>
+  </div>
+
+</main>
+
+<!-- EDIT: point these at the previous and next project pages -->
+<nav class="cycle">
+  <a href="allbutone.html" class="cycle__arrow cycle__arrow--prev" aria-label="Previous project">
+    <span class="cycle__arrow-icon">←</span>
+    <span class="cycle__arrow-label">Prev</span>
+  </a>
+  <a href="bada.html" class="cycle__arrow cycle__arrow--next" aria-label="Next project">
+    <span class="cycle__arrow-label">Next</span>
+    <span class="cycle__arrow-icon">→</span>
+  </a>
+</nav>
+
+<footer class="footer">
+  <span>© LUKE LEFFEL 2026</span>
+  <div class="footer__links">
+    <a href="https://soloonwhite.com" target="_blank" rel="noopener">Solo on White</a>
+    <a href="https://cafesmagazine.com" target="_blank" rel="noopener">Cafes Magazine</a>
+    <a href="https://www.instagram.com/lukeleffel/" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</footer>
+
+<script>
+// Hide any photo slot that has no real URL yet, or whose URL fails to load —
+// no broken-image icon, no placeholder box, just empty space where it would go.
+document.querySelectorAll('.stack__item img').forEach(img => {
+  const src = img.getAttribute('src') || '';
+  const isPlaceholder = src.indexOf('PASTE_IMAGE_URL') === 0 || src.trim() === '';
+
+  const hideSlot = () => {
+    const item = img.closest('.stack__item');
+    if (item) item.style.display = 'none';
+  };
+
+  if (isPlaceholder) {
+    hideSlot();
+  } else {
+    img.addEventListener('error', hideSlot);
+  }
+});
+</script>
+
+</body>
+</html>
