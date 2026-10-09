@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>Partner | Luke Leffel</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<meta name="theme-color" content="#F7F6F2">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root{
+  --bone:#F7F6F2;
+  --ink:#16140F;
+  --body:#4A453D;
+  --stone:#8A857C;
+  --hair:#E0DCD2;
+  --grad:linear-gradient(100deg,#A8C2EF,#C6AEE2,#F0AFCB);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bone);color:var(--ink);font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;}
+::selection{background:#C6AEE2;color:var(--ink);}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AEE2;outline-offset:3px;}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important;}}
+
+
+/* ═════════ NAV ═════════ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:24px 5vw;background:rgba(247,246,242,0);transition:background .3s ease;}
+.nav.scrolled{background:rgba(247,246,242,.96);}
+.nav__mark{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.06em;}
+.nav__links{display:flex;align-items:center;gap:28px;}
+.nav__links a{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding-bottom:2px;}
+.nav__links a:hover{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.nav__links a.current{border-bottom:1px solid var(--ink);}
+.nav__burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;background:none;border:none;cursor:pointer;padding:4px;}
+.nav__burger span{display:block;width:24px;height:1.5px;background:var(--ink);transition:transform .3s ease,opacity .3s ease;}
+.nav__burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.nav__burger.open span:nth-child(2){opacity:0;}
+.nav__burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+.nav__mobile{display:none;position:fixed;inset:0;z-index:190;background:var(--bone);flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:2rem;}
+.nav__mobile.open{display:flex;}
+.nav__mobile a{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,8.5vw,46px);letter-spacing:.04em;text-align:center;line-height:1;}
+.nav__mobile a:hover{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.nav__mobile a.partner-hook{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.nav__mobile a.partner-hook small{display:block;font-family:'Inter',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--stone);-webkit-text-fill-color:var(--stone);margin-top:8px;}
+@media(max-width:760px){.nav__links{display:none;}.nav__burger{display:flex;}}
+
+/* ═════════ HERO ═════════ */
+.hero{padding:170px 8vw 70px;}
+.hero__title{font-family:'Anton',sans-serif;font-size:clamp(40px,7vw,104px);line-height:.94;letter-spacing:-.02em;text-transform:uppercase;}
+.hero__title .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.hero__body{margin-top:26px;font-size:17px;line-height:1.8;color:var(--body);max-width:52ch;}
+
+/* ═════════ SECTION ═════════ */
+.sec{padding:90px 8vw;border-top:1px solid var(--hair);}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);margin-bottom:24px;display:flex;align-items:center;gap:14px;}
+.eyebrow::before{content:'';width:36px;height:1px;background:var(--stone);}
+.sec-head{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,6vw,72px);line-height:.96;letter-spacing:.01em;text-transform:uppercase;margin-bottom:22px;}
+.sec-head .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.sec-sub{font-size:17px;line-height:1.8;color:var(--body);max-width:60ch;margin-bottom:56px;}
+
+/* ═════════ PROBLEM ═════════ */
+
+/* ═════════ FILM — HERO SECTIONS ═════════ */
+.film{padding:100px 8vw;border-top:1px solid var(--hair);display:grid;grid-template-columns:minmax(0,420px) 1fr;gap:clamp(36px,6vw,90px);align-items:center;}
+.film:first-of-type{border-top:0;}
+.film:nth-of-type(even){grid-template-columns:1fr minmax(0,420px);}
+.film:nth-of-type(even) .film-media{order:2;}
+.film:nth-of-type(even) .film-copy{order:1;}
+.film-media{position:relative;width:100%;aspect-ratio:9/16;overflow:hidden;background:#E8E4DB;}
+.film-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.film-media .missing{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;font-size:12px;color:var(--stone);background:linear-gradient(135deg,rgba(168,194,239,.22),rgba(240,175,203,.28));}
+.film-head{font-family:'Bebas Neue',sans-serif;font-size:clamp(30px,4.6vw,58px);line-height:.98;letter-spacing:.01em;text-transform:uppercase;}
+.film-head .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.film-link{display:inline-flex;align-items:center;gap:7px;margin-top:24px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);transition:color .2s;}
+.film-link:hover{color:var(--ink);}
+
+/* ═════════ FILM — HOVER ROW ═════════ */
+.row-films{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+.rf{display:block;}
+.rf-media{position:relative;width:100%;aspect-ratio:9/16;overflow:hidden;background:#E8E4DB;}
+.rf-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
+.rf:hover .rf-media video{transform:scale(1.03);}
+.rf-media::after{content:'';position:absolute;inset:0;background:rgba(22,20,15,.16);transition:opacity .35s ease;pointer-events:none;}
+.rf.playing .rf-media::after{opacity:0;}
+.rf-cue{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:10px;background:linear-gradient(to top,rgba(22,20,15,.65),transparent);transition:opacity .35s ease;}
+.rf.playing .rf-cue{opacity:0;}
+.rf-cue b{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.07em;color:#fff;font-weight:400;}
+.rf-cue i{font-style:normal;font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7);}
+.rf-label{margin-top:12px;display:flex;justify-content:space-between;align-items:baseline;gap:10px;}
+.rf-label b{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.07em;font-weight:400;}
+.rf-label i{font-style:normal;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);}
+.note{font-size:12px;color:var(--stone);margin-top:28px;line-height:1.7;max-width:62ch;}
+
+/* ═════════ RINGS ═════════ */
+.rings-band{display:flex;align-items:flex-start;gap:clamp(20px,4vw,52px);flex-wrap:wrap;margin-bottom:40px;}
+.rings-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(24px,3.2vw,40px);letter-spacing:.16em;line-height:1;padding-top:40px;}
+.rings-title.demo{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.rings-note{font-family:'Bebas Neue',sans-serif;font-size:clamp(13px,1.5vw,18px);letter-spacing:.14em;color:var(--stone);padding-top:46px;line-height:1.3;}
+.rings{display:flex;gap:clamp(12px,2vw,26px);flex-wrap:wrap;}
+.ring{width:136px;text-align:center;background:none;border:none;padding:0;cursor:pointer;font-family:inherit;color:inherit;}
+.ring-wrap{position:relative;width:116px;height:116px;margin:0 auto;transition:transform .25s ease;}
+.ring:hover .ring-wrap,.ring.on .ring-wrap{transform:translateY(-4px);}
+.ring-svg{width:116px;height:116px;display:block;transform:rotate(-90deg);}
+.ring-track{fill:none;stroke:var(--hair);stroke-width:3;}
+.ring-arc{fill:none;stroke-width:3.5;stroke-linecap:round;transition:stroke-dashoffset 1.4s cubic-bezier(.16,1,.3,1);}
+.ring-val{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:29px;color:var(--ink);}
+.ring-label{margin-top:14px;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);line-height:1.5;transition:color .2s;}
+.ring:hover .ring-label,.ring.on .ring-label{color:var(--ink);}
+.ring-detail{border-top:1px solid var(--hair);padding-top:26px;min-height:78px;}
+.rd-body{font-size:16px;line-height:1.75;color:var(--body);max-width:56ch;opacity:0;transform:translateY(6px);transition:opacity .3s ease,transform .3s ease;}
+.rd-body.show{opacity:1;transform:none;}
+.rd-hint{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--hair);}
+
+/* ═════════ PRICING ═════════ */
+.tiers{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:900px;}
+.tier{border:1px solid var(--hair);padding:30px 30px 32px;background:#fff;}
+.tier--wide{grid-column:1 / -1;}
+.tier--wide ul{columns:2;column-gap:40px;}
+.tier__top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:20px;}
+.tier__name{font-family:'Bebas Neue',sans-serif;font-size:23px;letter-spacing:.09em;text-transform:uppercase;line-height:1.1;}
+.tier__price{font-family:'Bebas Neue',sans-serif;font-size:25px;letter-spacing:.03em;white-space:nowrap;}
+.tier ul{list-style:none;}
+.tier li{font-size:14.5px;line-height:1.65;color:var(--body);padding-left:16px;position:relative;margin-bottom:7px;}
+.tier li::before{content:'';position:absolute;left:0;top:10px;width:5px;height:5px;border-radius:50%;background:#C6AEE2;}
+.terms{margin-top:28px;font-size:13px;color:var(--stone);line-height:1.8;max-width:62ch;}
+
+/* ═════════ STILLS GRID — 3 then 2 ═════════ */
+.stills{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:40px;}
+.still{position:relative;overflow:hidden;background:#E8E4DB;display:block;grid-column:span 2;aspect-ratio:4/5;}
+.still:nth-child(4),.still:nth-child(5){grid-column:span 3;aspect-ratio:3/2;}
+.still img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+.still::after{content:'';position:absolute;inset:0;background:rgba(22,16,8,.30);transition:background .3s ease;pointer-events:none;}
+.still:hover::after{background:rgba(22,16,8,.10);}
+.still:hover img{transform:scale(1.04);}
+.still span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.07em;text-transform:uppercase;color:rgba(247,246,242,.92);text-shadow:0 1px 8px rgba(0,0,0,.5);z-index:1;transition:all .2s ease;}
+.still:hover span{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none;}
+
+/* ═════════ MARQUEE ═════════ */
+.marquee-wrap{overflow:hidden;padding:70px 0 80px;border-top:1px solid var(--hair);}
+.marquee-label{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);text-align:center;margin-bottom:28px;}
+.marquee{display:flex;width:max-content;animation:scroll 42s linear infinite;}
+.marquee:hover{animation-play-state:paused;}
+.marquee a{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--ink);padding:0 32px;white-space:nowrap;position:relative;letter-spacing:.02em;}
+.marquee a::after{content:'—';position:absolute;right:-4px;color:var(--hair);}
+.marquee a:hover{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+@keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ═════════ CTA ═════════ */
+.cta-strip{padding:90px 8vw 110px;border-top:1px solid var(--hair);}
+.cta-head{font-family:'Anton',sans-serif;font-size:clamp(44px,11vw,150px);line-height:.88;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:40px;}
+.cta-head span{display:block;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.cta-btn{display:inline-flex;align-items:center;gap:12px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);background:transparent;padding:14px 32px;border-radius:40px;border:1px solid var(--stone);cursor:pointer;transition:border-color .25s,background .25s,color .25s;}
+.cta-btn:hover{border-color:var(--ink);background:var(--ink);color:var(--bone);}
+
+/* ═════════ FOOTER ═════════ */
+.footer{background:var(--ink);padding:32px 5vw;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(247,246,242,.3);}
+.footer a:hover{color:rgba(247,246,242,.7);}
+.footer__links{display:flex;gap:24px;flex-wrap:wrap;}
+
+/* ═════════ REVEAL ═════════ */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+.rd1{transition-delay:.1s}.rd2{transition-delay:.22s}
+
+/* ═════════ CONTACT MODAL ═════════ */
+.contact-modal{position:fixed;inset:0;z-index:400;background:rgba(22,20,15,.45);display:flex;align-items:center;justify-content:center;padding:2rem;opacity:0;pointer-events:none;transition:opacity .3s ease;}
+.contact-modal.open{opacity:1;pointer-events:auto;}
+.contact-inner{width:100%;max-width:500px;background:var(--bone);border:1px solid var(--hair);padding:2.5rem 2.5rem 2rem;position:relative;max-height:90vh;overflow-y:auto;}
+.contact-close{position:absolute;top:1rem;right:1.2rem;background:none;border:none;font-size:18px;line-height:1;color:var(--stone);cursor:pointer;padding:4px;}
+.contact-close:hover{color:var(--ink);}
+.contact-eyebrow{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);margin-bottom:10px;display:block;}
+.contact-hed{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,56px);line-height:.92;color:var(--ink);margin-bottom:28px;}
+.contact-field{border-bottom:1px solid var(--hair);padding:22px 0 16px;position:relative;}
+.contact-field label{display:block;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-bottom:8px;}
+.contact-field input,.contact-field textarea{width:100%;background:transparent;border:none;outline:none;font-family:'Inter',sans-serif;font-size:16px;font-weight:300;color:var(--ink);line-height:1.4;-webkit-appearance:none;}
+.contact-field textarea{resize:none;min-height:72px;}
+.contact-field input::placeholder,.contact-field textarea::placeholder{color:var(--hair);}
+.contact-field::after{content:'';position:absolute;left:0;bottom:-1px;width:0;height:1px;background:var(--grad);transition:width .4s ease;}
+.contact-field:focus-within::after{width:100%;}
+.contact-row{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;}
+.contact-checks{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.4rem;}
+.contact-check{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:.38rem .9rem;border-radius:2px;border:1px solid var(--hair);background:transparent;transition:background .18s,border-color .18s,color .18s;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--stone);user-select:none;width:calc(50% - .23rem);}
+.contact-check:hover{border-color:var(--stone);color:var(--ink);}
+.contact-check input[type="checkbox"]{display:none;}
+.contact-check:has(input:checked){background:var(--ink);border-color:var(--ink);color:var(--bone);}
+.contact-submit{margin-top:40px;display:inline-flex;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);background:transparent;padding:14px 32px;border-radius:40px;border:1px solid var(--stone);cursor:pointer;transition:border-color .25s,background .25s,color .25s;}
+.contact-submit:hover{border-color:var(--ink);background:var(--ink);color:var(--bone);}
+.contact-submit:disabled{opacity:.5;cursor:not-allowed;}
+.contact-success{display:none;}
+.contact-success.show{display:block;}
+.contact-success__hed{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,72px);margin-bottom:12px;}
+.contact-success__sub{font-size:14px;color:var(--stone);line-height:1.7;}
+
+/* ═════════ MOBILE ═════════ */
+@media(max-width:900px){
+  .ugc{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .stills{grid-template-columns:repeat(2,1fr);}
+  .still{grid-column:span 1;aspect-ratio:4/5;}
+  .still:nth-child(4){grid-column:span 1;aspect-ratio:4/5;}
+  .still:nth-child(5){grid-column:span 2;aspect-ratio:3/2;}
+}
+@media(max-width:760px){
+  .hero{padding:130px 5vw 28px;}
+  .sec,.cta-strip{padding-left:5vw;padding-right:5vw;}
+  .sec{padding-top:60px;padding-bottom:60px;}
+  .rings-title,.rings-note{padding-top:0;width:100%;}
+  .rings{gap:12px;justify-content:space-between;width:100%;}
+  .ring{width:calc(33.33% - 8px);}
+  .ring-wrap,.ring-svg{width:92px;height:92px;}
+  .ring-val{font-size:23px;}
+  .ring-label{font-size:9px;letter-spacing:.1em;}
+  .ugc{grid-template-columns:1fr;}
+  .stills{gap:6px;}
+  .tiers{grid-template-columns:1fr;}
+  .tier--wide ul{columns:1;}
+  .contact-row{grid-template-columns:1fr;}
+  .contact-inner{padding:2rem 1.4rem;}
+  .footer{flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+
+<nav class="nav" id="nav">
+  <a href="/" class="nav__mark">LUKE LEFFEL</a>
+  <div class="nav__links">
+    <a href="/">Photography</a>
+    <a href="https://cafesmagazine.com" target="_blank" rel="noopener">Cafes Magazine</a>
+    <a href="https://cafesmagazine.com/pages/wearecafes" target="_blank" rel="noopener">We Are Cafes</a>
+    <a href="/about.html">About</a>
+    <a href="/partner.html" class="current">Partner</a>
+    <a href="#contact" onclick="event.preventDefault();openContact()">Work With Me</a>
+  </div>
+  <button class="nav__burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="nav__mobile" id="mobileNav">
+  <a href="/">Photography</a>
+  <a href="https://cafesmagazine.com" target="_blank" rel="noopener">Cafes Magazine</a>
+  <a href="https://cafesmagazine.com/pages/wearecafes" target="_blank" rel="noopener">We Are Cafes</a>
+  <a href="/about.html">About</a>
+  <!-- ↓↓ COLLAB HOOK — paste this block into index.html + about.html drawers ↓↓ -->
+  <a href="/partner.html" class="partner-hook">See The Numbers<small>For brands &amp; collab partners</small></a>
+  <!-- ↑↑ ------------------------------------------------------------------ ↑↑ -->
+  <a href="#contact" onclick="event.preventDefault();openContact()">Work With Me</a>
+</div>
+
+<!-- ═══════ 1. HERO ═══════ -->
+<section class="hero">
+  <h1 class="hero__title">BRAND AND CPG<br><span class="g">AD CREATIVE</span></h1>
+  <p class="hero__body">UGC, reels, and campaign stills for consumer and lifestyle brands. Shot in home, in studio or on location.</p>
+</section>
+
+<!-- ═══════ 3. WORK ═══════ -->
+<section class="sec" style="padding-bottom:20px;border-top:0">
+  <h2 class="sec-head reveal">UGC &amp; <span class="g">SHORT FORM</span></h2>
+</section>
+
+<div id="heroFilms"></div>
+
+<section class="sec">
+  <div class="row-films reveal rd1" id="rowFilms"></div>
+  <p class="note reveal rd2" id="rowNote">Hover to play.</p>
+</section>
+
+<!-- ═══════ STILLS ═══════ -->
+<section class="sec">
+  <h2 class="sec-head reveal">CAMPAIGN <span class="g">STILLS</span></h2>
+  <div class="stills">
+    <a href="/ratio.html" class="still"><img src="https://images.pixieset.com/983671211/f44f529189713f127f30176f262e7823-xxlarge.jpg" alt="Ratio product photography"><span>Ratio</span></a>
+    <a href="/tww.html" class="still"><img src="https://images.pixieset.com/782382101/ce6fabc2e12fe57eca7e3939d5716ae8-xxlarge.jpg" alt="Third Wave Water product photography"><span>Third Wave Water</span></a>
+    <a href="/pixiesbrew.html" class="still"><img src="https://images.pixieset.com/548005401/131ced6ef3f1583f1412db9ec340483d-xxlarge.jpg" alt="Pixies Brew product photography"><span>Pixies Brew</span></a>
+    <a href="/nnsycamore.html" class="still"><img src="https://images.pixieset.com/577358301/94d172f103b847e9cc12fb6964cdb430-xxlarge.jpg" alt="notNeutral x Sycamore product photography"><span>Not Neutral &times; Sycamore</span></a>
+    <a href="/wildslice.html" class="still"><img src="https://images.pixieset.com/075547111/b74b071f3752edc1a3829f3417ec7b15-xxlarge.jpg" alt="Wild Slice brand photography"><span>Wild Slice</span></a>
+    </div>
+</section>
+
+<!-- ═══════ 4. NUMBERS ═══════ -->
+<section class="sec">
+
+  <div class="rings-band reveal rd1">
+    <div class="rings-title">INFLUENCE</div>
+    <div class="rings">
+      <button class="ring" data-pct="96" data-val="96" data-suffix="&times;"
+        data-detail="158,100 people reached in 90 days from a following of 1,637.">
+        <div class="ring-wrap"><svg class="ring-svg" viewBox="0 0 116 116"><circle class="ring-track" cx="58" cy="58" r="53"/><circle class="ring-arc" cx="58" cy="58" r="53" stroke="url(#gradA)"/></svg><div class="ring-val">0&times;</div></div>
+        <div class="ring-label">Reach multiple</div>
+      </button>
+      <button class="ring" data-pct="99" data-val="99" data-suffix="%"
+        data-detail="390,305 of 393,328 views were organic. Ads accounted for 3,023.">
+        <div class="ring-wrap"><svg class="ring-svg" viewBox="0 0 116 116"><circle class="ring-track" cx="58" cy="58" r="53"/><circle class="ring-arc" cx="58" cy="58" r="53" stroke="url(#gradA)"/></svg><div class="ring-val">0%</div></div>
+        <div class="ring-label">Organic</div>
+      </button>
+      <button class="ring" data-pct="12" data-val="12" data-suffix="%"
+        data-detail="18,700 likes, comments, saves and shares, measured against people reached rather than followers.">
+        <div class="ring-wrap"><svg class="ring-svg" viewBox="0 0 116 116"><circle class="ring-track" cx="58" cy="58" r="53"/><circle class="ring-arc" cx="58" cy="58" r="53" stroke="url(#gradA)"/></svg><div class="ring-val">0%</div></div>
+        <div class="ring-label">Engagement</div>
+      </button>
+    </div>
+    <div class="rings-note">FROM 1,637<br>FOLLOWERS</div>
+  </div>
+
+  <div class="rings-band reveal rd2">
+    <div class="rings-title demo">DEMO</div>
+    <div class="rings">
+      <button class="ring" data-pct="75" data-val="75" data-suffix="%"
+        data-detail="Three in four followers are between 25 and 44.">
+        <div class="ring-wrap"><svg class="ring-svg" viewBox="0 0 116 116"><circle class="ring-track" cx="58" cy="58" r="53"/><circle class="ring-arc" cx="58" cy="58" r="53" stroke="url(#gradB)"/></svg><div class="ring-val">0%</div></div>
+        <div class="ring-label">Age 25–44</div>
+      </button>
+      <button class="ring" data-pct="37" data-val="37" data-suffix="/63" data-static="37/63"
+        data-detail="37% of followers are in Columbus, 86% in the US. National reach with one metro dense enough to host an activation.">
+        <div class="ring-wrap"><svg class="ring-svg" viewBox="0 0 116 116"><circle class="ring-track" cx="58" cy="58" r="53"/><circle class="ring-arc" cx="58" cy="58" r="53" stroke="url(#gradB)"/></svg><div class="ring-val">0</div></div>
+        <div class="ring-label">Local / National</div>
+      </button>
+      <button class="ring" data-pct="54" data-val="54" data-suffix="/46" data-static="54/46"
+        data-detail="54% women, 46% men, a close to even split.">
+        <div class="ring-wrap"><svg class="ring-svg" viewBox="0 0 116 116"><circle class="ring-track" cx="58" cy="58" r="53"/><circle class="ring-arc" cx="58" cy="58" r="53" stroke="url(#gradB)"/></svg><div class="ring-val">0</div></div>
+        <div class="ring-label">Women / Men</div>
+      </button>
+    </div>
+  </div>
+
+  <div class="ring-detail">
+    <p class="rd-body" id="ringDetail"></p>
+    <p class="rd-hint" id="ringHint">Hover or tap a ring</p>
+  </div>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+    <linearGradient id="gradA" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F0AFCB"/><stop offset="100%" stop-color="#C6AEE2"/></linearGradient>
+    <linearGradient id="gradB" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#A8C2EF"/><stop offset="100%" stop-color="#F0AFCB"/></linearGradient>
+  </defs></svg>
+</section>
+
+<!-- ═══════ 5. PRICING ═══════ -->
+<section class="sec" id="pricingSection" style="display:none">
+  <h2 class="sec-head reveal"><span class="g">PRICING</span></h2>
+  <div class="tiers reveal rd1" id="tiers"></div>
+  <p class="terms reveal rd2" id="terms"></p>
+</section>
+
+<!-- ═══════ MARQUEE ═══════ -->
+<div class="marquee-wrap">
+  <div class="marquee-label">Brands I've worked with</div>
+  <div class="marquee" id="marquee"></div>
+</div>
+
+<!-- ═══════ CTA ═══════ -->
+<section class="cta-strip" id="contact">
+  <p class="eyebrow reveal">Next step</p>
+  <h2 class="cta-head reveal rd1">START A<br><span>CONVERSATION</span></h2>
+  <button class="cta-btn reveal rd2" onclick="openContact()">Work With Me</button>
+</section>
+
+<footer class="footer">
+  <span>© LUKE LEFFEL 2026</span>
+  <div class="footer__links">
+    <a href="/">Photography</a>
+    <a href="https://soloonwhite.com" target="_blank" rel="noopener">Solo on White</a>
+    <a href="https://cafesmagazine.com" target="_blank" rel="noopener">Cafes Magazine</a>
+    <a href="https://www.instagram.com/lukeleffel/" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</footer>
+
+<!-- ═══════ CONTACT MODAL ═══════ -->
+<div class="contact-modal" id="contactModal">
+  <div class="contact-inner">
+    <button class="contact-close" id="contactClose" aria-label="Close">×</button>
+    <div id="contactFormWrap">
+      <span class="contact-eyebrow">Get in touch</span>
+      <h2 class="contact-hed">LET'S WORK<br>TOGETHER.</h2>
+      <form id="contactForm" novalidate>
+        <div class="contact-row">
+          <div class="contact-field">
+            <label for="cf-name">Name</label>
+            <input id="cf-name" type="text" name="name" placeholder="Your name" required autocomplete="name">
+          </div>
+          <div class="contact-field">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" type="email" name="email" placeholder="you@brand.com" required autocomplete="email">
+          </div>
+        </div>
+        <div class="contact-field">
+          <label for="cf-brand">Brand or company</label>
+          <input id="cf-brand" type="text" name="brand" placeholder="Who you're building">
+        </div>
+        <div class="contact-field">
+          <label>What are you after? <span style="font-size:.6rem;font-weight:400;letter-spacing:0;text-transform:none;color:var(--stone);">select all that apply</span></label>
+          <div class="contact-checks" id="cf-checks">
+            <label class="contact-check"><input type="checkbox" name="type" value="ugc-reel"><span>UGC / Reel</span></label>
+            <label class="contact-check"><input type="checkbox" name="type" value="carousel"><span>Carousel Post</span></label>
+            <label class="contact-check"><input type="checkbox" name="type" value="ad-creative"><span>Ad Creative</span></label>
+            <label class="contact-check"><input type="checkbox" name="type" value="gifting"><span>Gifting Partnership</span></label>
+            <label class="contact-check"><input type="checkbox" name="type" value="campaign-shoot"><span>Campaign Shoot</span></label>
+            <label class="contact-check"><input type="checkbox" name="type" value="something-else"><span>Something Else</span></label>
+          </div>
+        </div>
+        <div class="contact-field">
+          <label for="cf-message">Tell me more</label>
+          <textarea id="cf-message" name="message" placeholder="What's the campaign, timeline, or question on your mind?"></textarea>
+        </div>
+        <div style="display:none" aria-hidden="true"><input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
+        <button type="submit" class="contact-submit" id="contactSubmit">Send it</button>
+      </form>
+    </div>
+    <div class="contact-success" id="contactSuccess">
+      <h3 class="contact-success__hed">GOT IT.</h3>
+      <p class="contact-success__sub">Thanks for reaching out. I read every message personally and will be back to you within 48 hours.</p>
+    </div>
+  </div>
+</div>
+
+
+<script>
+/* ══════════════════════════════════════════════════════
+   EDIT THIS BLOCK ONLY — everything below is machinery.
+   ══════════════════════════════════════════════════════ */
+const CONFIG = {
+
+  /* ── HERO FILMS ──────────────────────────────────────
+     Full-width sections, video one side and copy the other.
+     They play when scrolled into view and pause when they leave.
+     Sides alternate automatically. `ig` adds a link — leave it
+     empty and no link appears.                                */
+  heroFilms: [
+    {
+      brand:"Ratio",
+      head:"PRODUCT FILM<br><span class='g'>AND REELS</span>",
+      mp4:"media/ratio.mp4", poster:"media/ratio.jpg", ig:""
+    },
+    {
+      brand:"xBloom",
+      head:"AD CREATIVE<br><span class='g'>AND SCRIPTING</span>",
+      mp4:"media/xbloom.mp4", poster:"media/xbloom.jpg", ig:""
+    }
+  ],
+
+  /* ── SHORT CUTS ROW ──────────────────────────────────
+     Three across. Play on hover with sound if the visitor
+     turns it on; on phones they play as you scroll past. */
+  rowFilms: [
+    { brand:"Ascaso",        kind:"Product film",   mp4:"media/ascaso.mp4",        poster:"media/ascaso.jpg",        ig:"" },
+    { brand:"Saving Hollow", kind:"Lifestyle UGC",  mp4:"media/saving-hollow.mp4", poster:"media/saving-hollow.jpg", ig:"" },
+    { brand:"Anaerobic",     kind:"Product film",   mp4:"media/anaerobic.mp4",     poster:"media/anaerobic.jpg",     ig:"" }
+  ],
+
+  /* ── PRICING ─────────────────────────────────────────
+     showPricing: false hides the whole section.
+     CONFIRM THESE NUMBERS before sharing the page —
+     they were carried over from the 2025 PDF.          */
+  showPricing: true,
+  tiers: [
+    { name:"Carousel Post", price:"$250", items:[
+      "Up to 8 finished product images",
+      "Collaboration post with your caption",
+      "Raw files available",
+      "90 day licensing"
+    ]},
+    { name:"UGC / Scripted Reel", price:"$350", items:[
+      "45–60 second product feature reel",
+      "Collaboration post, silent or dialogue",
+      "Raw file available",
+      "90 day licensing"
+    ]},
+    { name:"Ad Creative", price:"$2,000", items:[
+      "60–90 second reel",
+      "Collaboration post if desired",
+      "Raw file standard",
+      "90 day licensing"
+    ]},
+    { name:"Affiliate &amp; Gifting", price:"Please inquire", items:[
+      "30 second dialogue reel",
+      "Collaboration post",
+      "3 story mentions with link",
+      "Code with commission via ShopMy or your site"
+    ]},
+    { name:"Monthly Campaign", price:"$1,000 / month", wide:true, items:[
+      "Content produced on cadence",
+      "Priority timelines",
+      "Consistent creative direction",
+      "90 day licensing standard",
+      "3, 6 and 12 month options"
+    ]}
+  ],
+  pricingTerms: "Send your brand guidelines, or we'll take creative direction. 90 day organic and paid usage is standard. Affiliate and gifting partnerships are welcome to inquire.",
+
+  /* ── MARQUEE ─────────────────────────────────────── */
+  brands: [
+    ["NOTNEUTRAL","https://www.notneutral.com/"],
+    ["THIRD WAVE WATER","https://thirdwavewater.com/"],
+    ["PIXIES BREW","https://pixiesbrew.com/"],
+    ["COFFEE FEST","https://www.coffeefest.com/"],
+    ["LATTE ART WORLD CHAMPIONSHIP","https://www.coffeefest.com/latte-art-world-championship-open"],
+    ["ONE LINE COFFEE","https://www.onelinecoffee.com/"],
+    ["URBANA CAFE","https://www.urbanacafe.com/"],
+    ["THE LOX","https://www.theloxbagelshop.com/"],
+    ["RATIO COFFEE","https://ratiocoffee.com/"],
+    ["SYCAMORE","https://www.sycamoregv.com/"],
+    ["WILD SLICE","https://wildslicedesigns.com/"]
+  ],
+
+  formspree: "https://formspree.io/f/mreodrje"
+};
+/* ═════════════════ END EDITS ══════════════════════════ */
+
+
+/* ---------- INIT ---------- */
+document.addEventListener('DOMContentLoaded', init);
+
+function init(){
+  buildFilm(); buildPricing(); buildMarquee();
+  wireNav(); wireReveals(); wireRings(); wireContact();
+}
+
+/* ---------- FILM ---------- */
+/* Clips always play muted: browsers only allow audio after a real click,
+   and there is no sound control on this page. */
+const SOUND_ON = false;
+
+function buildFilm(){
+  buildHeroFilms();
+  buildRowFilms();
+  wirePlayback();
+}
+
+function buildHeroFilms(){
+  document.getElementById('heroFilms').innerHTML = CONFIG.heroFilms.map(f=>`
+    <section class="film">
+      <div class="film-media reveal">
+        <video src="${f.mp4}" ${f.poster?`poster="${f.poster}"`:''}
+               muted loop playsinline preload="none" data-film></video>
+      </div>
+      <div class="film-copy reveal rd1">
+        <h3 class="film-head">${f.head}</h3>
+        ${f.ig?`<a class="film-link" href="${f.ig}" target="_blank" rel="noopener">View on Instagram <span>&#8599;</span></a>`:''}
+      </div>
+    </section>`).join('');
+}
+
+function buildRowFilms(){
+  document.getElementById('rowFilms').innerHTML = CONFIG.rowFilms.map(f=>{
+    const inner=`
+      <div class="rf-media">
+        <video src="${f.mp4}" ${f.poster?`poster="${f.poster}"`:''}
+               muted loop playsinline preload="none" data-film data-hover></video>
+        <div class="rf-cue"><b>${f.brand}</b><i>Hover</i></div>
+      </div>
+      <div class="rf-label"><b>${f.brand}</b><i>${f.kind||''}</i></div>`;
+    return f.ig
+      ? `<a class="rf" href="${f.ig}" target="_blank" rel="noopener">${inner}</a>`
+      : `<div class="rf">${inner}</div>`;
+  }).join('');
+
+  /* Hover only makes sense with a pointer. Touch devices fall back to
+     the same scroll-triggered playback the hero films use. */
+  if(window.matchMedia('(hover:hover)').matches){
+    document.querySelectorAll('.rf').forEach(card=>{
+      const v=card.querySelector('video');
+      card.addEventListener('mouseenter',()=>{
+        v.muted=!SOUND_ON;
+        v.play().then(()=>card.classList.add('playing')).catch(()=>{});
+      });
+      card.addEventListener('mouseleave',()=>{
+        v.pause(); v.currentTime=0; v.muted=true;
+        card.classList.remove('playing');
+      });
+    });
+  }else{
+    document.getElementById('rowNote').textContent='Tap a clip to hear it.';
+    document.querySelectorAll('.rf').forEach(card=>{
+      const v=card.querySelector('video');
+      card.addEventListener('click',e=>{
+        if(card.tagName==='A') return;
+        e.preventDefault();
+        v.muted=!v.muted;
+        card.classList.toggle('playing',!v.muted);
+        if(!v.muted) v.play().catch(()=>{});
+      });
+    });
+  }
+}
+
+/* Play what's on screen, pause what isn't — so five clips never run at once
+   and nothing downloads until it's nearly in view. */
+function wirePlayback(){
+  const hoverCapable=window.matchMedia('(hover:hover)').matches;
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      const v=e.target;
+      const isHoverCard=v.hasAttribute('data-hover');
+      if(e.isIntersecting){
+        if(v.preload==='none') v.preload='auto';
+        if(isHoverCard && hoverCapable) return;   /* those wait for the cursor */
+        v.play().catch(()=>{});
+      }else{
+        v.pause();
+        if(isHoverCard){ v.currentTime=0; v.closest('.rf')?.classList.remove('playing'); }
+      }
+    });
+  },{threshold:.35});
+  document.querySelectorAll('video[data-film]').forEach(v=>{
+    io.observe(v);
+    v.addEventListener('error',()=>{
+      const box=v.parentNode;
+      v.style.display='none';
+      if(box.querySelector('.missing')) return;
+      const t=document.createElement('div');
+      t.className='missing';
+      t.textContent=v.getAttribute('src');
+      box.appendChild(t);
+    });
+  });
+}
+
+/* ---------- PRICING ---------- */
+function buildPricing(){
+  if(!CONFIG.showPricing) return;
+  document.getElementById('pricingSection').style.display='';
+  document.getElementById('tiers').innerHTML = CONFIG.tiers.map(t=>`
+    <div class="tier${t.wide?' tier--wide':''}">
+      <div class="tier__top">
+        <span class="tier__name">${t.name}</span>
+        <span class="tier__price">${t.price.charAt(0)==='$' ? 'From '+t.price : t.price}</span>
+      </div>
+      <ul>${t.items.map(i=>`<li>${i}</li>`).join('')}</ul>
+    </div>`).join('');
+  document.getElementById('terms').textContent = CONFIG.pricingTerms;
+}
+
+/* ---------- MARQUEE ---------- */
+function buildMarquee(){
+  const one=CONFIG.brands.map(([n,u])=>`<a href="${u}" target="_blank" rel="noopener">${n}</a>`).join('');
+  document.getElementById('marquee').innerHTML=one+one;
+}
+
+/* ---------- NAV ---------- */
+function wireNav(){
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>20),{passive:true});
+  const burger=document.getElementById('burger'),mob=document.getElementById('mobileNav');
+  burger.addEventListener('click',()=>{
+    burger.classList.toggle('open');mob.classList.toggle('open');
+    document.body.style.overflow=mob.classList.contains('open')?'hidden':'';
+  });
+  mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+    burger.classList.remove('open');mob.classList.remove('open');document.body.style.overflow='';
+  }));
+}
+
+/* ---------- REVEALS ---------- */
+function wireReveals(){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+}
+
+/* ---------- RINGS ---------- */
+function wireRings(){
+  const rings=[...document.querySelectorAll('.ring')];
+  const CIRC=2*Math.PI*53;
+  const detail=document.getElementById('ringDetail');
+  const hint=document.getElementById('ringHint');
+  const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  function fill(ring){
+    if(ring.dataset.filled)return; ring.dataset.filled='1';
+    const pct=+ring.dataset.pct,val=+ring.dataset.val,
+          suf=ring.dataset.suffix||'',stat=ring.dataset.static,
+          arc=ring.querySelector('.ring-arc'),out=ring.querySelector('.ring-val');
+    arc.style.strokeDasharray=CIRC;
+    arc.style.strokeDashoffset=CIRC;
+    requestAnimationFrame(()=>{arc.style.strokeDashoffset=CIRC-(CIRC*pct/100);});
+    if(reduce){out.innerHTML=stat||(val+suf);return;}
+    const dur=1300,t0=performance.now();
+    (function step(t){
+      const p=Math.min((t-t0)/dur,1),e=1-Math.pow(1-p,3);
+      out.innerHTML=Math.round(val*e)+suf;
+      if(p<1)requestAnimationFrame(step); else out.innerHTML=stat||(val+suf);
+    })(t0);
+  }
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){fill(e.target);io.unobserve(e.target);}
+  }),{threshold:.5});
+  rings.forEach(r=>io.observe(r));
+
+  function select(ring){
+    rings.forEach(r=>r.classList.remove('on'));
+    ring.classList.add('on');
+    hint.style.display='none';
+    detail.classList.remove('show');
+    setTimeout(()=>{detail.innerHTML=ring.dataset.detail;detail.classList.add('show');},150);
+  }
+  rings.forEach(r=>{
+    r.addEventListener('click',()=>select(r));
+    r.addEventListener('mouseenter',()=>{if(window.innerWidth>760)select(r);});
+  });
+}
+
+/* ---------- CONTACT ---------- */
+function wireContact(){
+  const modal=document.getElementById('contactModal'),
+        form=document.getElementById('contactForm'),
+        wrap=document.getElementById('contactFormWrap'),
+        ok=document.getElementById('contactSuccess'),
+        btn=document.getElementById('contactSubmit');
+
+  window.openContact=function(){
+    wrap.style.display='';ok.classList.remove('show');
+    modal.classList.add('open');document.body.style.overflow='hidden';
+    setTimeout(()=>document.getElementById('cf-name').focus(),200);
+  };
+  function close(){modal.classList.remove('open');document.body.style.overflow='';}
+  document.getElementById('contactClose').addEventListener('click',close);
+  modal.addEventListener('click',e=>{if(e.target===modal)close();});
+  document.addEventListener('keydown',e=>{if(modal.classList.contains('open')&&e.key==='Escape')close();});
+
+  form.addEventListener('submit',async e=>{
+    e.preventDefault();
+    const name=document.getElementById('cf-name').value.trim(),
+          email=document.getElementById('cf-email').value.trim(),
+          checked=[...document.querySelectorAll('#cf-checks input:checked')].map(c=>c.value);
+    if(!name||!email)return;
+    btn.textContent='Sending…';btn.disabled=true;
+    try{
+      const res=await fetch(CONFIG.formspree,{
+        method:'POST',
+        headers:{'Accept':'application/json','Content-Type':'application/json'},
+        body:JSON.stringify({
+          name,email,
+          brand:document.getElementById('cf-brand').value,
+          type:checked.join(', '),
+          message:document.getElementById('cf-message').value,
+          _subject:`Partner page inquiry from ${name}`
+        })
+      });
+      if(res.ok){wrap.style.display='none';ok.classList.add('show');form.reset();setTimeout(close,4000);}
+    }catch(err){console.error(err);}
+    btn.textContent='Send it';btn.disabled=false;
+  });
+}
+</script>
+</body>
+</html>
