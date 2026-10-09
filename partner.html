@@ -52,7 +52,9 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
 @media(max-width:760px){.nav__links{display:none;}.nav__burger{display:flex;}}
 
 /* ═════════ HERO ═════════ */
-.hero{padding:170px 8vw 70px;}
+.hero{padding:150px 8vw 70px;display:grid;grid-template-columns:1fr minmax(0,380px);gap:clamp(32px,6vw,80px);align-items:center;}
+.hero__film{position:relative;width:100%;aspect-ratio:9/16;overflow:hidden;background:#E8E4DB;}
+.hero__film video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
 .hero__title{font-family:'Anton',sans-serif;font-size:clamp(40px,7vw,104px);line-height:.94;letter-spacing:-.02em;text-transform:uppercase;}
 .hero__title .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 .hero__body{margin-top:26px;font-size:17px;line-height:1.8;color:var(--body);max-width:52ch;}
@@ -87,15 +89,6 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
 .rf-media{position:relative;width:100%;aspect-ratio:9/16;overflow:hidden;background:#E8E4DB;}
 .rf-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
 .rf:hover .rf-media video{transform:scale(1.03);}
-.rf-media::after{content:'';position:absolute;inset:0;background:rgba(22,20,15,.16);transition:opacity .35s ease;pointer-events:none;}
-.rf.playing .rf-media::after{opacity:0;}
-.rf-cue{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:10px;background:linear-gradient(to top,rgba(22,20,15,.65),transparent);transition:opacity .35s ease;}
-.rf.playing .rf-cue{opacity:0;}
-.rf-cue b{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.07em;color:#fff;font-weight:400;}
-.rf-cue i{font-style:normal;font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7);}
-.rf-label{margin-top:12px;display:flex;justify-content:space-between;align-items:baseline;gap:10px;}
-.rf-label b{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.07em;font-weight:400;}
-.rf-label i{font-style:normal;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);}
 .note{font-size:12px;color:var(--stone);margin-top:28px;line-height:1.7;max-width:62ch;}
 
 /* ═════════ RINGS ═════════ */
@@ -207,7 +200,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
   .still:nth-child(5){grid-column:span 2;aspect-ratio:3/2;}
 }
 @media(max-width:760px){
-  .hero{padding:130px 5vw 28px;}
+  .hero{grid-template-columns:1fr;padding:120px 5vw 28px;gap:32px;}
+  .hero__film{max-width:320px;}
   .sec,.cta-strip{padding-left:5vw;padding-right:5vw;}
   .sec{padding-top:60px;padding-bottom:60px;}
   .rings-title,.rings-note{padding-top:0;width:100%;}
@@ -255,8 +249,13 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
 
 <!-- ═══════ 1. HERO ═══════ -->
 <section class="hero">
-  <h1 class="hero__title">BRAND AND CPG<br><span class="g">AD CREATIVE</span></h1>
-  <p class="hero__body">UGC, reels, and campaign stills for consumer and lifestyle brands. Shot in home, in studio or on location.</p>
+  <div class="hero__copy">
+    <h1 class="hero__title">BRAND AND CPG<br><span class="g">AD CREATIVE</span></h1>
+    <p class="hero__body">UGC, reels, and campaign stills for consumer and lifestyle brands. Shot in home, in studio or on location.</p>
+  </div>
+  <div class="hero__film">
+    <video src="media/hero.mp4" poster="media/hero.jpg" muted loop playsinline autoplay preload="metadata" data-film></video>
+  </div>
 </section>
 
 <!-- ═══════ 3. WORK ═══════ -->
@@ -265,11 +264,6 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
 </section>
 
 <div id="heroFilms"></div>
-
-<section class="sec">
-  <div class="row-films reveal rd1" id="rowFilms"></div>
-  <p class="note reveal rd2" id="rowNote">Hover to play.</p>
-</section>
 
 <!-- ═══════ STILLS ═══════ -->
 <section class="sec">
@@ -281,6 +275,10 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
     <a href="/nnsycamore.html" class="still"><img src="https://images.pixieset.com/577358301/94d172f103b847e9cc12fb6964cdb430-xxlarge.jpg" alt="notNeutral x Sycamore product photography"><span>Not Neutral &times; Sycamore</span></a>
     <a href="/wildslice.html" class="still"><img src="https://images.pixieset.com/075547111/b74b071f3752edc1a3829f3417ec7b15-xxlarge.jpg" alt="Wild Slice brand photography"><span>Wild Slice</span></a>
     </div>
+</section>
+
+<section class="sec">
+  <div class="row-films reveal rd1" id="rowFilms"></div>
 </section>
 
 <!-- ═══════ 4. NUMBERS ═══════ -->
@@ -551,9 +549,7 @@ function buildRowFilms(){
       <div class="rf-media">
         <video src="${f.mp4}" ${f.poster?`poster="${f.poster}"`:''}
                muted loop playsinline preload="none" data-film data-hover></video>
-        <div class="rf-cue"><b>${f.brand}</b><i>Hover</i></div>
-      </div>
-      <div class="rf-label"><b>${f.brand}</b><i>${f.kind||''}</i></div>`;
+      </div>`;
     return f.ig
       ? `<a class="rf" href="${f.ig}" target="_blank" rel="noopener">${inner}</a>`
       : `<div class="rf">${inner}</div>`;
@@ -574,7 +570,6 @@ function buildRowFilms(){
       });
     });
   }else{
-    document.getElementById('rowNote').textContent='Tap a clip to hear it.';
     document.querySelectorAll('.rf').forEach(card=>{
       const v=card.querySelector('video');
       card.addEventListener('click',e=>{
