@@ -89,10 +89,10 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
 .note{font-size:12px;color:var(--stone);margin-top:28px;line-height:1.7;max-width:62ch;}
 
 /* ═════════ RINGS ═════════ */
-.rings-band{display:flex;align-items:flex-start;gap:clamp(20px,4vw,52px);flex-wrap:wrap;margin-bottom:40px;}
-.rings-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(24px,3.2vw,40px);letter-spacing:.16em;line-height:1;padding-top:40px;}
+.rings-grid{display:grid;grid-template-columns:max-content auto 1fr;align-items:start;gap:clamp(26px,4vw,56px) clamp(20px,4vw,52px);margin-bottom:34px;}
+.rings-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(24px,3.2vw,40px);letter-spacing:.16em;line-height:1;padding-top:42px;}
 .rings-title.demo{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
-.rings-note{font-family:'Bebas Neue',sans-serif;font-size:clamp(13px,1.5vw,18px);letter-spacing:.14em;color:var(--stone);padding-top:46px;line-height:1.3;}
+.rings-note{font-family:'Bebas Neue',sans-serif;font-size:clamp(13px,1.5vw,18px);letter-spacing:.14em;color:var(--stone);padding-top:44px;line-height:1.3;justify-self:start;}
 .rings{display:flex;gap:clamp(12px,2vw,26px);flex-wrap:wrap;}
 .ring{width:136px;text-align:center;background:none;border:none;padding:0;cursor:pointer;font-family:inherit;color:inherit;}
 .ring-wrap{position:relative;width:116px;height:116px;margin:0 auto;transition:transform .25s ease;}
@@ -109,13 +109,13 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
 .rd-hint{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--hair);}
 
 /* ═════════ PRICING ═════════ */
-.tiers{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:900px;}
+.tiers{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:900px;align-items:start;}
 .tier{border:1px solid var(--hair);padding:30px 30px 32px;background:#fff;}
 .tier--wide{grid-column:1 / -1;}
 .tier--wide ul{columns:2;column-gap:40px;}
-.tier__top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:20px;}
-.tier__name{font-family:'Bebas Neue',sans-serif;font-size:23px;letter-spacing:.09em;text-transform:uppercase;line-height:1.1;}
-.tier__price{font-family:'Bebas Neue',sans-serif;font-size:25px;letter-spacing:.03em;white-space:nowrap;}
+.tier__top{margin-bottom:22px;}
+.tier__name{display:block;font-family:'Bebas Neue',sans-serif;font-size:23px;letter-spacing:.09em;text-transform:uppercase;line-height:1.1;}
+.tier__price{display:block;margin-top:6px;font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:.02em;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 .tier ul{list-style:none;}
 .tier li{font-size:14.5px;line-height:1.65;color:var(--body);padding-left:16px;position:relative;margin-bottom:7px;}
 .tier li::before{content:'';position:absolute;left:0;top:10px;width:5px;height:5px;border-radius:50%;background:#C6AEE2;}
@@ -281,7 +281,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
 <!-- ═══════ 4. NUMBERS ═══════ -->
 <section class="sec">
 
-  <div class="rings-band reveal rd1">
+  <div class="rings-grid reveal rd1">
     <div class="rings-title">INFLUENCE</div>
     <div class="rings">
       <button class="ring" data-pct="96" data-val="96" data-suffix="&times;"
@@ -301,9 +301,6 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
       </button>
     </div>
     <div class="rings-note">FROM 1,637<br>FOLLOWERS</div>
-  </div>
-
-  <div class="rings-band reveal rd2">
     <div class="rings-title demo">DEMO</div>
     <div class="rings">
       <button class="ring" data-pct="75" data-val="75" data-suffix="%"
@@ -322,6 +319,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
         <div class="ring-label">Women / Men</div>
       </button>
     </div>
+  </div>
+    <div></div>
   </div>
 
   <div class="ring-detail">
