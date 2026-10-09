@@ -70,15 +70,12 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
 /* ═════════ PROBLEM ═════════ */
 
 /* ═════════ FILM — HERO SECTIONS ═════════ */
-.film{padding:100px 8vw;border-top:1px solid var(--hair);display:grid;grid-template-columns:minmax(0,420px) 1fr;gap:clamp(36px,6vw,90px);align-items:center;}
-.film:first-of-type{border-top:0;}
-.film:nth-of-type(even){grid-template-columns:1fr minmax(0,420px);}
-.film:nth-of-type(even) .film-media{order:2;}
-.film:nth-of-type(even) .film-copy{order:1;}
+.films{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px);margin-top:44px;}
 .film-media{position:relative;width:100%;aspect-ratio:9/16;overflow:hidden;background:#E8E4DB;}
 .film-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
 .film-media .missing{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;font-size:12px;color:var(--stone);background:linear-gradient(135deg,rgba(168,194,239,.22),rgba(240,175,203,.28));}
-.film-head{font-family:'Bebas Neue',sans-serif;font-size:clamp(30px,4.6vw,58px);line-height:.98;letter-spacing:.01em;text-transform:uppercase;}
+.film-copy{margin-top:22px;}
+.film-head{font-family:'Bebas Neue',sans-serif;font-size:clamp(24px,3vw,40px);line-height:.98;letter-spacing:.01em;text-transform:uppercase;}
 .film-head .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 .film-link{display:inline-flex;align-items:center;gap:7px;margin-top:24px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);transition:color .2s;}
 .film-link:hover{color:var(--ink);}
@@ -211,6 +208,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
   .ring-val{font-size:23px;}
   .ring-label{font-size:9px;letter-spacing:.1em;}
   .ugc{grid-template-columns:1fr;}
+  .films{grid-template-columns:1fr;gap:40px;}
   .stills{gap:6px;}
   .tiers{grid-template-columns:1fr;}
   .tier--wide ul{columns:1;}
@@ -259,11 +257,10 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
 </section>
 
 <!-- ═══════ 3. WORK ═══════ -->
-<section class="sec" style="padding-bottom:20px;border-top:0">
+<section class="sec" style="border-top:0">
   <h2 class="sec-head reveal">UGC &amp; <span class="g">SHORT FORM</span></h2>
+  <div class="films reveal rd1" id="heroFilms"></div>
 </section>
-
-<div id="heroFilms"></div>
 
 <!-- ═══════ STILLS ═══════ -->
 <section class="sec">
@@ -531,16 +528,16 @@ function buildFilm(){
 
 function buildHeroFilms(){
   document.getElementById('heroFilms').innerHTML = CONFIG.heroFilms.map(f=>`
-    <section class="film">
-      <div class="film-media reveal">
+    <div class="film">
+      <div class="film-media">
         <video src="${f.mp4}" ${f.poster?`poster="${f.poster}"`:''}
                muted loop playsinline preload="none" data-film></video>
       </div>
-      <div class="film-copy reveal rd1">
+      <div class="film-copy">
         <h3 class="film-head">${f.head}</h3>
         ${f.ig?`<a class="film-link" href="${f.ig}" target="_blank" rel="noopener">View on Instagram <span>&#8599;</span></a>`:''}
       </div>
-    </section>`).join('');
+    </div>`).join('');
 }
 
 function buildRowFilms(){
