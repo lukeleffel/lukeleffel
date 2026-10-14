@@ -52,12 +52,21 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
 @media(max-width:760px){.nav__links{display:none;}.nav__burger{display:flex;}}
 
 /* ═════════ HERO ═════════ */
-.hero{padding:150px 8vw 70px;display:grid;grid-template-columns:1fr minmax(0,380px);gap:clamp(32px,6vw,80px);align-items:center;}
-.hero__film{position:relative;width:100%;aspect-ratio:9/16;overflow:hidden;background:#E8E4DB;}
-.hero__film video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
-.hero__title{font-family:'Anton',sans-serif;font-size:clamp(40px,7vw,104px);line-height:.94;letter-spacing:-.02em;text-transform:uppercase;}
+.hero{min-height:100vh;min-height:100svh;padding:120px 8vw 56px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(32px,5vw,80px);align-items:center;}
+.hero__eyebrow{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);margin-bottom:22px;display:flex;align-items:center;gap:14px;}
+.hero__eyebrow::before{content:'';width:36px;height:1px;background:var(--stone);}
+.hero__title{font-family:'Anton',sans-serif;font-size:clamp(44px,7.4vw,118px);line-height:.92;letter-spacing:-.02em;text-transform:uppercase;}
 .hero__title .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
-.hero__body{margin-top:26px;font-size:17px;line-height:1.8;color:var(--body);max-width:52ch;}
+.hero__body{margin-top:26px;font-size:17px;line-height:1.8;color:var(--body);max-width:46ch;}
+
+/* photo wall: three columns drifting in opposite directions */
+.wall{width:min(100%,calc(80vh * .8));justify-self:end;aspect-ratio:4/5;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;overflow:hidden;-webkit-mask-image:linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent);}
+.wall__col{animation:drift 44s linear infinite;will-change:transform;}
+.wall__col:nth-child(2){animation-direction:reverse;animation-duration:52s;}
+.wall__col:nth-child(3){animation-duration:60s;}
+.wall img{width:100%;aspect-ratio:4/5;object-fit:cover;margin-bottom:12px;background:#E8E4DB;}
+@keyframes drift{from{transform:translateY(-6%);}to{transform:translateY(calc(-50% - 6%));}}
+@media(prefers-reduced-motion:reduce){.wall__col{animation:none;}}
 
 /* ═════════ SECTION ═════════ */
 .sec{padding:72px 8vw;border-top:1px solid var(--hair);}
@@ -198,8 +207,9 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
   .still:nth-child(5){grid-column:span 2;aspect-ratio:3/2;}
 }
 @media(max-width:760px){
-  .hero{grid-template-columns:1fr;padding:120px 5vw 28px;gap:32px;}
-  .hero__film{max-width:320px;}
+  .hero{min-height:0;grid-template-columns:1fr;padding:104px 5vw 28px;gap:36px;}
+  .wall{width:100%;justify-self:stretch;gap:8px;}
+  .wall img{margin-bottom:8px;}
   .sec,.cta-strip{padding-left:5vw;padding-right:5vw;}
   .sec{padding-top:60px;padding-bottom:60px;}
   .rings-grid{grid-template-columns:1fr;gap:40px;}
@@ -226,9 +236,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
     <a href="/">Photography</a>
     <a href="https://cafesmagazine.com" target="_blank" rel="noopener">Cafes Magazine</a>
     <a href="https://cafesmagazine.com/pages/wearecafes" target="_blank" rel="noopener">We Are Cafes</a>
-    <a href="/about.html">About</a>
+    <a href="/about.html">About/Contact</a>
     <a href="/partner.html" class="current">Partner</a>
-    <a href="#contact" onclick="event.preventDefault();openContact()">Work With Me</a>
   </div>
   <button class="nav__burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
@@ -237,22 +246,18 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
   <a href="/">Photography</a>
   <a href="https://cafesmagazine.com" target="_blank" rel="noopener">Cafes Magazine</a>
   <a href="https://cafesmagazine.com/pages/wearecafes" target="_blank" rel="noopener">We Are Cafes</a>
-  <a href="/about.html">About</a>
-  <!-- ↓↓ COLLAB HOOK — paste this block into index.html + about.html drawers ↓↓ -->
+  <a href="/about.html">About/Contact</a>
   <a href="/partner.html" class="partner-hook">See The Numbers<small>For brands &amp; collab partners</small></a>
-  <!-- ↑↑ ------------------------------------------------------------------ ↑↑ -->
-  <a href="#contact" onclick="event.preventDefault();openContact()">Work With Me</a>
 </div>
 
 <!-- ═══════ 1. HERO ═══════ -->
 <section class="hero">
   <div class="hero__copy">
+    <p class="hero__eyebrow">For brands &amp; collab partners</p>
     <h1 class="hero__title">BRAND AND CPG<br><span class="g">AD CREATIVE</span></h1>
     <p class="hero__body">UGC, reels, and campaign stills for consumer and lifestyle brands. Shot in home, in studio or on location.</p>
   </div>
-  <div class="hero__film">
-    <video src="media/hero.mp4" poster="media/hero.jpg" muted loop playsinline autoplay preload="metadata" data-film></video>
-  </div>
+  <div class="wall" id="wall" aria-hidden="true"></div>
 </section>
 
 <!-- ═══════ 3. WORK ═══════ -->
@@ -278,7 +283,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
 </section>
 
 <!-- ═══════ 4. NUMBERS ═══════ -->
-<section class="sec">
+<section class="sec" id="numbers">
 
   <div class="rings-grid reveal rd1">
     <div class="rings-group">
@@ -458,38 +463,38 @@ const CONFIG = {
   showPricing: true,
   tiers: [
     { name:"Carousel Post", price:"$250", items:[
-      "Up to 8 finished product images",
+      "5 finished product images",
       "Collaboration post with your caption",
       "Raw files available",
-      "90 day licensing"
+      "30 day licensing"
     ]},
     { name:"UGC / Scripted Reel", price:"$350", items:[
       "45–60 second product feature reel",
-      "Collaboration post, silent or dialogue",
+      "Collaboration post, music or scripted",
       "Raw file available",
-      "90 day licensing"
+      "30 day licensing"
     ]},
-    { name:"Ad Creative", price:"$2,000", items:[
+    { name:"Ad Creative", price:"$2,000", from:true, items:[
       "60–90 second reel",
       "Collaboration post if desired",
       "Raw file standard",
-      "90 day licensing"
+      "30 day licensing"
     ]},
     { name:"Affiliate &amp; Gifting", price:"Please inquire", items:[
-      "30 second dialogue reel",
-      "Collaboration post",
-      "3 story mentions with link",
+      "30 second reel",
+      "Organic collaboration post",
+      "Story mention with link",
       "Code with commission via ShopMy or your site"
     ]},
-    { name:"Monthly Campaign", price:"$1,000 / month", wide:true, items:[
+    { name:"Monthly Campaign", price:"$1,000 / month", from:true, wide:true, items:[
       "Content produced on cadence",
       "Priority timelines",
       "Consistent creative direction",
-      "90 day licensing standard",
+      "30 day licensing standard",
       "3, 6 and 12 month options"
     ]}
   ],
-  pricingTerms: "Send your brand guidelines, or we'll take creative direction. 90 day organic and paid usage is standard. Affiliate and gifting partnerships are welcome to inquire.",
+  pricingTerms: "Send your brand guidelines, or we'll take creative direction. 30 day organic and paid usage is standard. Affiliate and gifting partnerships are welcome to inquire.",
 
   /* ── MARQUEE ─────────────────────────────────────── */
   brands: [
@@ -515,8 +520,21 @@ const CONFIG = {
 document.addEventListener('DOMContentLoaded', init);
 
 function init(){
-  buildFilm(); buildPricing(); buildMarquee();
+  buildWall(); buildFilm(); buildPricing(); buildMarquee();
   wireNav(); wireReveals(); wireRings(); wireContact();
+}
+
+/* ---------- HERO PHOTO WALL ---------- */
+const WALL=[
+  [["276962901/b21e994e895ef914b020f9b6d61caf83","Coquine Market"],["577358301/13199789b28e740806ecb8c50f378bf1","Not Neutral x Little Cat"],["404887611/26d47f46a4d5f4e5fb95419f3612f1f9","Emmett's Cafe"],["548005401/131ced6ef3f1583f1412db9ec340483d","Pixies Brew"]],
+  [["983671211/f44f529189713f127f30176f262e7823","Ratio"],["519613611/6eda1b976e2acf191233d0a1c9fb9d6a","Sycamore"],["433839801/df4a71c4a3d7022288d19b8a70baa7e4","Bada Bean Bada Booze"],["075547111/b74b071f3752edc1a3829f3417ec7b15","Wild Slice","50% 8%"]],
+  [["577358301/3e8be5fc4cc98c3750546a5a9e8a55e3","Not Neutral x Collective Espresso"],["782382101/ce6fabc2e12fe57eca7e3939d5716ae8","Third Wave Water"],["675217101/41e1b6f0ef1446016bc831cd4c175e14","The Lox"],["577358301/94d172f103b847e9cc12fb6964cdb430","Not Neutral x Sycamore"]]
+];
+function buildWall(){
+  document.getElementById('wall').innerHTML=WALL.map(col=>{
+    const one=col.map(([id,alt,l])=>`<img src="https://images.pixieset.com/${id}-xxlarge.jpg" alt="${alt}"${l?` style="object-position:${l}"`:''} decoding="async">`).join('');
+    return `<div class="wall__col">${one}${one}</div>`;
+  }).join('');
 }
 
 /* ---------- FILM ---------- */
@@ -624,7 +642,7 @@ function buildPricing(){
     <div class="tier${t.wide?' tier--wide':''}">
       <div class="tier__top">
         <span class="tier__name">${t.name}</span>
-        <span class="tier__price">${t.price.charAt(0)==='$' ? 'From '+t.price : t.price}</span>
+        <span class="tier__price">${t.from ? 'From '+t.price : t.price}</span>
       </div>
       <ul>${t.items.map(i=>`<li>${i}</li>`).join('')}</ul>
     </div>`).join('');
