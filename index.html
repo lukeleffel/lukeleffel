@@ -161,6 +161,8 @@ a:focus-visible,button:focus-visible{outline:2px solid #C6AEE2;outline-offset:3p
 .nav__mobile.open{display:flex;}
 .nav__mobile a{font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:.04em;}
 .nav__mobile a:hover{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.nav__mobile a.partner-hook{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-align:center;}
+.nav__mobile a.partner-hook small{display:block;font-family:'Inter',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--stone);-webkit-text-fill-color:var(--stone);margin-top:8px;}
 @media(max-width:760px){.nav__links{display:none;}.nav__burger{display:flex;}}
 
 /* HERO */
@@ -335,12 +337,13 @@ a:focus-visible,button:focus-visible{outline:2px solid #C6AEE2;outline-offset:3p
 <nav class="nav" id="nav">
   <a href="#" class="nav__mark">LUKE LEFFEL</a>
   <div class="nav__links">
+    <a href="/">Photography</a>
     <a href="https://cafesmagazine.com" target="_blank" rel="noopener">Cafes Magazine</a>
     <!-- WE ARE CAFES LINK — update href here when URL is ready -->
     <a href="https://cafesmagazine.com/pages/wearecafes" target="_blank" rel="noopener">We Are Cafes</a>
     <!-- ABOUT LINK — points to the current dark site saved as about.html in the same repo -->
     <a href="/about.html">About/Contact</a>
-    <a href="#contact" onclick="event.preventDefault();openContact()">Work With Me</a>
+    <a href="/partner.html">Partner</a>
   </div>
   <button class="nav__burger" id="burger" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -348,12 +351,13 @@ a:focus-visible,button:focus-visible{outline:2px solid #C6AEE2;outline-offset:3p
 </nav>
 
 <div class="nav__mobile" id="mobileNav">
+  <a href="/">Photography</a>
   <a href="https://cafesmagazine.com" target="_blank" rel="noopener">Cafes Magazine</a>
   <!-- WE ARE CAFES LINK — update href here when URL is ready -->
   <a href="https://cafesmagazine.com/pages/wearecafes" target="_blank" rel="noopener">We Are Cafes</a>
   <!-- ABOUT LINK — points to the current dark site saved as about.html in the same repo -->
   <a href="/about.html">About/Contact</a>
-  <a href="#contact" onclick="event.preventDefault();openContact()">Work With Me</a>
+  <a href="/partner.html" class="partner-hook">See The Numbers<small>For brands &amp; collab partners</small></a>
 </div>
 
 <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Food, Cafe & Event Photographer Columbus Ohio — Brand, Lifestyle, Event & Menu Photography | Luke Leffel</h1>
