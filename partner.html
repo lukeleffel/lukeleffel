@@ -253,7 +253,6 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
 <!-- ═══════ 1. HERO ═══════ -->
 <section class="hero">
   <div class="hero__copy">
-    <p class="hero__eyebrow"></p>
     <h1 class="hero__title">BRAND AND CPG<br><span class="g">AD CREATIVE</span></h1>
     <p class="hero__body">UGC, reels, and campaign stills for consumer and lifestyle brands. Shot in home, in studio or on location.</p>
   </div>
@@ -278,6 +277,13 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
     </div>
 </section>
 
+<!-- ═══════ 5. PRICING ═══════ -->
+<section class="sec" id="pricingSection" style="display:none">
+  <h2 class="sec-head reveal"><span class="g">PRICING</span></h2>
+  <div class="tiers reveal rd1" id="tiers"></div>
+  <p class="terms reveal rd2" id="terms"></p>
+</section>
+
 <section class="sec">
   <div class="row-films reveal rd1" id="rowFilms"></div>
 </section>
@@ -289,11 +295,10 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
     <div class="rings-group">
       <div class="rings-head">
         <span class="rings-title">INFLUENCE</span>
-        <span class="rings-note">From 1,637 followers</span>
       </div>
       <div class="rings">
       <button class="ring" data-pct="96" data-val="96" data-suffix="&times;"
-        data-detail="158,100 people reached in 90 days from a following of 1,637.">
+        data-detail="158,100 people reached in 90 days.">
         <div class="ring-wrap"><svg class="ring-svg" viewBox="0 0 116 116"><circle class="ring-track" cx="58" cy="58" r="53"/><circle class="ring-arc" cx="58" cy="58" r="53" stroke="url(#gradA)"/></svg><div class="ring-val">0&times;</div></div>
         <div class="ring-label">Reach multiple</div>
       </button>
@@ -342,13 +347,6 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
     <linearGradient id="gradA" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F0AFCB"/><stop offset="100%" stop-color="#C6AEE2"/></linearGradient>
     <linearGradient id="gradB" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#A8C2EF"/><stop offset="100%" stop-color="#F0AFCB"/></linearGradient>
   </defs></svg>
-</section>
-
-<!-- ═══════ 5. PRICING ═══════ -->
-<section class="sec" id="pricingSection" style="display:none">
-  <h2 class="sec-head reveal"><span class="g">PRICING</span></h2>
-  <div class="tiers reveal rd1" id="tiers"></div>
-  <p class="terms reveal rd2" id="terms"></p>
 </section>
 
 <!-- ═══════ MARQUEE ═══════ -->
@@ -466,35 +464,35 @@ const CONFIG = {
       "5 finished product images",
       "Collaboration post with your caption",
       "Raw files available",
-      "30 day licensing"
+      "60 day licensing"
     ]},
     { name:"UGC / Scripted Reel", price:"$350", items:[
       "45–60 second product feature reel",
       "Collaboration post, music or scripted",
       "Raw file available",
-      "30 day licensing"
+      "60 day licensing"
     ]},
     { name:"Ad Creative", price:"$2,000", from:true, items:[
       "60–90 second reel",
       "Collaboration post if desired",
       "Raw file standard",
-      "30 day licensing"
+      "60 day licensing"
     ]},
-    { name:"Affiliate &amp; Gifting", price:"Please inquire", items:[
+    { name:"Gifting", price:"Please inquire", items:[
       "30 second reel",
       "Organic collaboration post",
       "Story mention with link",
       "Code with commission via ShopMy or your site"
     ]},
-    { name:"Monthly Campaign", price:"$1,000 / month", from:true, wide:true, items:[
+    { name:"Ongoing Retainer", price:"$1,000 / month", from:true, wide:true, items:[
       "Content produced on cadence",
       "Priority timelines",
       "Consistent creative direction",
-      "30 day licensing standard",
+      "60 day licensing standard",
       "3, 6 and 12 month options"
     ]}
   ],
-  pricingTerms: "Send your brand guidelines, or we'll take creative direction. 30 day organic and paid usage is standard. Affiliate and gifting partnerships are welcome to inquire.",
+  pricingTerms: "Send your brand guidelines, or we'll take creative direction. 60 day organic and paid usage is standard. Gifting partnerships are welcome to inquire.",
 
   /* ── MARQUEE ─────────────────────────────────────── */
   brands: [
