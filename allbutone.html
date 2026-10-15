@@ -1,30 +1,32 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luke Leffel — All But One</title>
-<meta name="description" content="All But One — photography by Luke Leffel.">
+<title>Luke Leffel | All But One Menu Photography</title>
+<meta name="description" content="All But One menu photography by Luke Leffel.">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="/favicon.svg">
-  
+<meta name="theme-color" content="#FFFFFF">
+<meta property="og:title" content="All But One Menu | Photography by Luke Leffel">
+<meta property="og:image" content="https://images.pixieset.com/851183901/dedf11a384c4f4e09acaaa0b4708f2a4-xxlarge.jpg">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap');
-:root{--bone:#F7F6F2;--ink:#16140F;--stone:#8A857C;--hair:#E0DCD2;--grad:linear-gradient(100deg,#A8C2EF,#C6AEE2,#F0AFCB);}
+:root{--bone:#FFFFFF;--ink:#16140F;--stone:#8A857C;--hair:#E0DCD2;--grad:linear-gradient(100deg,#A8C2EF,#C6AEE2,#F0AFCB);}
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{background:var(--bone);color:var(--ink);font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden;}
 a{color:inherit;text-decoration:none;}
 img{display:block;max-width:100%;}
 ::selection{background:#C6AEE2;color:var(--ink);}
+a:focus-visible,button:focus-visible{outline:2px solid #C6AEE2;outline-offset:3px;}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important;}}
 
 /* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:24px 5vw;background:rgba(247,246,242,.96);}
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:24px 5vw;background:rgba(255,255,255,.96);}
 .nav__mark{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.06em;}
 .nav__links{display:flex;align-items:center;gap:28px;}
-.nav__links a{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;}
+.nav__links a{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;}
 .nav__links a:hover{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 .nav__burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;background:none;border:none;cursor:pointer;padding:4px;}
 .nav__burger span{display:block;width:24px;height:1.5px;background:var(--ink);transition:transform .3s ease,opacity .3s ease;}
@@ -37,46 +39,35 @@ img{display:block;max-width:100%;}
 .nav__mobile a:hover{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 @media(max-width:760px){.nav__links{display:none;}.nav__burger{display:flex;}}
 
-/* PROJECT HEADER */
-.project-head{padding:140px 6vw 80px;text-align:center;}
+/* HEADER */
+.project-head{padding:140px 6vw 56px;text-align:center;}
 .project-head__title{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,7vw,96px);line-height:.96;letter-spacing:.01em;}
 .project-head__title a:hover{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 
-/* GALLERY */
-.stack{padding:4vw 6vw 8vw;display:flex;flex-direction:column;gap:7vw;}
-.row{display:flex;align-items:flex-start;}
-.row--single{justify-content:center;}
-.row--pair{justify-content:space-between;gap:4vw;}
-.stack__item img{width:100%;height:auto;display:block;}
-.stack__caption{margin-top:14px;font-size:13px;color:var(--stone);}
-.row--single .stack__item{width:62%;}
-.row--single .stack__item--wide{width:78%;}
-.row--single .stack__item--narrow{width:50%;}
-.row--single .stack__item--left{margin-right:auto;}
-.row--single .stack__item--right{margin-left:auto;}
-.row--pair .stack__item{width:46%;}
-.row--pair .stack__item--small{width:38%;}
-.row--pair .stack__item--large{width:54%;}
-.stack__item--drop{margin-top:3vw;}
-.stack__item--lift{margin-top:-2vw;}
-@media(max-width:760px){
-  .stack{gap:10vw;}
-  .row{flex-wrap:wrap;}
-  .row--single .stack__item,.row--single .stack__item--wide,.row--single .stack__item--narrow,
-  .row--pair .stack__item,.row--pair .stack__item--small,.row--pair .stack__item--large{width:100%;}
-  .row--pair{flex-direction:column;gap:8vw;}
-  .stack__item{margin-top:0 !important;margin-left:0 !important;margin-right:0 !important;}
+/* ALIGNED GRID: six columns on a square unit.
+   landscape = 3 wide x 2 tall, portrait = 2 wide x 3 tall, wide = 6 x 4.
+   Every row of photos lines up edge to edge. */
+.gal{container-type:inline-size;padding:0 6vw 8vw;}
+.grid{--g:10px;display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:calc((100cqw - 5 * var(--g)) / 6);gap:var(--g);}
+.c{overflow:hidden;background:#fff;}
+.c img{width:100%;height:100%;object-fit:cover;}
+.c.l{grid-column:span 3;grid-row:span 2;}
+.c.p{grid-column:span 2;grid-row:span 3;}
+.c.w{grid-column:span 6;grid-row:span 4;}
+.c.m{grid-column:span 4;grid-row:span 3;}
+@media(max-width:700px){
+  .gal{padding:0 4vw 12vw;}
+  .grid{--g:6px;grid-template-columns:repeat(2,1fr);grid-auto-rows:auto;grid-auto-flow:dense;}
+  .c.p{grid-column:span 1;grid-row:auto;aspect-ratio:2/3;}
+  .c.l,.c.w,.c.m{grid-column:span 2;grid-row:auto;aspect-ratio:3/2;}
 }
 
-/* CYCLE ARROWS */
+/* BACK + FOOTER */
 .cycle{padding:48px 6vw;display:flex;justify-content:space-between;align-items:center;}
 .cycle__arrow{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--stone);transition:color .2s ease;}
 .cycle__arrow:hover{color:var(--ink);}
 .cycle__arrow-icon{font-family:'Bebas Neue',sans-serif;font-size:22px;transition:transform .2s ease;}
 .cycle__arrow--prev:hover .cycle__arrow-icon{transform:translateX(-4px);}
-.cycle__arrow--next:hover .cycle__arrow-icon{transform:translateX(4px);}
-
-/* FOOTER */
 .footer{background:var(--ink);padding:32px 5vw;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(247,246,242,.3);}
 .footer a:hover{color:rgba(247,246,242,.7);}
 .footer__links{display:flex;gap:24px;flex-wrap:wrap;}
@@ -84,246 +75,47 @@ img{display:block;max-width:100%;}
 </head>
 <body>
 
-<!-- ============================================================
-     COPY THIS ENTIRE BLOCK into any gallery page.
-     Replace the existing nav + mobile nav + script.
-     Update We Are Cafes href when podcast page is live.
-     ============================================================ -->
-
-<!-- ═══ NAV CSS — paste inside your <style> block ═══ -->
-<style id="nav-css-paste-into-style-block">
-/* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:24px 5vw;background:rgba(247,246,242,.96);}
-.nav__mark{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.06em;}
-.nav__links{display:flex;align-items:center;gap:28px;}
-.nav__links a{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;}
-.nav__links a:hover{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
-.nav__burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;background:none;border:none;cursor:pointer;padding:4px;}
-.nav__burger span{display:block;width:24px;height:1.5px;background:var(--ink);transition:transform .3s ease,opacity .3s ease;}
-.nav__burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
-.nav__burger.open span:nth-child(2){opacity:0;}
-.nav__burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
-.nav__mobile{display:none;position:fixed;inset:0;z-index:190;background:var(--bone);flex-direction:column;align-items:center;justify-content:center;gap:32px;}
-.nav__mobile.open{display:flex;}
-.nav__mobile a{font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:.04em;}
-.nav__mobile a:hover{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
-@media(max-width:760px){.nav__links{display:none;}.nav__burger{display:flex;}}
-</style>
-
-<!-- ═══ NAV HTML — replace your existing nav + mobile nav ═══ -->
 <nav class="nav" id="nav">
   <a href="/" class="nav__mark">LUKE LEFFEL</a>
   <div class="nav__links">
+    <a href="/">Photography</a>
     <a href="https://cafesmagazine.com" target="_blank" rel="noopener">Cafes Magazine</a>
-    <!-- WE ARE CAFES LINK — update href here when URL is ready -->
     <a href="https://cafesmagazine.com/pages/wearecafes" target="_blank" rel="noopener">We Are Cafes</a>
     <a href="/about.html">About/Contact</a>
   </div>
-  <button class="nav__burger" id="burger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="nav__burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
 <div class="nav__mobile" id="mobileNav">
+  <a href="/">Photography</a>
   <a href="https://cafesmagazine.com" target="_blank" rel="noopener">Cafes Magazine</a>
-  <!-- WE ARE CAFES LINK — update href here when URL is ready -->
   <a href="https://cafesmagazine.com/pages/wearecafes" target="_blank" rel="noopener">We Are Cafes</a>
   <a href="/about.html">About/Contact</a>
 </div>
 
-<!-- ═══ NAV + HIDE-IMAGE SCRIPT — replace your existing script block ═══ -->
-<script>
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 20);
-});
-
-const burger = document.getElementById('burger');
-const mobileNav = document.getElementById('mobileNav');
-burger.addEventListener('click', () => {
-  burger.classList.toggle('open');
-  mobileNav.classList.toggle('open');
-  document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
-});
-mobileNav.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => {
-    burger.classList.remove('open');
-    mobileNav.classList.remove('open');
-    document.body.style.overflow = '';
-  });
-});
-
-// Hide any photo slot with no real URL or that fails to load
-document.querySelectorAll('.stack__item img').forEach(img => {
-  const src = img.getAttribute('src') || '';
-  const isPlaceholder = src.indexOf('PASTE_IMAGE_URL') === 0 || src.trim() === '' || src === 'paste here' || src === 'IMAGE HERE' || src === 'IMAGE';
-  const hideSlot = () => {
-    const item = img.closest('.stack__item');
-    if (item) item.style.display = 'none';
-  };
-  if (isPlaceholder) { hideSlot(); }
-  else { img.addEventListener('error', hideSlot); }
-});
-</script>
-
-<div class="nav__mobile" id="mobileNav">
-  <a href="https://cafesmagazine.com" target="_blank" rel="noopener">Cafes Magazine</a>
-  <!-- WE ARE CAFES LINK — update href here when URL is ready -->
-  <a href="https://cafesmagazine.com" target="_blank" rel="noopener">We Are Cafes</a>
-  <a href="/about.html">About/Contact</a>
-</div>
-
-
 <header class="project-head">
-  <!-- EDIT: project title — also the link text. href points to the brand's own site -->
-  <h1 class="project-head__title">
-    <a href="https://allbutonedinner.com/about" target="_blank" rel="noopener">All But One</a>
-  </h1>
+  <h1 class="project-head__title"><a href="https://allbutonedinner.com/about" target="_blank" rel="noopener">All But One Menu</a></h1>
 </header>
 
-<main class="stack">
-
-  <!-- ============================================================
-       UP TO 20 PHOTOS, grouped into ROWS.
-       Each <div class="row row--single">...</div> holds ONE photo.
-       Each <div class="row row--pair">...</div> holds TWO photos
-       side by side.
-
-       IMPORTANT: every <div class="stack__item ...">...</div> MUST be
-       nested INSIDE a <div class="row ...">...</div>. A stack__item
-       placed outside a row will not size correctly.
-
-       Width modifiers (optional, mix and match):
-         In a single row:  stack__item--wide / --narrow / --left / --right
-         In a pair row:    stack__item--small / --large (uneven pairing)
-       Vertical nudge (optional, any row):
-         stack__item--drop / --lift   nudges a photo down or up slightly
-
-       Caption is optional — delete the <div class="stack__caption">
-       line if you don't want one.
-       Copy/paste a whole <div class="row ...">...</div> block to add
-       more rows. Up to 20 photos total, in any mix of single/pair rows.
-       ============================================================ -->
-
-  <div class="row row--single">
-    <div class="stack__item stack__item--wide">
-      <img src="https://images.pixieset.com/851183901/dedf11a384c4f4e09acaaa0b4708f2a4-xxlarge.jpg" alt="All But One" loading="eager">
-    </div>
+<!-- To reorder: keep each group of three portraits (class "c p") followed by two landscapes (class "c l") so rows stay aligned. A "c w" photo is a full-width landscape. -->
+<main class="gal">
+  <div class="grid">
+    <figure class="c w"><img src="https://images.pixieset.com/851183901/dedf11a384c4f4e09acaaa0b4708f2a4-xxlarge.jpg" alt="All But One menu photography by Luke Leffel" loading="eager"></figure>
+    <figure class="c l"><img src="https://images.pixieset.com/851183901/853c3f54ff8aae5c3f72d1af5a8a8d4b-xxlarge.jpg" alt="All But One menu photography by Luke Leffel" loading="eager"></figure>
+    <figure class="c l"><img src="https://images.pixieset.com/851183901/453e1275e5ecdc4939892a2c657a20f3-xxlarge.jpg" alt="All But One menu photography by Luke Leffel" loading="eager"></figure>
+    <figure class="c l"><img src="https://images.pixieset.com/851183901/28c9a9e429a1eb5ce5476c874c1fae75-xxlarge.jpg" alt="All But One menu photography by Luke Leffel" loading="lazy"></figure>
+    <figure class="c l"><img src="https://images.pixieset.com/851183901/0d8f0493874cf724e1dc57344d4b4665-xxlarge.jpg" alt="All But One menu photography by Luke Leffel" loading="lazy"></figure>
+    <figure class="c p"><img src="https://images.pixieset.com/851183901/64463bfeb7085ab89134ad24c73b66f5-xxlarge.jpg" alt="All But One menu photography by Luke Leffel" loading="lazy"></figure>
+    <figure class="c m"><img src="https://images.pixieset.com/851183901/b89763439aa3513ce3e131e053a2b3f6-xxlarge.jpg" alt="All But One menu photography by Luke Leffel" loading="lazy"></figure>
+    <figure class="c l"><img src="https://images.pixieset.com/851183901/3dc6eb05e9eed3bae936f1012518bf10-xxlarge.jpg" alt="All But One menu photography by Luke Leffel" loading="lazy"></figure>
+    <figure class="c l"><img src="https://images.pixieset.com/851183901/490b751d056078b39df8137bc57991d6-xxlarge.jpg" alt="All But One menu photography by Luke Leffel" loading="lazy"></figure>
   </div>
-
-  <div class="row row--pair">
-    <div class="stack__item stack__item--small">
-      <img src="https://images.pixieset.com/851183901/853c3f54ff8aae5c3f72d1af5a8a8d4b-xxlarge.jpg" alt="All But One" loading="lazy">
-    </div>
-    <div class="stack__item stack__item--large stack__item--drop">
-      <img src="https://images.pixieset.com/851183901/453e1275e5ecdc4939892a2c657a20f3-xxlarge.jpg" alt="All But One" loading="lazy">
-    </div>
-  </div>
-
-  <div class="row row--single">
-    <div class="stack__item stack__item--narrow stack__item--left">
-      <img src="https://images.pixieset.com/851183901/28c9a9e429a1eb5ce5476c874c1fae75-xxlarge.jpg" alt="All But One" loading="lazy">
-    </div>
-  </div>
-
-  <div class="row row--single">
-    <div class="stack__item stack__item--narrow stack__item--right">
-      <img src="https://images.pixieset.com/851183901/0d8f0493874cf724e1dc57344d4b4665-xxlarge.jpg" alt="All But One" loading="lazy">
-    </div>
-  </div>
-
-  <div class="row row--single">
-    <div class="stack__item stack__item--wide stack__item--lift">
-      <img src="https://images.pixieset.com/851183901/64463bfeb7085ab89134ad24c73b66f5-xxlarge.jpg" alt="All But One" loading="lazy">
-    </div>
-  </div>
-
-  <div class="row row--pair">
-    <div class="stack__item stack__item--large">
-      <img src="https://images.pixieset.com/851183901/3dc6eb05e9eed3bae936f1012518bf10-xxlarge.jpg" alt="All But One" loading="lazy">
-    </div>
-    <div class="stack__item stack__item--small stack__item--drop">
-      <img src="https://images.pixieset.com/851183901/490b751d056078b39df8137bc57991d6-xxlarge.jpg" alt="All But One" loading="lazy">
-    </div>
-  </div>
-
-  <div class="row row--single">
-    <div class="stack__item stack__item--narrow stack__item--left">
-      <img src="" alt="All But One" loading="lazy">
-    </div>
-  </div>
-
-  <div class="row row--pair">
-    <div class="stack__item stack__item--small">
-      <img src="paste here" alt="All But One" loading="lazy">
-    </div>
-    <div class="stack__item stack__item--large">
-      <img src="paste here" alt="All But One" loading="lazy">
-    </div>
-  </div>
-
-  <div class="row row--single">
-    <div class="stack__item stack__item--wide stack__item--drop">
-      <img src="https://images.pixieset.com/851183901/b89763439aa3513ce3e131e053a2b3f6-xxlarge.jpg" alt="All But One" loading="lazy">
-    </div>
-  </div>
-
-  <div class="row row--single">
-    <div class="stack__item stack__item--narrow stack__item--right">
-      <img src="" alt="All But One" loading="lazy">
-    </div>
-  </div>
-
-  <div class="row row--pair">
-    <div class="stack__item stack__item--large stack__item--lift">
-      <img src="" alt="All But One" loading="lazy">
-    </div>
-    <div class="stack__item stack__item--small">
-      <img src="" alt="All But One" loading="lazy">
-    </div>
-  </div>
-
-  <div class="row row--single">
-    <div class="stack__item stack__item--wide">
-      <img src="paste herwe" alt="All But One" loading="lazy">
-    </div>
-  </div>
-
-  <div class="row row--pair">
-    <div class="stack__item stack__item--small stack__item--drop">
-      <img src="paste here" alt="All But One" loading="lazy">
-    </div>
-    <div class="stack__item stack__item--large">
-      <img src="paste here" alt="All But One" loading="lazy">
-    </div>
-  </div>
-
-  <div class="row row--single">
-    <div class="stack__item stack__item--narrow stack__item--left stack__item--lift">
-      <img src="paste here" alt="All But One" loading="lazy">
-    </div>
-  </div>
-
-  <div class="row row--pair">
-    <div class="stack__item stack__item--small">
-      <img src="PASTE_IMAGE_URL_19_HERE" alt="All But One" loading="lazy">
-    </div>
-    <div class="stack__item stack__item--large">
-      <img src="PASTE_IMAGE_URL_20_HERE" alt="All But One" loading="lazy">
-    </div>
-  </div>
-
 </main>
 
-<!-- EDIT: point these at the previous and next project pages -->
 <nav class="cycle">
-  <a href="tww.html" class="cycle__arrow cycle__arrow--prev" aria-label="Previous project">
+  <a href="/#menu" class="cycle__arrow cycle__arrow--prev" aria-label="Back to menu">
     <span class="cycle__arrow-icon">←</span>
-    <span class="cycle__arrow-label">Third Wave Water</span>
-  </a>
-  <a href="coquine.html" class="cycle__arrow cycle__arrow--next" aria-label="Next project">
-    <span class="cycle__arrow-label">Coquine</span>
-    <span class="cycle__arrow-icon">→</span>
+    <span class="cycle__arrow-label">Menu</span>
   </a>
 </nav>
 
@@ -337,24 +129,10 @@ document.querySelectorAll('.stack__item img').forEach(img => {
 </footer>
 
 <script>
-// Hide any photo slot that has no real URL yet, or whose URL fails to load —
-// no broken-image icon, no placeholder box, just empty space where it would go.
-document.querySelectorAll('.stack__item img').forEach(img => {
-  const src = img.getAttribute('src') || '';
-  const isPlaceholder = src.indexOf('PASTE_IMAGE_URL') === 0 || src.trim() === '';
-
-  const hideSlot = () => {
-    const item = img.closest('.stack__item');
-    if (item) item.style.display = 'none';
-  };
-
-  if (isPlaceholder) {
-    hideSlot();
-  } else {
-    img.addEventListener('error', hideSlot);
-  }
-});
+const burger=document.getElementById('burger'),mobileNav=document.getElementById('mobileNav');
+burger.addEventListener('click',()=>{burger.classList.toggle('open');mobileNav.classList.toggle('open');document.body.style.overflow=mobileNav.classList.contains('open')?'hidden':'';});
+mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');mobileNav.classList.remove('open');document.body.style.overflow='';}));
+document.querySelectorAll('.c img').forEach(img=>img.addEventListener('error',()=>{img.closest('.c').style.display='none';}));
 </script>
-
 </body>
 </html>
