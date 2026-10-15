@@ -260,6 +260,52 @@ a:focus-visible,button:focus-visible{outline:2px solid #C6AEE2;outline-offset:3p
 .tile:hover .tile__label{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none;}
 @media(max-width:640px){.grid{grid-template-columns:1fr;}}
 
+/* MENU + EVENTS SECTIONS */
+.feature{padding:clamp(80px,10vw,140px) 8vw 0;}
+.feature__head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px 40px;margin-bottom:clamp(28px,4vw,52px);}
+.feature__eyebrow{display:block;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);margin-bottom:16px;}
+.feature__hed{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6.4vw,92px);line-height:.94;letter-spacing:.01em;text-transform:uppercase;}
+.feature__hed .accent{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.feature__copy p{font-size:17px;line-height:1.8;color:#4A453D;max-width:52ch;}
+.feature__actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;}
+.feature__link{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);border-bottom:1px solid var(--hair);padding-bottom:3px;transition:color .2s,border-color .2s;}
+.feature__link:hover{color:var(--ink);border-color:var(--ink);}
+.slot{position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(168,194,239,.22),rgba(240,175,203,.28)),#E8E4DB;}
+.slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.slot span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);}
+.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.menu-grid .slot{aspect-ratio:4/5;}
+.ev-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;}
+.ev-grid .tile,.ev-grid .slot{aspect-ratio:4/5;}
+@media(max-width:640px){.feature{padding-left:5vw;padding-right:5vw;}.menu-grid{grid-template-columns:1fr 1fr;}.menu-grid .slot:nth-child(3){grid-column:span 2;aspect-ratio:3/2;}.ev-grid{grid-template-columns:1fr 1fr;}.ev-grid>:nth-child(5){grid-column:span 2;aspect-ratio:3/2;}}
+
+/* MOSAIC: gap-free, big photos (12-col, fixed row heights) */
+.mosaic{display:grid;grid-template-columns:repeat(12,1fr);gap:8px;grid-auto-rows:clamp(200px,26vw,440px);}
+.mosaic .tile{aspect-ratio:auto;grid-column:span 4;}
+.mosaic .tile__label{inset:auto 14px 12px auto;display:block;text-align:right;font-size:15px;}
+.mosaic--menu .tile:nth-child(1),.mosaic--menu .tile:nth-child(4){grid-column:span 7;}
+.mosaic--menu .tile:nth-child(2),.mosaic--menu .tile:nth-child(3){grid-column:span 5;}
+.mosaic--menu .tile{background:transparent;}
+.mosaic--menu .tile::after{display:none;}
+.mosaic--menu .tile img{mix-blend-mode:multiply;}
+.mosaic--menu .tile__label{color:var(--ink);text-shadow:none;}
+.mosaic--events .tile:nth-child(1){grid-column:span 7;}
+.mosaic--events .tile:nth-child(2){grid-column:span 5;}
+.mosaic--portraits{grid-template-rows:30vw 22vw;grid-auto-rows:22vw;}
+.mosaic--portraits .tile:nth-child(1){grid-column:span 6;}
+.mosaic--portraits .tile:nth-child(2),.mosaic--portraits .tile:nth-child(3){grid-column:span 3;}
+.mosaic--portraits .tile img{object-position:50% 25%;}
+.mosaic--portraits .tile::after{display:none;}
+@media(max-width:640px){
+  .mosaic,.mosaic--portraits{grid-template-columns:1fr 1fr;grid-template-rows:none;grid-auto-rows:auto;gap:6px;}
+  .mosaic .tile,.mosaic--menu .tile:nth-child(n),.mosaic--events .tile:nth-child(n),.mosaic--portraits .tile:nth-child(n){grid-column:span 1;aspect-ratio:4/5;}
+  .mosaic--menu .tile:nth-child(n){aspect-ratio:1/1;}
+  .mosaic--menu .tile:nth-child(1),.mosaic--menu .tile:nth-child(4),.mosaic--events .tile:nth-child(1),.mosaic--portraits .tile:nth-child(1){grid-column:span 2;aspect-ratio:3/2;}
+  .mosaic--portraits .tile:nth-child(n+2){aspect-ratio:3/4;}
+  .mosaic--portraits .tile:nth-child(6){grid-column:span 2;aspect-ratio:3/2;}
+  .mosaic .tile__label{font-size:13px;inset:auto 10px 8px auto;}
+}
+
 /* CULTURE OF CARE */
 .culture{padding:100px 5vw 80px;text-align:center;}
 .culture__hed{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5.4vw,72px);line-height:.96;letter-spacing:.01em;text-transform:uppercase;color:var(--ink);margin-bottom:56px;}
@@ -343,7 +389,6 @@ a:focus-visible,button:focus-visible{outline:2px solid #C6AEE2;outline-offset:3p
     <a href="https://cafesmagazine.com/pages/wearecafes" target="_blank" rel="noopener">We Are Cafes</a>
     <!-- ABOUT LINK — points to the current dark site saved as about.html in the same repo -->
     <a href="/about.html">About/Contact</a>
-    <a href="/partner.html">Partner</a>
   </div>
   <button class="nav__burger" id="burger" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -357,7 +402,6 @@ a:focus-visible,button:focus-visible{outline:2px solid #C6AEE2;outline-offset:3p
   <a href="https://cafesmagazine.com/pages/wearecafes" target="_blank" rel="noopener">We Are Cafes</a>
   <!-- ABOUT LINK — points to the current dark site saved as about.html in the same repo -->
   <a href="/about.html">About/Contact</a>
-  <a href="/partner.html" class="partner-hook">See The Numbers<small>For brands &amp; collab partners</small></a>
 </div>
 
 <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Food, Cafe & Event Photographer Columbus Ohio — Brand, Lifestyle, Event & Menu Photography | Luke Leffel</h1>
@@ -427,11 +471,85 @@ a:focus-visible,button:focus-visible{outline:2px solid #C6AEE2;outline-offset:3p
     <a href="pixiesbrew.html" class="tile reveal"><img src="https://images.pixieset.com/548005401/131ced6ef3f1583f1412db9ec340483d-xxlarge.jpg" alt="Pixies Brew brand photography Columbus Ohio" loading="lazy"><span class="tile__label">Pixies Brew</span></a>
     <a href="sycamore.html" class="tile reveal"><img src="https://images.pixieset.com/519613611/6eda1b976e2acf191233d0a1c9fb9d6a-xxlarge.jpg" alt="Sycamore cafe lifestyle photography Columbus Ohio" loading="lazy"><span class="tile__label">Sycamore</span></a>
     <a href="tww.html" class="tile reveal"><img src="https://images.pixieset.com/782382101/ce6fabc2e12fe57eca7e3939d5716ae8-xxlarge.jpg" alt="Third Wave Water brand photography Columbus Ohio" loading="lazy"><span class="tile__label">Third Wave Water</span></a>
-    <a href="allbutone.html" class="tile reveal"><img src="https://images.pixieset.com/851183901/dedf11a384c4f4e09acaaa0b4708f2a4-xxlarge.jpg" alt="all but one brand photography" loading="lazy"><span class="tile__label">all but one</span></a>
+    <a href="savinghollow.html" class="tile reveal"><img src="https://images.pixieset.com/128399911/34cf3a7911aab232626c918e7be9cd41-xxlarge.jpg" alt="Saving Hollow brand photography" loading="lazy"><span class="tile__label">Saving Hollow</span></a>
     <a href="coquine.html" class="tile reveal"><img src="https://images.pixieset.com/276962901/b21e994e895ef914b020f9b6d61caf83-xxlarge.jpg" alt="Cquine Market brand photography Columbus" loading="lazy"><span class="tile__label">Coquine Market</span></a>
     <a href="bada.html" class="tile reveal"><img src="https://images.pixieset.com/433839801/df4a71c4a3d7022288d19b8a70baa7e4-xxlarge.jpg" alt="Bada Bean Bada Booze editorial photography Columbus Ohio" loading="lazy"><span class="tile__label">Bada Bean Bada Booze</span></a>
     <a href="thelox.html" class="tile reveal"><img src="https://images.pixieset.com/675217101/41e1b6f0ef1446016bc831cd4c175e14-xxlarge.jpg" alt="The Loxcafe lifestyle photography Columbus" loading="lazy"><span class="tile__label">The Lox</span></a>
   </div>
+</section>
+
+<section class="feature reveal" id="menu">
+  <div class="feature__head">
+    <div>
+      <h2 class="feature__hed">Menu <span class="accent">Photography</span></h2>
+    </div>
+    <div class="feature__copy">
+      <div class="feature__actions">
+        <button class="cta-strip__btn" type="button" onclick="openContact('menu-photography')">Book menu shoot</button>
+      </div>
+    </div>
+  </div>
+  <!-- MENU GALLERIES: one tile per menu shoot. Cover photo = src, link = href. -->
+  <div class="mosaic mosaic--menu">
+    <a href="sycamoremenu.html" class="tile"><img src="https://images.pixieset.com/519613611/d5bf368cbbc93b23a5b3f90f0910ca28-xxlarge.jpg" alt="Sycamore menu photography" loading="lazy"><span class="tile__label">Sycamore</span></a>
+    <a href="onelinemenu.html" class="tile"><img src="https://images.pixieset.com/111748111/2e7ead65e68f6c3c7f23c5535c17efce-xxlarge.jpg" alt="One Line Coffee menu photography" loading="lazy"><span class="tile__label">One Line</span></a>
+    <a href="coffeeandconemenu.html" class="tile"><img src="https://images.pixieset.com/321183901/51528dd751642a933c52098c37bf863b-xxlarge.jpg" alt="Coffee &amp; Cone menu photography" loading="lazy"><span class="tile__label">Coffee &amp; Cone</span></a>
+    <a href="allbutonemenu.html" class="tile"><img src="https://images.pixieset.com/851183901/dedf11a384c4f4e09acaaa0b4708f2a4-xxlarge.jpg" alt="All But One menu photography" loading="lazy"><span class="tile__label">All But One</span></a>
+  </div>
+</section>
+
+<section class="feature reveal" id="events">
+  <div class="feature__head">
+    <div>
+      <h2 class="feature__hed">Event <span class="accent">Photography</span></h2>
+    </div>
+    <div class="feature__copy">
+      <div class="feature__actions">
+        <button class="cta-strip__btn" type="button" onclick="openContact('event-coverage')">Book event</button>
+      </div>
+    </div>
+  </div>
+  <!-- EVENT GALLERIES: one tile per event. Cover photo = src, link = href. -->
+  <div class="mosaic mosaic--events">
+    <a href="coffeefestorlando.html" class="tile"><img src="https://images.pixieset.com/777313201/7f0748b37d22dbb0b9c9791e12e51449-xxlarge.jpg" alt="Coffee Fest Orlando event photography" loading="lazy"><span class="tile__label">Coffee Fest Orlando</span></a>
+    <a href="coffeefestcolumbus.html" class="tile"><img src="https://images.pixieset.com/151760421/2509626899abdb80e7828b0448981538-xxlarge.jpg" alt="Coffee Fest Columbus event photography" loading="lazy"><span class="tile__label">Columbus Coffee Fest</span></a>
+    <a href="energyinnovationsummit.html" class="tile"><img src="https://images.pixieset.com/978522221/55fe0478805db9b029de37123ba553ba-xxlarge.jpg" alt="Energy Innovation Summit event photography" loading="lazy"><span class="tile__label">Energy Innovation Summit</span></a>
+    <a href="roosevelt.html" class="tile"><img src="https://images.pixieset.com/357285511/02ac087be376a38db612572f6fc25e14-xxlarge.jpg" alt="Roosevelt Coffeehouse event photography" loading="lazy"><span class="tile__label">Roosevelt Coffeehouse</span></a>
+    <a href="generalistworld.html" class="tile"><img src="https://images.pixieset.com/235668311/1ca278c127f864c0525f5d86edda378c-xxlarge.jpg" alt="Generalist World event photography" loading="lazy"><span class="tile__label">Generalist World</span></a>
+  </div>
+</section>
+
+<section class="feature reveal" id="portraits">
+  <div class="feature__head">
+    <div>
+      <h2 class="feature__hed">Portrait <span class="accent">Photography</span></h2>
+    </div>
+    <div class="feature__copy">
+      <div class="feature__actions">
+        <button class="cta-strip__btn" type="button" onclick="openContact('portraits')">Book portraits</button>
+      </div>
+    </div>
+  </div>
+  <!-- PORTRAIT GALLERIES: one tile per gallery. Cover photo = src, link = href. -->
+  <div class="mosaic mosaic--portraits">
+    <a href="portraits.html" class="tile" aria-label="Portrait gallery"><img src="https://images.pixieset.com/071185711/41c08d79a79ec35d4138b97a7e561ab2-xxlarge.jpg" alt="Portrait photography by Luke Leffel" loading="lazy"></a>
+    <a href="portraits.html" class="tile" aria-label="Portrait gallery"><img src="https://images.pixieset.com/250608311/5c08982579bace041f4a829bc9e411c1-xxlarge.jpg" alt="Portrait photography by Luke Leffel" loading="lazy"></a>
+    <a href="portraits.html" class="tile" aria-label="Portrait gallery"><img src="https://images.pixieset.com/250608311/ff7dd703aae189e60195c5e26ce9cb9e-xxlarge.jpg" alt="Portrait photography by Luke Leffel" loading="lazy"></a>
+    <a href="portraits.html" class="tile" aria-label="Portrait gallery"><img src="https://images.pixieset.com/071185711/4641c6778391a7e404e96cffaaffd26f-xxlarge.jpg" alt="Portrait photography by Luke Leffel" loading="lazy"></a>
+    <a href="portraits.html" class="tile" aria-label="Portrait gallery"><img src="https://images.pixieset.com/250608311/d52d31285c87b688a2accf0202894702-xxlarge.jpg" alt="Portrait photography by Luke Leffel" loading="lazy"></a>
+    <a href="portraits.html" class="tile" aria-label="Portrait gallery"><img src="https://images.pixieset.com/580148811/13ea0acc92b3b32b0cc910a3f11eabe7-xxlarge.jpg" alt="Portrait photography by Luke Leffel" loading="lazy"></a>
+  </div>
+
+<script>
+// Portrait mosaic: new random selection on every visit (slots 1,4,5,6 landscape; 2,3 portrait)
+(function(){
+  var L=["https://images.pixieset.com/071185711/41c08d79a79ec35d4138b97a7e561ab2-xxlarge.jpg", "https://images.pixieset.com/071185711/4641c6778391a7e404e96cffaaffd26f-xxlarge.jpg", "https://images.pixieset.com/580148811/13ea0acc92b3b32b0cc910a3f11eabe7-xxlarge.jpg", "https://images.pixieset.com/702154501/d5ca2d37b27c350b7379438a20f3a2b2-xxlarge.jpg", "https://images.pixieset.com/999491701/a1e8246a80d744bbef7f048692a5c4d9-xxlarge.jpg"],P=["https://images.pixieset.com/250608311/5c08982579bace041f4a829bc9e411c1-xxlarge.jpg", "https://images.pixieset.com/250608311/ff7dd703aae189e60195c5e26ce9cb9e-xxlarge.jpg", "https://images.pixieset.com/250608311/d52d31285c87b688a2accf0202894702-xxlarge.jpg", "https://images.pixieset.com/250608311/dbaec5ff66050c8f34e90b77369d9495-xxlarge.jpg", "https://images.pixieset.com/250608311/920de5a09f4c93308472285ee9678239-xxlarge.jpg", "https://images.pixieset.com/250608311/6cad5b41e407142d83ee594d7a4839a7-xxlarge.jpg", "https://images.pixieset.com/250608311/adc8eaf0f058716d2211719d8ff852e0-xxlarge.jpg", "https://images.pixieset.com/250608311/5292076c6763a08fc5f95f4749b5793f-xxlarge.jpg", "https://images.pixieset.com/250608311/3f3dbb8bb5688169f1ff7d84feb7a74e-xxlarge.jpg", "https://images.pixieset.com/250608311/d59b39e7469fb2ab36c36324ffdec037-xxlarge.jpg", "https://images.pixieset.com/250608311/647f0dd3ae32002de43fe4d2cd626afc-xxlarge.jpg", "https://images.pixieset.com/250608311/1ed9a112534118789e580d02a6706f39-xxlarge.jpg", "https://images.pixieset.com/250608311/d4b5eda23ebb5bba4cec19c461669f9f-xxlarge.jpg", "https://images.pixieset.com/250608311/274466dc2954bb09dd7679ca68e61963-xxlarge.jpg", "https://images.pixieset.com/580148811/9ea5fa33438419bdbec104d3c0f86bac-xxlarge.jpg", "https://images.pixieset.com/851484801/ff72f653ff587e1e70d6b3f903521dc5-xxlarge.jpg", "https://images.pixieset.com/851484801/e6e21093590a2d3da298defa3eedb983-xxlarge.jpg", "https://images.pixieset.com/851484801/3d129083ad5ff2b7cbcd8c81f5405684-xxlarge.jpg", "https://images.pixieset.com/999491701/d55519c3d60c1e434e265b956f8a1f64-xxlarge.jpg", "https://images.pixieset.com/143402001/ff9e7b2211e816b67185dbba4ab9e718-xxlarge.jpg", "https://images.pixieset.com/250608311/c8354826e162e7d521cc2a9443915775-xxlarge.jpg"];
+  function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  var l=shuf(L),p=shuf(P),imgs=document.querySelectorAll('.mosaic--portraits .tile img');
+  if(imgs.length<6)return;
+  [l[0],p[0],p[1],l[1],l[2],l[3]].forEach(function(u,i){imgs[i].src=u;});
+})();
+</script>
 </section>
 
 <section class="culture reveal">
@@ -485,6 +603,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #C6AEE2;outline-offset:3p
             <label class="contact-check"><input type="checkbox" name="type" value="lifestyle-photography"><span>Lifestyle Photography</span></label>
             <label class="contact-check"><input type="checkbox" name="type" value="menu-photography"><span>Menu / Product</span></label>
             <label class="contact-check"><input type="checkbox" name="type" value="event-coverage"><span>Event Coverage</span></label>
+            <label class="contact-check"><input type="checkbox" name="type" value="portraits"><span>Portraits</span></label>
             <label class="contact-check"><input type="checkbox" name="type" value="cafe-consulting"><span>Café Consulting</span></label>
             <label class="contact-check"><input type="checkbox" name="type" value="something-else"><span>Something Else</span></label>
           </div>
@@ -535,7 +654,11 @@ const contactFormWrap = document.getElementById('contactFormWrap');
 const contactSuccess  = document.getElementById('contactSuccess');
 const contactSubmit   = document.getElementById('contactSubmit');
 
-window.openContact = function() {
+window.openContact = function(preset) {
+  if (preset) {
+    const box = document.querySelector('#cf-checks input[value="' + preset + '"]');
+    if (box) box.checked = true;
+  }
   contactModal.classList.add('open');
   document.body.style.overflow = 'hidden';
   setTimeout(() => document.getElementById('cf-name').focus(), 200);
