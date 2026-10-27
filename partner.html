@@ -9,9 +9,10 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/favicon.svg">
 <meta name="theme-color" content="#F7F6F2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap');
-
 :root{
   --bone:#F7F6F2;
   --ink:#16140F;
@@ -26,7 +27,7 @@ body{background:var(--bone);color:var(--ink);font-family:'Inter',sans-serif;font
 a{color:inherit;text-decoration:none;}
 img{display:block;max-width:100%;}
 ::selection{background:#C6AEE2;color:var(--ink);}
-a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AEE2;outline-offset:3px;}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #C6AEE2;outline-offset:3px;}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important;}}
 
 
@@ -48,13 +49,10 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
 .nav__mobile a{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,8.5vw,46px);letter-spacing:.04em;text-align:center;line-height:1;}
 .nav__mobile a:hover{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 .nav__mobile a.partner-hook{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
-.nav__mobile a.partner-hook small{display:block;font-family:'Inter',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--stone);-webkit-text-fill-color:var(--stone);margin-top:8px;}
 @media(max-width:760px){.nav__links{display:none;}.nav__burger{display:flex;}}
 
 /* ═════════ HERO ═════════ */
 .hero{min-height:100vh;min-height:100svh;padding:120px 8vw 56px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(32px,5vw,80px);align-items:center;}
-.hero__eyebrow{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);margin-bottom:22px;display:flex;align-items:center;gap:14px;}
-.hero__eyebrow::before{content:'';width:36px;height:1px;background:var(--stone);}
 .hero__title{font-family:'Anton',sans-serif;font-size:clamp(44px,7.4vw,118px);line-height:.92;letter-spacing:-.02em;text-transform:uppercase;}
 .hero__title .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 .hero__body{margin-top:26px;font-size:17px;line-height:1.8;color:var(--body);max-width:46ch;}
@@ -74,35 +72,31 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
 .eyebrow::before{content:'';width:36px;height:1px;background:var(--stone);}
 .sec-head{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,6vw,72px);line-height:.96;letter-spacing:.01em;text-transform:uppercase;margin-bottom:22px;}
 .sec-head .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
-.sec-sub{font-size:17px;line-height:1.8;color:var(--body);max-width:60ch;margin-bottom:56px;}
 
-/* ═════════ PROBLEM ═════════ */
-
-/* ═════════ FILM — HERO SECTIONS ═════════ */
+/* ═════════ FILM: HERO SECTIONS ═════════ */
 .films{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px);margin-top:44px;}
 .film-media{position:relative;width:100%;aspect-ratio:9/16;overflow:hidden;background:#E8E4DB;}
 .film-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
-.film-media .missing{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;font-size:12px;color:var(--stone);background:linear-gradient(135deg,rgba(168,194,239,.22),rgba(240,175,203,.28));}
+.film-media .missing{position:absolute;inset:0;background:linear-gradient(135deg,rgba(168,194,239,.22),rgba(240,175,203,.28));}
 .film-copy{margin-top:22px;}
 .film-head{font-family:'Bebas Neue',sans-serif;font-size:clamp(24px,3vw,40px);line-height:.98;letter-spacing:.01em;text-transform:uppercase;}
 .film-head .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 .film-link{display:inline-flex;align-items:center;gap:7px;margin-top:24px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);transition:color .2s;}
 .film-link:hover{color:var(--ink);}
 
-/* ═════════ FILM — HOVER ROW ═════════ */
+/* ═════════ FILM: HOVER ROW ═════════ */
 .row-films{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
 .rf{display:block;}
 .rf-media{position:relative;width:100%;aspect-ratio:9/16;overflow:hidden;background:#E8E4DB;}
 .rf-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
+.rf-media .missing{position:absolute;inset:0;background:linear-gradient(135deg,rgba(168,194,239,.22),rgba(240,175,203,.28));}
 .rf:hover .rf-media video{transform:scale(1.03);}
-.note{font-size:12px;color:var(--stone);margin-top:28px;line-height:1.7;max-width:62ch;}
 
 /* ═════════ RINGS ═════════ */
 .rings-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,96px);margin-bottom:30px;}
 .rings-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:26px;}
 .rings-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,2.4vw,34px);letter-spacing:.16em;line-height:1;}
 .rings-title.demo{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
-.rings-note{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);}
 .rings{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.4vw,20px);}
 .ring{width:100%;text-align:center;background:none;border:none;padding:0;cursor:pointer;font-family:inherit;color:inherit;}
 .ring-wrap{position:relative;width:min(100%,150px);aspect-ratio:1;margin:0 auto;transition:transform .25s ease;}
@@ -116,7 +110,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
 .ring-detail{border-top:1px solid var(--hair);padding-top:22px;min-height:52px;}
 .rd-body{font-size:16px;line-height:1.75;color:var(--body);max-width:56ch;opacity:0;transform:translateY(6px);transition:opacity .3s ease,transform .3s ease;}
 .rd-body.show{opacity:1;transform:none;}
-.rd-hint{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--hair);}
+.rd-hint{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--stone);}
+.stats-note{margin-top:18px;font-size:12px;color:var(--stone);line-height:1.7;max-width:62ch;}
 
 /* ═════════ PRICING ═════════ */
 .tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px;align-items:stretch;}
@@ -127,11 +122,11 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
 .tier__name{display:block;font-family:'Bebas Neue',sans-serif;font-size:21px;letter-spacing:.09em;text-transform:uppercase;line-height:1.1;}
 .tier__price{display:block;margin-top:6px;font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:.02em;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 .tier ul{list-style:none;}
-.tier li{font-size:14.5px;line-height:1.65;color:var(--body);padding-left:16px;position:relative;margin-bottom:7px;}
+.tier li{font-size:14.5px;line-height:1.65;color:var(--body);padding-left:16px;position:relative;margin-bottom:7px;break-inside:avoid;}
 .tier li::before{content:'';position:absolute;left:0;top:10px;width:5px;height:5px;border-radius:50%;background:#C6AEE2;}
 .terms{margin-top:24px;font-size:13px;color:var(--stone);line-height:1.8;max-width:78ch;}
 
-/* ═════════ STILLS GRID — 3 then 2 ═════════ */
+/* ═════════ STILLS GRID: 3 then 2 ═════════ */
 .stills{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:40px;}
 .still{position:relative;overflow:hidden;background:#E8E4DB;display:block;grid-column:span 2;aspect-ratio:4/5;}
 .still:nth-child(4),.still:nth-child(5){grid-column:span 3;aspect-ratio:3/2;}
@@ -148,7 +143,6 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
 .marquee{display:flex;width:max-content;animation:scroll 42s linear infinite;}
 .marquee:hover{animation-play-state:paused;}
 .marquee a{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--ink);padding:0 32px;white-space:nowrap;position:relative;letter-spacing:.02em;}
-.marquee a::after{content:'—';position:absolute;right:-4px;color:var(--hair);}
 .marquee a:hover{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
@@ -178,18 +172,21 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
 .contact-eyebrow{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);margin-bottom:10px;display:block;}
 .contact-hed{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,56px);line-height:.92;color:var(--ink);margin-bottom:28px;}
 .contact-field{border-bottom:1px solid var(--hair);padding:22px 0 16px;position:relative;}
-.contact-field label{display:block;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-bottom:8px;}
-.contact-field input,.contact-field textarea{width:100%;background:transparent;border:none;outline:none;font-family:'Inter',sans-serif;font-size:16px;font-weight:300;color:var(--ink);line-height:1.4;-webkit-appearance:none;}
+.contact-field label,.contact-field .contact-legend{display:block;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-bottom:8px;}
+.contact-field input[type="text"],.contact-field input[type="email"],.contact-field textarea{width:100%;background:transparent;border:none;outline:none;font-family:'Inter',sans-serif;font-size:16px;font-weight:300;color:var(--ink);line-height:1.4;-webkit-appearance:none;}
 .contact-field textarea{resize:none;min-height:72px;}
-.contact-field input::placeholder,.contact-field textarea::placeholder{color:var(--hair);}
+.contact-field input::placeholder,.contact-field textarea::placeholder{color:#B9B4A9;}
 .contact-field::after{content:'';position:absolute;left:0;bottom:-1px;width:0;height:1px;background:var(--grad);transition:width .4s ease;}
 .contact-field:focus-within::after{width:100%;}
 .contact-row{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;}
 .contact-checks{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.4rem;}
-.contact-check{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:.38rem .9rem;border-radius:2px;border:1px solid var(--hair);background:transparent;transition:background .18s,border-color .18s,color .18s;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--stone);user-select:none;width:calc(50% - .23rem);}
+.contact-field .contact-check{position:relative;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:.38rem .9rem;border-radius:2px;border:1px solid var(--hair);background:transparent;transition:background .18s,border-color .18s,color .18s;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--stone);user-select:none;width:calc(50% - .23rem);margin-bottom:0;}
 .contact-check:hover{border-color:var(--stone);color:var(--ink);}
-.contact-check input[type="checkbox"]{display:none;}
+.contact-check input[type="checkbox"]{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none;}
 .contact-check:has(input:checked){background:var(--ink);border-color:var(--ink);color:var(--bone);}
+.contact-check:has(input:focus-visible){outline:2px solid #C6AEE2;outline-offset:2px;}
+.contact-error{display:none;margin-top:18px;font-size:13px;line-height:1.6;color:#9A3B3B;}
+.contact-error.show{display:block;}
 .contact-submit{margin-top:40px;display:inline-flex;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);background:transparent;padding:14px 32px;border-radius:40px;border:1px solid var(--stone);cursor:pointer;transition:border-color .25s,background .25s,color .25s;}
 .contact-submit:hover{border-color:var(--ink);background:var(--ink);color:var(--bone);}
 .contact-submit:disabled{opacity:.5;cursor:not-allowed;}
@@ -200,7 +197,6 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
 
 /* ═════════ MOBILE ═════════ */
 @media(max-width:900px){
-  .ugc{grid-template-columns:repeat(2,minmax(0,1fr));}
   .stills{grid-template-columns:repeat(2,1fr);}
   .still{grid-column:span 1;aspect-ratio:4/5;}
   .still:nth-child(4){grid-column:span 1;aspect-ratio:4/5;}
@@ -216,8 +212,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
   .ring-wrap{width:min(100%,96px);}
   .ring-val{font-size:23px;}
   .ring-label{font-size:9px;letter-spacing:.1em;}
-  .ugc{grid-template-columns:1fr;}
   .films{grid-template-columns:1fr;gap:40px;}
+  .row-films{gap:8px;}
   .stills{gap:6px;}
   .tiers{grid-template-columns:1fr;}
   .tier--wide ul{columns:1;}
@@ -239,7 +235,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
     <a href="/about.html">About/Contact</a>
     <a href="/partner.html" class="current">Partner</a>
   </div>
-  <button class="nav__burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <button class="nav__burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mobileNav"><span></span><span></span><span></span></button>
 </nav>
 
 <div class="nav__mobile" id="mobileNav">
@@ -247,19 +243,19 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
   <a href="https://cafesmagazine.com" target="_blank" rel="noopener">Cafes Magazine</a>
   <a href="https://cafesmagazine.com/pages/wearecafes" target="_blank" rel="noopener">We Are Cafes</a>
   <a href="/about.html">About/Contact</a>
-  <a href="/partner.html" class="partner-hook">Partners</small></a>
+  <a href="/partner.html" class="partner-hook">Partner</a>
 </div>
 
-<!-- ═══════ 1. HERO ═══════ -->
+<!-- ═══════ HERO ═══════ -->
 <section class="hero">
   <div class="hero__copy">
     <h1 class="hero__title">BRAND AND CPG<br><span class="g">AD CREATIVE</span></h1>
-    <p class="hero__body">UGC, reels, and campaign stills for consumer and lifestyle brands. Shot in home, in studio or on location.</p>
+    <p class="hero__body">UGC, reels, and campaign stills for consumer and lifestyle brands. Shot in home, cafe, studio or on location.</p>
   </div>
   <div class="wall" id="wall" aria-hidden="true"></div>
 </section>
 
-<!-- ═══════ 3. WORK ═══════ -->
+<!-- ═══════ WORK ═══════ -->
 <section class="sec" style="border-top:0">
   <h2 class="sec-head reveal">UGC &amp; <span class="g">SHORT FORM</span></h2>
   <div class="films reveal rd1" id="heroFilms"></div>
@@ -269,26 +265,27 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
 <section class="sec">
   <h2 class="sec-head reveal">CAMPAIGN <span class="g">STILLS</span></h2>
   <div class="stills">
-    <a href="/ratio.html" class="still"><img src="https://images.pixieset.com/983671211/f44f529189713f127f30176f262e7823-xxlarge.jpg" alt="Ratio product photography"><span>Ratio</span></a>
-    <a href="/tww.html" class="still"><img src="https://images.pixieset.com/782382101/ce6fabc2e12fe57eca7e3939d5716ae8-xxlarge.jpg" alt="Third Wave Water product photography"><span>Third Wave Water</span></a>
-    <a href="/pixiesbrew.html" class="still"><img src="https://images.pixieset.com/548005401/131ced6ef3f1583f1412db9ec340483d-xxlarge.jpg" alt="Pixies Brew product photography"><span>Pixies Brew</span></a>
-    <a href="/nnsycamore.html" class="still"><img src="https://images.pixieset.com/577358301/94d172f103b847e9cc12fb6964cdb430-xxlarge.jpg" alt="notNeutral x Sycamore product photography"><span>Not Neutral &times; Sycamore</span></a>
-    <a href="/wildslice.html" class="still"><img src="https://images.pixieset.com/075547111/b74b071f3752edc1a3829f3417ec7b15-xxlarge.jpg" alt="Wild Slice brand photography"><span>Wild Slice</span></a>
-    </div>
+    <a href="/ratio.html" class="still"><img src="https://images.pixieset.com/983671211/f44f529189713f127f30176f262e7823-xxlarge.jpg" alt="Ratio product photography" loading="lazy" decoding="async"><span>Ratio</span></a>
+    <a href="/tww.html" class="still"><img src="https://images.pixieset.com/782382101/ce6fabc2e12fe57eca7e3939d5716ae8-xxlarge.jpg" alt="Third Wave Water product photography" loading="lazy" decoding="async"><span>Third Wave Water</span></a>
+    <a href="/pixiesbrew.html" class="still"><img src="https://images.pixieset.com/548005401/131ced6ef3f1583f1412db9ec340483d-xxlarge.jpg" alt="Pixies Brew product photography" loading="lazy" decoding="async"><span>Pixies Brew</span></a>
+    <a href="/nnsycamore.html" class="still"><img src="https://images.pixieset.com/577358301/94d172f103b847e9cc12fb6964cdb430-xxlarge.jpg" alt="notNeutral x Sycamore product photography" loading="lazy" decoding="async"><span>Not Neutral &times; Sycamore</span></a>
+    <a href="/wildslice.html" class="still"><img src="https://images.pixieset.com/075547111/b74b071f3752edc1a3829f3417ec7b15-xxlarge.jpg" alt="Wild Slice brand photography" loading="lazy" decoding="async"><span>Wild Slice</span></a>
+  </div>
 </section>
 
-<!-- ═══════ 5. PRICING ═══════ -->
+<!-- ═══════ PRICING ═══════ -->
 <section class="sec" id="pricingSection" style="display:none">
   <h2 class="sec-head reveal"><span class="g">PRICING</span></h2>
   <div class="tiers reveal rd1" id="tiers"></div>
   <p class="terms reveal rd2" id="terms"></p>
 </section>
 
+<!-- ═══════ SHORT CUTS ROW ═══════ -->
 <section class="sec">
   <div class="row-films reveal rd1" id="rowFilms"></div>
 </section>
 
-<!-- ═══════ 4. NUMBERS ═══════ -->
+<!-- ═══════ NUMBERS ═══════ -->
 <section class="sec" id="numbers">
 
   <div class="rings-grid reveal rd1">
@@ -296,52 +293,21 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
       <div class="rings-head">
         <span class="rings-title">INFLUENCE</span>
       </div>
-      <div class="rings">
-      <button class="ring" data-pct="96" data-val="96" data-suffix="&times;"
-        data-detail="158,100 people reached in 90 days.">
-        <div class="ring-wrap"><svg class="ring-svg" viewBox="0 0 116 116"><circle class="ring-track" cx="58" cy="58" r="53"/><circle class="ring-arc" cx="58" cy="58" r="53" stroke="url(#gradA)"/></svg><div class="ring-val">0&times;</div></div>
-        <div class="ring-label">Reach multiple</div>
-      </button>
-      <button class="ring" data-pct="99" data-val="99" data-suffix="%"
-        data-detail="390,305 of 393,328 views were organic. Ads accounted for 3,023.">
-        <div class="ring-wrap"><svg class="ring-svg" viewBox="0 0 116 116"><circle class="ring-track" cx="58" cy="58" r="53"/><circle class="ring-arc" cx="58" cy="58" r="53" stroke="url(#gradA)"/></svg><div class="ring-val">0%</div></div>
-        <div class="ring-label">Organic</div>
-      </button>
-      <button class="ring" data-pct="12" data-val="12" data-suffix="%"
-        data-detail="18,700 likes, comments, saves and shares, measured against people reached rather than followers.">
-        <div class="ring-wrap"><svg class="ring-svg" viewBox="0 0 116 116"><circle class="ring-track" cx="58" cy="58" r="53"/><circle class="ring-arc" cx="58" cy="58" r="53" stroke="url(#gradA)"/></svg><div class="ring-val">0%</div></div>
-        <div class="ring-label">Engagement</div>
-      </button>
-      </div>
+      <div class="rings" id="ringsInfluence"></div>
     </div>
     <div class="rings-group">
       <div class="rings-head">
-        <span class="rings-title demo">DEMO</span>
+        <span class="rings-title demo">DEMOGRAPHICS</span>
       </div>
-      <div class="rings">
-      <button class="ring" data-pct="75" data-val="75" data-suffix="%"
-        data-detail="Three in four followers are between 25 and 44.">
-        <div class="ring-wrap"><svg class="ring-svg" viewBox="0 0 116 116"><circle class="ring-track" cx="58" cy="58" r="53"/><circle class="ring-arc" cx="58" cy="58" r="53" stroke="url(#gradB)"/></svg><div class="ring-val">0%</div></div>
-        <div class="ring-label">Age 25–44</div>
-      </button>
-      <button class="ring" data-pct="37" data-val="37" data-suffix="/63" data-static="37/63"
-        data-detail="37% of followers are in Columbus, 86% in the US. National reach with one metro dense enough to host an activation.">
-        <div class="ring-wrap"><svg class="ring-svg" viewBox="0 0 116 116"><circle class="ring-track" cx="58" cy="58" r="53"/><circle class="ring-arc" cx="58" cy="58" r="53" stroke="url(#gradB)"/></svg><div class="ring-val">0</div></div>
-        <div class="ring-label">Local / National</div>
-      </button>
-      <button class="ring" data-pct="54" data-val="54" data-suffix="/46" data-static="54/46"
-        data-detail="54% women, 46% men, a close to even split.">
-        <div class="ring-wrap"><svg class="ring-svg" viewBox="0 0 116 116"><circle class="ring-track" cx="58" cy="58" r="53"/><circle class="ring-arc" cx="58" cy="58" r="53" stroke="url(#gradB)"/></svg><div class="ring-val">0</div></div>
-        <div class="ring-label">Women / Men</div>
-      </button>
-      </div>
+      <div class="rings" id="ringsDemo"></div>
     </div>
   </div>
 
-  <div class="ring-detail">
+  <div class="ring-detail" aria-live="polite">
     <p class="rd-body" id="ringDetail"></p>
     <p class="rd-hint" id="ringHint">Hover or tap a ring</p>
   </div>
+  <p class="stats-note" id="statsNote"></p>
 
   <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
     <linearGradient id="gradA" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F0AFCB"/><stop offset="100%" stop-color="#C6AEE2"/></linearGradient>
@@ -357,9 +323,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
 
 <!-- ═══════ CTA ═══════ -->
 <section class="cta-strip" id="contact">
-  <p class="eyebrow reveal">Next step</p>
   <h2 class="cta-head reveal rd1">START A<br><span>CONVERSATION</span></h2>
-  <button class="cta-btn reveal rd2" onclick="openContact()">Work With Me</button>
+  <button class="cta-btn reveal rd2" type="button" onclick="openContact()">Work With Me</button>
 </section>
 
 <footer class="footer">
@@ -373,12 +338,12 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
 </footer>
 
 <!-- ═══════ CONTACT MODAL ═══════ -->
-<div class="contact-modal" id="contactModal">
+<div class="contact-modal" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactHed">
   <div class="contact-inner">
-    <button class="contact-close" id="contactClose" aria-label="Close">×</button>
+    <button class="contact-close" id="contactClose" type="button" aria-label="Close">×</button>
     <div id="contactFormWrap">
       <span class="contact-eyebrow">Get in touch</span>
-      <h2 class="contact-hed">LET'S WORK<br>TOGETHER.</h2>
+      <h2 class="contact-hed" id="contactHed">LET'S WORK<br>TOGETHER.</h2>
       <form id="contactForm" novalidate>
         <div class="contact-row">
           <div class="contact-field">
@@ -395,7 +360,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
           <input id="cf-brand" type="text" name="brand" placeholder="Who you're building">
         </div>
         <div class="contact-field">
-          <label>What are you after? <span style="font-size:.6rem;font-weight:400;letter-spacing:0;text-transform:none;color:var(--stone);">select all that apply</span></label>
+          <span class="contact-legend">What are you after? <span style="font-size:.6rem;font-weight:400;letter-spacing:0;text-transform:none;color:var(--stone);">select all that apply</span></span>
           <div class="contact-checks" id="cf-checks">
             <label class="contact-check"><input type="checkbox" name="type" value="ugc-reel"><span>UGC / Reel</span></label>
             <label class="contact-check"><input type="checkbox" name="type" value="carousel"><span>Carousel Post</span></label>
@@ -410,6 +375,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
           <textarea id="cf-message" name="message" placeholder="What's the campaign, timeline, or question on your mind?"></textarea>
         </div>
         <div style="display:none" aria-hidden="true"><input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
+        <p class="contact-error" id="contactError" role="alert"></p>
         <button type="submit" class="contact-submit" id="contactSubmit">Send it</button>
       </form>
     </div>
@@ -423,15 +389,14 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C6AE
 
 <script>
 /* ══════════════════════════════════════════════════════
-   EDIT THIS BLOCK ONLY — everything below is machinery.
+   EDIT THIS BLOCK ONLY. Everything below is machinery.
    ══════════════════════════════════════════════════════ */
 const CONFIG = {
 
   /* ── HERO FILMS ──────────────────────────────────────
      Full-width sections, video one side and copy the other.
      They play when scrolled into view and pause when they leave.
-     Sides alternate automatically. `ig` adds a link — leave it
-     empty and no link appears.                                */
+     `ig` adds a link. Leave it empty and no link appears.      */
   heroFilms: [
     {
       brand:"Ratio",
@@ -446,18 +411,51 @@ const CONFIG = {
   ],
 
   /* ── SHORT CUTS ROW ──────────────────────────────────
-     Three across. Play on hover with sound if the visitor
-     turns it on; on phones they play as you scroll past. */
+     Three across. Play on hover on desktop; on phones they
+     play as you scroll past. Always muted.                    */
   rowFilms: [
     { brand:"Ascaso",        kind:"Product film",   mp4:"media/ascaso.mp4",        poster:"media/ascaso.jpg",        ig:"" },
     { brand:"Saving Hollow", kind:"Lifestyle UGC",  mp4:"media/saving-hollow.mp4", poster:"media/saving-hollow.jpg", ig:"" },
     { brand:"Anaerobic",     kind:"Product film",   mp4:"media/anaerobic.mp4",     poster:"media/anaerobic.jpg",     ig:"" }
   ],
 
+  /* ── STATS ───────────────────────────────────────────
+     Source: Meta Insights, Instagram.
+     Influence = 90 days, Jul 29 to Oct 26, 2026.
+     Demographics = lifetime audience.
+     pct    = how full the ring is (0 to 100)
+     val    = the number that counts up
+     suffix = text after the number
+     static = optional final text that replaces val+suffix  */
+  stats: {
+    asOf: "Instagram insights, autumn 2026. Influence covers the last 90 days. Demographics reflect the full follower base.",
+    influence: [
+      { pct:100, val:111, suffix:"&times;", label:"Reach multiple",
+        detail:"371,500 people reached in 90 days, about 111 times the 3,344 followers." },
+      { pct:99, val:99, suffix:"%", label:"Organic",
+        detail:"585,383 of 588,268 views were organic. Ads accounted for 2,885." },
+      { pct:12, val:12, suffix:"%", label:"Engagement",
+        detail:"44,300 likes, comments, saves and shares, measured against people reached rather than followers." }
+    ],
+    demo: [
+      { pct:71, val:71, suffix:"%", label:"Age 25&ndash;44",
+        detail:"Seven in ten followers are between 25 and 44." },
+      { pct:67, val:67, suffix:"/33", static:"67/33", label:"US / Worldwide",
+        detail:"67% of followers are in the US. The other 33% are spread across the UK, Canada, India, Australia and beyond." },
+      { pct:40, val:40, suffix:"/60", static:"40/60", label:"Women / Men",
+        detail:"40% women, 60% men." }
+    ]
+  },
+
+  /* Optional: a URL that returns JSON shaped like the `stats` block above
+     (asOf, influence, demo). When set, the page loads it on every visit and
+     falls back to the numbers above if it fails. Leave empty to skip.     */
+  statsUrl: "",
+
   /* ── PRICING ─────────────────────────────────────────
      showPricing: false hides the whole section.
-     CONFIRM THESE NUMBERS before sharing the page —
-     they were carried over from the 2025 PDF.          */
+     CONFIRM THESE NUMBERS before sharing the page.
+     They were carried over from the 2025 PDF.            */
   showPricing: true,
   tiers: [
     { name:"Carousel Post", price:"$250", items:[
@@ -517,9 +515,12 @@ const CONFIG = {
 /* ---------- INIT ---------- */
 document.addEventListener('DOMContentLoaded', init);
 
-function init(){
+async function init(){
   buildWall(); buildFilm(); buildPricing(); buildMarquee();
-  wireNav(); wireReveals(); wireRings(); wireContact();
+  wireNav(); wireReveals(); wireContact();
+  await loadLiveStats();
+  buildRings();
+  wireRings();
 }
 
 /* ---------- HERO PHOTO WALL ---------- */
@@ -538,8 +539,6 @@ function buildWall(){
 /* ---------- FILM ---------- */
 /* Clips always play muted: browsers only allow audio after a real click,
    and there is no sound control on this page. */
-const SOUND_ON = false;
-
 function buildFilm(){
   buildHeroFilms();
   buildRowFilms();
@@ -551,7 +550,7 @@ function buildHeroFilms(){
     <div class="film">
       <div class="film-media">
         <video src="${f.mp4}" ${f.poster?`poster="${f.poster}"`:''}
-               muted loop playsinline preload="none" data-film></video>
+               muted loop playsinline preload="none" aria-label="${f.brand}" data-film></video>
       </div>
       <div class="film-copy">
         <h3 class="film-head">${f.head}</h3>
@@ -565,56 +564,41 @@ function buildRowFilms(){
     const inner=`
       <div class="rf-media">
         <video src="${f.mp4}" ${f.poster?`poster="${f.poster}"`:''}
-               muted loop playsinline preload="none" data-film data-hover></video>
+               muted loop playsinline preload="none" aria-label="${f.brand}, ${f.kind}" data-film data-hover></video>
       </div>`;
     return f.ig
       ? `<a class="rf" href="${f.ig}" target="_blank" rel="noopener">${inner}</a>`
       : `<div class="rf">${inner}</div>`;
   }).join('');
 
-  /* Hover only makes sense with a pointer. Touch devices fall back to
-     the same scroll-triggered playback the hero films use. */
+  /* Hover only makes sense with a pointer. Touch devices use the
+     same scroll-triggered playback as the hero films. */
   if(window.matchMedia('(hover:hover)').matches){
     document.querySelectorAll('.rf').forEach(card=>{
       const v=card.querySelector('video');
-      card.addEventListener('mouseenter',()=>{
-        v.muted=!SOUND_ON;
-        v.play().then(()=>card.classList.add('playing')).catch(()=>{});
-      });
-      card.addEventListener('mouseleave',()=>{
-        v.pause(); v.currentTime=0; v.muted=true;
-        card.classList.remove('playing');
-      });
-    });
-  }else{
-    document.querySelectorAll('.rf').forEach(card=>{
-      const v=card.querySelector('video');
-      card.addEventListener('click',e=>{
-        if(card.tagName==='A') return;
-        e.preventDefault();
-        v.muted=!v.muted;
-        card.classList.toggle('playing',!v.muted);
-        if(!v.muted) v.play().catch(()=>{});
-      });
+      card.addEventListener('mouseenter',()=>{ v.play().catch(()=>{}); });
+      card.addEventListener('mouseleave',()=>{ v.pause(); v.currentTime=0; });
     });
   }
 }
 
-/* Play what's on screen, pause what isn't — so five clips never run at once
+/* Play what's on screen, pause what isn't, so clips never all run at once
    and nothing downloads until it's nearly in view. */
 function wirePlayback(){
   const hoverCapable=window.matchMedia('(hover:hover)').matches;
+  const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
   const io=new IntersectionObserver(entries=>{
     entries.forEach(e=>{
       const v=e.target;
       const isHoverCard=v.hasAttribute('data-hover');
       if(e.isIntersecting){
         if(v.preload==='none') v.preload='auto';
+        if(reduce) return;
         if(isHoverCard && hoverCapable) return;   /* those wait for the cursor */
         v.play().catch(()=>{});
       }else{
         v.pause();
-        if(isHoverCard){ v.currentTime=0; v.closest('.rf')?.classList.remove('playing'); }
+        if(isHoverCard) v.currentTime=0;
       }
     });
   },{threshold:.35});
@@ -626,7 +610,6 @@ function wirePlayback(){
       if(box.querySelector('.missing')) return;
       const t=document.createElement('div');
       t.className='missing';
-      t.textContent=v.getAttribute('src');
       box.appendChild(t);
     });
   });
@@ -656,21 +639,55 @@ function buildMarquee(){
 /* ---------- NAV ---------- */
 function wireNav(){
   const nav=document.getElementById('nav');
-  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>20),{passive:true});
+  const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>20);
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
   const burger=document.getElementById('burger'),mob=document.getElementById('mobileNav');
-  burger.addEventListener('click',()=>{
-    burger.classList.toggle('open');mob.classList.toggle('open');
-    document.body.style.overflow=mob.classList.contains('open')?'hidden':'';
-  });
-  mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
-    burger.classList.remove('open');mob.classList.remove('open');document.body.style.overflow='';
-  }));
+  function setMenu(open){
+    burger.classList.toggle('open',open);
+    mob.classList.toggle('open',open);
+    burger.setAttribute('aria-expanded',open?'true':'false');
+    document.body.style.overflow=open?'hidden':'';
+  }
+  burger.addEventListener('click',()=>setMenu(!mob.classList.contains('open')));
+  mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mob.classList.contains('open'))setMenu(false);});
 }
 
 /* ---------- REVEALS ---------- */
 function wireReveals(){
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.08});
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.08});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+}
+
+/* ---------- STATS ---------- */
+async function loadLiveStats(){
+  if(!CONFIG.statsUrl) return;
+  try{
+    const res=await fetch(CONFIG.statsUrl,{cache:'no-store'});
+    if(!res.ok) return;
+    const j=await res.json();
+    if(Array.isArray(j.influence)&&j.influence.length) CONFIG.stats.influence=j.influence;
+    if(Array.isArray(j.demo)&&j.demo.length) CONFIG.stats.demo=j.demo;
+    if(typeof j.asOf==='string') CONFIG.stats.asOf=j.asOf;
+  }catch(err){ console.warn('Live stats unavailable, using built-in numbers.',err); }
+}
+
+function ringHTML(r,grad){
+  const detail=String(r.detail||'').replace(/"/g,'&quot;');
+  const stat=r.static?` data-static="${r.static}"`:'';
+  return `
+    <button class="ring" type="button" data-pct="${r.pct}" data-val="${r.val}" data-suffix="${r.suffix||''}"${stat} data-detail="${detail}">
+      <div class="ring-wrap"><svg class="ring-svg" viewBox="0 0 116 116" aria-hidden="true"><circle class="ring-track" cx="58" cy="58" r="53"/><circle class="ring-arc" cx="58" cy="58" r="53" stroke="url(#${grad})"/></svg><div class="ring-val">0</div></div>
+      <div class="ring-label">${r.label}</div>
+    </button>`;
+}
+
+function buildRings(){
+  const s=CONFIG.stats;
+  document.getElementById('ringsInfluence').innerHTML=s.influence.map(r=>ringHTML(r,'gradA')).join('');
+  document.getElementById('ringsDemo').innerHTML=s.demo.map(r=>ringHTML(r,'gradB')).join('');
+  document.getElementById('statsNote').textContent=s.asOf||'';
 }
 
 /* ---------- RINGS ---------- */
@@ -680,10 +697,11 @@ function wireRings(){
   const detail=document.getElementById('ringDetail');
   const hint=document.getElementById('ringHint');
   const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  let swapTimer=null;
 
   function fill(ring){
     if(ring.dataset.filled)return; ring.dataset.filled='1';
-    const pct=+ring.dataset.pct,val=+ring.dataset.val,
+    const pct=Math.max(0,Math.min(100,+ring.dataset.pct)),val=+ring.dataset.val,
           suf=ring.dataset.suffix||'',stat=ring.dataset.static,
           arc=ring.querySelector('.ring-arc'),out=ring.querySelector('.ring-val');
     arc.style.strokeDasharray=CIRC;
@@ -693,8 +711,8 @@ function wireRings(){
     const dur=1300,t0=performance.now();
     (function step(t){
       const p=Math.min((t-t0)/dur,1),e=1-Math.pow(1-p,3);
-      out.innerHTML=Math.round(val*e)+suf;
-      if(p<1)requestAnimationFrame(step); else out.innerHTML=stat||(val+suf);
+      if(p<1){ out.innerHTML=Math.round(val*e)+suf; requestAnimationFrame(step); }
+      else out.innerHTML=stat||(val+suf);
     })(t0);
   }
   const io=new IntersectionObserver(es=>es.forEach(e=>{
@@ -703,14 +721,17 @@ function wireRings(){
   rings.forEach(r=>io.observe(r));
 
   function select(ring){
+    if(ring.classList.contains('on'))return;
     rings.forEach(r=>r.classList.remove('on'));
     ring.classList.add('on');
     hint.style.display='none';
     detail.classList.remove('show');
-    setTimeout(()=>{detail.innerHTML=ring.dataset.detail;detail.classList.add('show');},150);
+    clearTimeout(swapTimer);
+    swapTimer=setTimeout(()=>{detail.innerHTML=ring.dataset.detail;detail.classList.add('show');},150);
   }
   rings.forEach(r=>{
     r.addEventListener('click',()=>select(r));
+    r.addEventListener('focus',()=>select(r));
     r.addEventListener('mouseenter',()=>{if(window.innerWidth>760)select(r);});
   });
 }
@@ -721,24 +742,37 @@ function wireContact(){
         form=document.getElementById('contactForm'),
         wrap=document.getElementById('contactFormWrap'),
         ok=document.getElementById('contactSuccess'),
-        btn=document.getElementById('contactSubmit');
+        btn=document.getElementById('contactSubmit'),
+        err=document.getElementById('contactError');
+  let lastFocus=null;
+
+  function showError(msg){err.textContent=msg;err.classList.add('show');}
+  function clearError(){err.textContent='';err.classList.remove('show');}
 
   window.openContact=function(){
-    wrap.style.display='';ok.classList.remove('show');
+    lastFocus=document.activeElement;
+    wrap.style.display='';ok.classList.remove('show');clearError();
     modal.classList.add('open');document.body.style.overflow='hidden';
     setTimeout(()=>document.getElementById('cf-name').focus(),200);
   };
-  function close(){modal.classList.remove('open');document.body.style.overflow='';}
+  function close(){
+    modal.classList.remove('open');document.body.style.overflow='';
+    if(lastFocus&&lastFocus.focus)lastFocus.focus();
+  }
   document.getElementById('contactClose').addEventListener('click',close);
   modal.addEventListener('click',e=>{if(e.target===modal)close();});
   document.addEventListener('keydown',e=>{if(modal.classList.contains('open')&&e.key==='Escape')close();});
 
   form.addEventListener('submit',async e=>{
     e.preventDefault();
+    clearError();
+    /* honeypot: bots fill the hidden field, people never see it */
+    if(form.querySelector('[name="_gotcha"]').value) return;
     const name=document.getElementById('cf-name').value.trim(),
           email=document.getElementById('cf-email').value.trim(),
           checked=[...document.querySelectorAll('#cf-checks input:checked')].map(c=>c.value);
-    if(!name||!email)return;
+    if(!name||!email){showError('Please add your name and email.');return;}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showError('That email address looks off. Mind checking it?');return;}
     btn.textContent='Sending…';btn.disabled=true;
     try{
       const res=await fetch(CONFIG.formspree,{
@@ -752,8 +786,15 @@ function wireContact(){
           _subject:`Partner page inquiry from ${name}`
         })
       });
-      if(res.ok){wrap.style.display='none';ok.classList.add('show');form.reset();setTimeout(close,4000);}
-    }catch(err){console.error(err);}
+      if(res.ok){
+        wrap.style.display='none';ok.classList.add('show');form.reset();setTimeout(close,4000);
+      }else{
+        showError('Something went wrong sending that. Please try again, or reach out through the About/Contact page.');
+      }
+    }catch(error){
+      console.error(error);
+      showError('Could not send. Check your connection and try again.');
+    }
     btn.textContent='Send it';btn.disabled=false;
   });
 }
